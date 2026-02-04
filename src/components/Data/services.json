@@ -1,4 +1,5 @@
-[
+{
+  "AI Solutions": [
     {
         "id": 1,
         "name1": "GenAI Chat Services",
@@ -53,4 +54,34 @@
         "link": "./",
         "image": "./services/06.svg"
     }
-]
+  ],
+  "R&D and Products": [
+    {
+      "id": 5,
+      "name1": "New Models",
+      "name2": "Researching and developing new models such as forecasting foundation models.",
+      "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "arrow": "./services/ag.svg",
+      "link": "./",
+      "image": "./services/05.svg"
+    },
+    {
+      "id": 6,
+      "name1": "Forecasting with AI",
+      "name2": "Need forecasts? No problem, we have you covered, from end to end.",
+      "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+      "arrow": "./services/ag.svg",
+      "link": "./",
+      "image": "./services/04.svg"
+    },
+    {
+      "id": 7,
+      "name1": "Aura Baby",
+      "name2": "A one-stop parenting app, infused with AI.",
+      "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "arrow": "./services/ag.svg",
+      "link": "./",
+      "image": "./services/bunny.svg"
+    }
+  ]
+}
