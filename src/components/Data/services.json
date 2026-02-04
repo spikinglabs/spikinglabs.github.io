@@ -1,40 +1,58 @@
 {
   "AI Solutions": [
     {
-      "id": 1,
-      "name1": "GenAI",
-      "name2": "GenAI as you imagined, seamlessly integrated with your internal tools and products.",
-      "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-      "arrow": "./services/ag.svg",
-      "link": "./",
-      "image": "./services/01.svg"
+        "id": 1,
+        "name1": "GenAI Chat Services",
+        "name2": "Your private customization",
+        "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "arrow": "./services/ag.svg",
+        "link": "./",
+        "image": "./services/01.svg"
     },
     {
-      "id": 2,
-      "name1": "Discover New Insights",
-      "name2": "With the revolutionary power of AI, uncover hidden patterns and gain valuable insights.",
-      "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-      "arrow": "./services/ag.svg",
-      "link": "./",
-      "image": "./services/02.svg"
+        "id": 2,
+        "name1": "Automation of Day-to-Day",
+        "name2": "Using AI",
+        "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "arrow": "./services/ag.svg",
+        "link": "./",
+        "image": "./services/02.svg"
     },
     {
-      "id": 3,
-      "name1": "Private AI Solutions",
-      "name2": "Keep your private data secure, with self-hosted AI solutions.",
-      "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
-      "arrow": "./services/aw.svg",
-      "link": "./",
-      "image": "./services/03.svg"
+        "id": 3,
+        "name1": "AI in Your Office",
+        "name2": "never share your private data with anyone",
+        "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+        "arrow": "./services/aw.svg",
+        "link": "./",
+        "image": "./services/03.svg"
     },
     {
-      "id": 4,
-      "name1": "AI Education",
-      "name2": "Upskill your team and more safety",
-      "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-      "arrow": "./services/aw.svg",
-      "link": "./",
-      "image": "./services/06.svg"
+        "id": 4,
+        "name1": "Forecasting with AI",
+        "name2": "Customized for your business",
+        "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "arrow": "./services/ag.svg",
+        "link": "./",
+        "image": "./services/04.svg"
+    },
+    {
+        "id": 5,
+        "name1": "AI Model Development",
+        "name2": "Create dedicated models",
+        "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "arrow": "./services/ag.svg",
+        "link": "./",
+        "image": "./services/05.svg"
+    },
+    {
+        "id": 6,
+        "name1": "AI Education",
+        "name2": "Upskill your team and more safety",
+        "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+        "arrow": "./services/aw.svg",
+        "link": "./",
+        "image": "./services/06.svg"
     }
   ],
   "R&D and Products": [
