@@ -20,36 +20,18 @@
     },
     {
         "id": 3,
-        "name1": "AI in Your Office",
-        "name2": "never share your private data with anyone",
+        "name1": "Private AI",
+        "name2": "Keep your private data secure by custom self-hosted AI solutions.",
         "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
         "arrow": "./services/aw.svg",
         "link": "./",
         "image": "./services/03.svg"
     },
     {
-        "id": 4,
-        "name1": "Forecasting with AI",
-        "name2": "Customized for your business",
-        "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-        "arrow": "./services/ag.svg",
-        "link": "./",
-        "image": "./services/04.svg"
-    },
-    {
-        "id": 5,
-        "name1": "AI Model Development",
-        "name2": "Create dedicated models",
-        "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-        "arrow": "./services/ag.svg",
-        "link": "./",
-        "image": "./services/05.svg"
-    },
-    {
         "id": 6,
         "name1": "AI Education",
         "name2": "Upskill your team and more safety",
-        "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+        "background": "h-[310px] p-12 bg-sky-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
         "arrow": "./services/aw.svg",
         "link": "./",
         "image": "./services/06.svg"
@@ -78,7 +60,7 @@
       "id": 7,
       "name1": "Aura Baby",
       "name2": "A one-stop parenting app, infused with AI.",
-      "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "background": "h-[310px] p-12 bg-orange-200 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "./",
       "image": "./services/bunny.svg"
