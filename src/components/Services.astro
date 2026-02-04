@@ -8,47 +8,45 @@ import servicesData from './Data/services.json';
     <Topic title="Our Services" description="Our services and products are designed to help you unlock the full potential of your business with AI, with privacy and safety."/>
 </div>
 
-<div class="flex-row items-center py-5">
-    <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-4">
-
-        <!-- card start-->
-        {
-        servicesData.map(({ background, name1, name2, arrow, link, image} ) => (
-        <div class={background}>
-            <div class="flex-col justify-center items-start gap-[93px] inline-flex">
-                <div class="flex-col justify-start items-start flex">
-                    <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-                        <div class=" text-3xl font-medium">{name1}</div>
+<div class="flex-col items-center space-y-10">
+    {
+    Object.entries(servicesData).map(([category, services]) => (
+        <div class="w-full">
+            <h3 class="text-3xl font-medium mb-6 px-2">{category}</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-6">
+                {
+                services.map(({ background, name1, name2, arrow, link, image}) => (
+                <div class={`${background} group`}>
+                    <div class="flex-col justify-center items-start gap-16 inline-flex">
+                        <div class="flex-col justify-start items-start flex gap-3">
+                            <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
+                                <div class=" text-3xl font-medium">{name1}</div>
+                            </div>
+                            <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
+                                <div class="text-2xl font-normal">{name2}</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-                        <div class="text-3xl font-medium">{name2}</div>
+                    <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
+                        <img class="hidden md:block transition duration-300 group-hover:scale-105" src={image} />
                     </div>
                 </div>
-                {/* <a class="justify-start items-center gap-[15px] inline-flex" href={link}>
-                    <div class="w-[41px] h-[41px] relative">
-                        <img class="w-[41px] h-[41px] left-0 top-0 absolute" src={arrow} />
-                    </div>
-                    <div class="text-xl font-normal leading-7">Learn more</div>
-                </a> */}
-            </div>
-            <div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
-                <img class="hidden md:block" src={image} />
+                ))
+                }
             </div>
         </div>
-        ))
-        }
-        <!-- card end-->
-    </div>
+    ))
+    }
 </div>
 
-<div class="flex-row items-center my-6 p-14 bg-zinc-100 rounded-[45px]">
+<div class="flex-row items-center my-6 p-14 section-surface">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div class="justify-start items-center gap-[275px] flex">
             <div class="flex-col justify-start items-start gap-[26px] inline-flex text-black">
-                <div class="text-3xl font-medium">Let’s make things happen</div>
-                <div class="text-lg font-normal">Contact us today to learn more about how our digital marketing services can help your business grow and succeed online.</div>
-                <a href=mailto:"hi@spikinglabs.com" class="px-[35px] py-5 bg-zinc-900 hover:bg-white text-white hover:text-black border rounded-[14px] justify-start items-start gap-2.5 inline-flex">
-                    <div class="text-center text-xl font-normal leading-7">Write to Us: hi@spikinglabs.com</div>
+                <div class="text-3xl font-medium">Let's make things happen</div>
+                <div class="text-lg font-normal text-black/80">Contact us today to learn more about how our AI automation services can help your business grow securely and sustainably.</div>
+                <a href=mailto:"hi@spikinglabs.com" class="btn-primary">
+                    <div class="text-center text-base font-medium leading-7">Write to Us: hi@spikinglabs.com</div>
                 </a>
             </div>
         </div>
