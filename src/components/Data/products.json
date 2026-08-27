@@ -52,5 +52,64 @@
         "image": "/services/03.svg"
       }
     ]
+  },
+  {
+    "slug": "tiny-foundation",
+    "name": "Tiny Foundation",
+    "tagline": "Curated knowledge, flawless precision",
+    "summary": "A tiny knowledge workspace for managing small, composable units of knowledge. Ground AI in strict, version-controlled context to prevent hallucinations, with native Model Context Protocol (MCP) integration.",
+    "status": "Live",
+    "heroImage": null,
+    "ctaUrl": "https://tiny-foundation.spikinglabs.com/",
+    "ctaLabel": "Start Building Free",
+    "features": [
+      {
+        "title": "Precise Results",
+        "description": "Extract highly accurate semantic graphs from your text, grounding AI in absolute, version-controlled context.",
+        "image": null
+      },
+      {
+        "title": "Native MCP",
+        "description": "Expose your governed knowledge directly to AI agents securely through built-in Model Context Protocol integration.",
+        "image": null
+      },
+      {
+        "title": "Small Knowledge",
+        "description": "Break down complex information into tiny, composable units of markdown.",
+        "image": null
+      },
+      {
+        "title": "Governance",
+        "description": "Every document change is tracked and versioned, so you can review before publishing.",
+        "image": null
+      }
+    ]
+  },
+  {
+    "slug": "alloland",
+    "name": "AlloLand",
+    "tagline": "Your expat journey, guided by those who've been there",
+    "summary": "AlloLand connects expats in Europe with mentors who've lived your exact situation \u2014 covering housing, visas, careers, banking, and local life \u2014 so you get real answers, not generic advice.",
+    "status": "Coming Soon",
+    "heroImage": null,
+    "ctaUrl": null,
+    "ctaLabel": null,
+    "features": [
+      {
+        "title": "Find a Mentor",
+        "description": "Browse mentors by country, topic, and experience level for insight from expats who've navigated the same challenges.",
+        "image": null
+      },
+      {
+        "title": "Real Conversations",
+        "description": "Book 1-on-1 sessions on your schedule and get answers to the specific questions that Google can't answer.",
+        "image": null
+      },
+      {
+        "title": "Become a Mentor",
+        "description": "Turn your hard-won expat experience into something valuable and help newcomers navigate what you once figured out alone.",
+        "image": null
+      }
+    ]
   }
 ]
