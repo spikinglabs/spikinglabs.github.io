@@ -1,32 +1,5 @@
 [
   {
-    "slug": "aura-baby",
-    "name": "Aura Baby",
-    "tagline": "AI-powered guidance for early parenthood",
-    "summary": "A one-stop parenting app infused with AI, designed to guide, support, and simplify every stage of early parenthood.",
-    "status": "Coming Soon",
-    "heroImage": "/products/bunny.svg",
-    "ctaUrl": "https://aura.spikinglabs.com",
-    "ctaLabel": "Use Aura Baby",
-    "features": [
-      {
-        "title": "AI Deep Research",
-        "description": "Trusted resources on baby, parenting, and more.",
-        "image": "/services/01.svg"
-      },
-      {
-        "title": "Integrated Tracking",
-        "description": "Integrated tracking and understanding tools.",
-        "image": "/services/02.svg"
-      },
-      {
-        "title": "Discuss & Discover",
-        "description": "Discuss and find insights about your baby.",
-        "image": "/services/03.svg"
-      }
-    ]
-  },
-  {
     "slug": "cityklub",
     "name": "CityKlub",
     "tagline": "Spontaneous plans with real people, in your city",
@@ -50,6 +23,33 @@
         "title": "Approve, Then Chat",
         "description": "Approximate locations are public; exact meeting points stay protected until your request is approved.",
         "image": null
+      }
+    ]
+  },
+  {
+    "slug": "aura-baby",
+    "name": "Aura Baby",
+    "tagline": "AI-powered guidance for early parenthood",
+    "summary": "A one-stop parenting app infused with AI, designed to guide, support, and simplify every stage of early parenthood.",
+    "status": "Coming Soon",
+    "heroImage": "/products/bunny.svg",
+    "ctaUrl": "https://aura.spikinglabs.com",
+    "ctaLabel": "Use Aura Baby",
+    "features": [
+      {
+        "title": "AI Deep Research",
+        "description": "Trusted resources on baby, parenting, and more.",
+        "image": "/services/01.svg"
+      },
+      {
+        "title": "Integrated Tracking",
+        "description": "Integrated tracking and understanding tools.",
+        "image": "/services/02.svg"
+      },
+      {
+        "title": "Discuss & Discover",
+        "description": "Discuss and find insights about your baby.",
+        "image": "/services/03.svg"
       }
     ]
   }

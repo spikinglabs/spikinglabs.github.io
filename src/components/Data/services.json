@@ -1,4 +1,15 @@
 {
+  "Our Products": [
+    {
+      "id": 7,
+      "name1": "CityKlub",
+      "name2": "Spontaneous plans with real people, in your city.",
+      "background": "h-[310px] p-12 bg-orange-200 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "arrow": "./services/ag.svg",
+      "link": "/products/cityklub",
+      "image": null
+    }
+  ],
   "AI Solutions": [
     {
         "id": 1,
@@ -37,11 +48,11 @@
         "image": "./services/06.svg"
     }
   ],
-  "R&D and Products": [
+  "Research & Development": [
     {
       "id": 5,
-      "name1": "New Models",
-      "name2": "Researching and developing new models such as forecasting foundation models.",
+      "name1": "Foundation Models for Time Series",
+      "name2": "Researching and developing new models such as foundation forecasting models.",
       "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "./",
@@ -55,15 +66,6 @@
       "arrow": "./services/ag.svg",
       "link": "./",
       "image": "./services/04.svg"
-    },
-    {
-      "id": 7,
-      "name1": "Aura Baby",
-      "name2": "A one-stop parenting app, infused with AI.",
-      "background": "h-[310px] p-12 bg-orange-200 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
-      "arrow": "./services/ag.svg",
-      "link": "./",
-      "image": "./services/bunny.svg"
     }
   ]
 }
