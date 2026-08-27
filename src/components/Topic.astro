@@ -1,11 +1,12 @@
 ---
-const { title, description} = Astro.props;
+const { title, description, as = "h2" } = Astro.props;
+const Heading = as;
 ---
 
 <div class="grid place-items-center gap-5 mb-10 md:flex">
-    <span class="text-4xl sm:text-6xl px-1.5 font-medium bg-lime rounded-md">
+    <Heading class="text-4xl sm:text-6xl px-1.5 font-medium bg-lime rounded-md">
         {title}
-    </span>
+    </Heading>
     <p class="text-xl font-normal text-center md:text-start lg:w-2/3">
         {description}
     </p>
