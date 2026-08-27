@@ -1,134 +1,52 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Container from '../components/Container.astro';
-import Topic from '../components/Topic.astro';
+import productsData from '../components/Data/products.json';
+
+const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 ---
 
 <Layout title="Products">
 	<main class="space-y-20">
 		<Container>
-			<section class="relative flex flex-col-reverse items-center md:flex-row py-6 md:pb-20 md:pt-12">
-				<div class="row items-center md:w-6/12">
-					<div class="text-left space-y-4">
-						<div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-sm">
-							<span class="h-2 w-2 rounded-full bg-lime"></span>
-							Products
-						</div>
-						<h1 class="text-5xl font-medium leading-none md:text-6xl">
-							AI-first products <br />
-							<span class="bg-gradient-to-r from-black via-zinc-800 to-lime bg-clip-text text-transparent">that feel human</span>
-						</h1>
-						<p class="mt-4 mb-8 text-xl font-normal leading-7 text-black/80">
-							We build focused tools that simplify everyday life, powered by responsible AI and thoughtful design.
-						</p>
-						<div class="flex flex-wrap gap-4">
-							<a class="btn-primary" href="https://aura.spikinglabs.com" target="_blank" rel="noopener noreferrer">
-								<h2 class="text-center text-base font-medium leading-7">Use Aura Baby</h2>
-							</a>
-							<a class="btn-outline" href="#aura-baby">
-								<h2 class="text-center text-base font-medium leading-7">Explore Aura Baby</h2>
-							</a>
-						</div>
-					</div>
+			<section class="py-6 md:pb-16 md:pt-12 text-left space-y-4 max-w-3xl">
+				<div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-sm">
+					<span class="h-2 w-2 rounded-full bg-lime"></span>
+					Products
 				</div>
-				<div class="flex items-center py-6 md:w-6/12">
-					<img class="drop-shadow-[0_25px_45px_rgba(0,0,0,0.12)] max-h-[180px] md:max-h-[420px] w-auto mx-auto" src="/products/bunny.svg" alt="Aura Baby" />
-				</div>
+				<h1 class="text-5xl font-medium leading-none md:text-6xl">
+					AI-first products <br />
+					<span class="bg-gradient-to-r from-black via-zinc-800 to-lime bg-clip-text text-transparent">that feel human</span>
+				</h1>
+				<p class="mt-4 text-xl font-normal leading-7 text-black/80">
+					We build focused tools that simplify everyday life, powered by responsible AI and thoughtful design.
+				</p>
 			</section>
-		</Container>
 
-		<Container>
-			<section id="aura-baby" class="space-y-10">
-				<Topic
-					title="Aura Baby"
-					description="A one-stop parenting app infused with AI, designed to guide, support, and simplify every stage of early parenthood."
-				/>
-				
-				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-					<div class="h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group">
-						<div class="flex-col justify-center items-start gap-16 inline-flex">
-							<div class="flex-col justify-start items-start flex gap-3">
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-3xl font-medium">AI Deep Research</div>
-								</div>
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-2xl font-normal">Trusted resources on baby, parenting, and more.</div>
-								</div>
+			<section class="grid grid-cols-1 md:grid-cols-2 gap-6 pb-10">
+				{productsData.map((product, i) => (
+					<a
+						href={`/products/${product.slug}`}
+						class={`group flex flex-col justify-between p-10 md:p-12 rounded-[45px] shadow-card border border-black ${cardColors[i % cardColors.length]} text-black transition duration-300 hover:-translate-y-1`}
+					>
+						<div class="flex items-start justify-between gap-4">
+							<div class="space-y-3">
+								<span class="inline-flex items-center rounded-full border border-black/20 bg-white/70 px-3 py-1 text-xs font-medium text-black/70">
+									{product.status}
+								</span>
+								<h2 class="text-3xl font-medium">{product.name}</h2>
+								<p class="text-lg text-black/80">{product.tagline}</p>
 							</div>
+							{product.heroImage && (
+								<img class="hidden sm:block w-20 h-20 object-contain transition duration-300 group-hover:scale-105" src={product.heroImage} alt={product.name} />
+							)}
 						</div>
-						<div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
-							<img class="hidden md:block transition duration-300 group-hover:scale-105" src="/services/01.svg" alt="AI Deep Research" />
-						</div>
-					</div>
-
-					<div class="h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group">
-						<div class="flex-col justify-center items-start gap-16 inline-flex">
-							<div class="flex-col justify-start items-start flex gap-3">
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-3xl font-medium">Integrated Tracking</div>
-								</div>
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-2xl font-normal">Integrated tracking and understanding tools.</div>
-								</div>
-							</div>
-						</div>
-						<div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
-							<img class="hidden md:block transition duration-300 group-hover:scale-105" src="/services/02.svg" alt="Integrated Tracking" />
-						</div>
-					</div>
-
-					<div class="h-[310px] p-12 bg-[#FFE3C2] rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group">
-						<div class="flex-col justify-center items-start gap-16 inline-flex">
-							<div class="flex-col justify-start items-start flex gap-3">
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-3xl font-medium text-black">Discuss & Discover</div>
-								</div>
-								<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
-									<div class="text-2xl font-normal text-black">Discuss and find insights about your baby.</div>
-								</div>
-							</div>
-						</div>
-						<div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
-							<img class="hidden md:block transition duration-300 group-hover:scale-105" src="/services/03.svg" alt="Discuss and find insights" />
-						</div>
-					</div>
-
-					<div class="section-surface p-10 md:p-12 flex flex-col justify-between">
-						<div class="space-y-4">
-							<h3 class="text-3xl font-medium">Ready to get started?</h3>
-							<p class="text-lg text-black/80">
-								Join thousands of parents discovering a better way to navigate early parenthood with AI-powered guidance and support.
-							</p>
-							<ul class="space-y-2 text-lg text-black/70">
-								<li>✓ Expert-guided recommendations</li>
-								<li>✓ Seamless family coordination</li>
-								<li>✓ Privacy-by-design approach</li>
-							</ul>
-						</div>
-						<div class="flex flex-wrap gap-4 mt-6">
-							<a class="btn-primary" href="mailto:hi@spikinglabs.com" target="_blank" rel="noopener noreferrer">
-								<h2 class="text-center text-base font-medium leading-7">Request Early Access</h2>
-							</a>
-							<a class="btn-outline" href="mailto:hi@spikinglabs.com" target="_blank" rel="noopener noreferrer">
-								<h2 class="text-center text-base font-medium leading-7">Partner With Us</h2>
-							</a>
-						</div>
-					</div>
-				</div>
-			</section>
-		</Container>
-
-		<Container>
-			<section class="my-10 p-10 md:p-14 section-surface">
-				<div class="text-center space-y-4">
-					<h2 class="text-3xl font-medium">Coming Soon</h2>
-					<p class="text-lg text-black/80">
-						Aura Baby is currently in development. Be among the first to experience the future of parenting.
-					</p>
-					<a class="btn-primary inline-block" href="mailto:hi@spikinglabs.com" target="_blank" rel="noopener noreferrer">
-						<h2 class="text-center text-base font-medium leading-7">Notify Me at Launch</h2>
+						<p class="mt-8 text-base text-black/70 line-clamp-3">{product.summary}</p>
+						<span class="mt-6 inline-flex items-center gap-2 text-base font-medium underline-offset-4 group-hover:underline">
+							Explore {product.name} &rarr;
+						</span>
 					</a>
-				</div>
+				))}
 			</section>
 		</Container>
 	</main>

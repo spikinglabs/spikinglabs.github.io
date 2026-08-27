@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "aura-baby",
+    "name": "Aura Baby",
+    "tagline": "AI-powered guidance for early parenthood",
+    "summary": "A one-stop parenting app infused with AI, designed to guide, support, and simplify every stage of early parenthood.",
+    "status": "Coming Soon",
+    "heroImage": "/products/bunny.svg",
+    "ctaUrl": "https://aura.spikinglabs.com",
+    "ctaLabel": "Use Aura Baby",
+    "features": [
+      {
+        "title": "AI Deep Research",
+        "description": "Trusted resources on baby, parenting, and more.",
+        "image": "/services/01.svg"
+      },
+      {
+        "title": "Integrated Tracking",
+        "description": "Integrated tracking and understanding tools.",
+        "image": "/services/02.svg"
+      },
+      {
+        "title": "Discuss & Discover",
+        "description": "Discuss and find insights about your baby.",
+        "image": "/services/03.svg"
+      }
+    ]
+  },
+  {
+    "slug": "cityklub",
+    "name": "CityKlub",
+    "tagline": "Spontaneous plans with real people, in your city",
+    "summary": "A map-first mobile app for spontaneous, free activities in Cologne. Discover what's happening today and tomorrow, form small groups around curated city events, and chat once you're approved to join.",
+    "status": "Coming Soon",
+    "heroImage": null,
+    "ctaUrl": null,
+    "ctaLabel": null,
+    "features": [
+      {
+        "title": "Today & Tomorrow",
+        "description": "Discovery focused on what's happening right now and next \u2014 no endless scrolling through old events.",
+        "image": null
+      },
+      {
+        "title": "Small Group Plans",
+        "description": "Create a plan or request to join one, and form small groups around curated city events.",
+        "image": null
+      },
+      {
+        "title": "Approve, Then Chat",
+        "description": "Approximate locations are public; exact meeting points stay protected until your request is approved.",
+        "image": null
+      }
+    ]
+  }
+]

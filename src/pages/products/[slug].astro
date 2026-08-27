@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Container from '../../components/Container.astro';
+import Topic from '../../components/Topic.astro';
+import productsData from '../../components/Data/products.json';
+
+export async function getStaticPaths() {
+  return productsData.map((product) => ({
+    params: { slug: product.slug },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
+---
+
+<Layout title={`${product.name} | Spiking Labs`}>
+	<main class="space-y-20">
+		<Container>
+			<section class="relative flex flex-col-reverse items-center md:flex-row py-6 md:pb-20 md:pt-12">
+				<div class="row items-center md:w-6/12">
+					<div class="text-left space-y-4">
+						<div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 text-sm font-medium text-black/70 shadow-sm">
+							<span class="h-2 w-2 rounded-full bg-lime"></span>
+							{product.status}
+						</div>
+						<h1 class="text-5xl font-medium leading-none md:text-6xl">{product.name}</h1>
+						<p class="mt-4 mb-8 text-xl font-normal leading-7 text-black/80">
+							{product.summary}
+						</p>
+						<div class="flex flex-wrap gap-4">
+							{product.ctaUrl ? (
+								<a class="btn-primary" href={product.ctaUrl} target="_blank" rel="noopener noreferrer">
+									<span class="text-center text-base font-medium leading-7">{product.ctaLabel}</span>
+								</a>
+							) : (
+								<a class="btn-primary" href="/support">
+									<span class="text-center text-base font-medium leading-7">Get Notified at Launch</span>
+								</a>
+							)}
+							<a class="btn-outline" href="/products">
+								<span class="text-center text-base font-medium leading-7">All Products</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="flex items-center py-6 md:w-6/12">
+					{product.heroImage ? (
+						<img class="drop-shadow-[0_25px_45px_rgba(0,0,0,0.12)] max-h-[180px] md:max-h-[420px] w-auto mx-auto" src={product.heroImage} alt={product.name} />
+					) : (
+						<div class="flex items-center justify-center h-[180px] md:h-[420px] w-full">
+							<span class="text-8xl md:text-9xl font-medium text-black/10">{product.name.charAt(0)}</span>
+						</div>
+					)}
+				</div>
+			</section>
+		</Container>
+
+		<Container>
+			<section class="space-y-10">
+				<Topic title={product.name} description={product.tagline} />
+
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+					{product.features.map((feature, i) => (
+						<div class={`h-[310px] p-12 ${cardColors[i % cardColors.length]} rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group`}>
+							<div class="flex-col justify-center items-start gap-16 inline-flex">
+								<div class="flex-col justify-start items-start flex gap-3">
+									<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
+										<div class="text-3xl font-medium">{feature.title}</div>
+									</div>
+									<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">
+										<div class="text-2xl font-normal">{feature.description}</div>
+									</div>
+								</div>
+							</div>
+							{feature.image && (
+								<div class="w-[210px] h-[170px] pt-0.5 pb-[1.95px] justify-center items-center flex">
+									<img class="hidden md:block transition duration-300 group-hover:scale-105" src={feature.image} alt={feature.title} />
+								</div>
+							)}
+						</div>
+					))}
+
+					<div class="section-surface p-10 md:p-12 flex flex-col justify-between">
+						<div class="space-y-4">
+							<h3 class="text-3xl font-medium">Ready to get started?</h3>
+							<p class="text-lg text-black/80">
+								Be among the first to try {product.name} and help shape what we build next.
+							</p>
+						</div>
+						<div class="flex flex-wrap gap-4 mt-6">
+							<a class="btn-primary" href="mailto:hi@spikinglabs.com">
+								<span class="text-center text-base font-medium leading-7">Request Early Access</span>
+							</a>
+							<a class="btn-outline" href="mailto:hi@spikinglabs.com">
+								<span class="text-center text-base font-medium leading-7">Partner With Us</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+		</Container>
+
+		{product.status === "Coming Soon" && (
+			<Container>
+				<section class="my-10 p-10 md:p-14 section-surface">
+					<div class="text-center space-y-4">
+						<h2 class="text-3xl font-medium">Coming Soon</h2>
+						<p class="text-lg text-black/80">
+							{product.name} is currently in development. Be among the first to experience it.
+						</p>
+						<a class="btn-primary inline-block" href="mailto:hi@spikinglabs.com">
+							<span class="text-center text-base font-medium leading-7">Notify Me at Launch</span>
+						</a>
+					</div>
+				</section>
+			</Container>
+		)}
+	</main>
+</Layout>
