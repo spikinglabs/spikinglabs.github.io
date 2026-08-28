@@ -90,10 +90,10 @@ const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 							</p>
 						</div>
 						<div class="flex flex-wrap gap-4 mt-6">
-							<a class="btn-primary" href="mailto:hi@spikinglabs.com">
+							<a class="btn-primary" href={`mailto:hi@spikinglabs.com?subject=${encodeURIComponent(`Early access: ${product.name}`)}`}>
 								<span class="text-center text-base font-medium leading-7">Request Early Access</span>
 							</a>
-							<a class="btn-outline" href="mailto:hi@spikinglabs.com">
+							<a class="btn-outline" href={`mailto:hi@spikinglabs.com?subject=${encodeURIComponent(`Partnership inquiry: ${product.name}`)}`}>
 								<span class="text-center text-base font-medium leading-7">Partner With Us</span>
 							</a>
 						</div>
@@ -110,8 +110,8 @@ const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 						<p class="text-lg text-black/80">
 							{product.name} is currently in development. Be among the first to experience it.
 						</p>
-						<a class="btn-primary inline-block" href="mailto:hi@spikinglabs.com">
-							<span class="text-center text-base font-medium leading-7">Notify Me at Launch</span>
+						<a class="btn-primary inline-block" href="/support">
+							<span class="text-center text-base font-medium leading-7">Get Notified at Launch</span>
 						</a>
 					</div>
 				</section>
