@@ -43,7 +43,7 @@
   }
 
   .card-base {
-    @apply relative h-[310px] p-10 md:p-12 rounded-[34px] border border-black/10 shadow-card flex justify-between items-center transition duration-300;
+    @apply relative min-h-[310px] p-10 md:p-12 rounded-[34px] border border-black/10 shadow-card flex justify-between items-center transition duration-300;
     box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
   }
 

@@ -63,7 +63,7 @@ const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 
 				<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 					{product.features.map((feature, i) => (
-						<div class={`h-[310px] p-12 ${cardColors[i % cardColors.length]} rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group`}>
+						<div class={`min-h-[310px] p-8 md:p-12 ${cardColors[i % cardColors.length]} rounded-[45px] shadow-card border border-black justify-between items-center flex text-black group`}>
 							<div class="flex-col justify-center items-start gap-16 inline-flex">
 								<div class="flex-col justify-start items-start flex gap-3">
 									<div class="px-[7px] bg-lime-300 rounded-[7px] flex-col justify-start items-start gap-2.5 flex">

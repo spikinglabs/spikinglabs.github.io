@@ -4,7 +4,7 @@
       "id": 7,
       "name1": "CityKlub",
       "name2": "Spontaneous plans with real people, in your city.",
-      "background": "h-[310px] p-12 bg-orange-200 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "background": "min-h-[310px] p-8 md:p-12 bg-orange-200 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "/products/cityklub",
       "image": null
@@ -13,7 +13,7 @@
       "id": 8,
       "name1": "Tiny Foundation",
       "name2": "Curated knowledge, flawless precision.",
-      "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "background": "min-h-[310px] p-8 md:p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "/products/tiny-foundation",
       "image": null
@@ -22,7 +22,7 @@
       "id": 9,
       "name1": "AlloLand",
       "name2": "Your expat journey, guided by those who've been there.",
-      "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "background": "min-h-[310px] p-8 md:p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "/products/alloland",
       "image": null
@@ -33,7 +33,7 @@
         "id": 1,
         "name1": "GenAI Chat Services",
         "name2": "Your private customization",
-        "background": "h-[310px] p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "background": "min-h-[310px] p-8 md:p-12 bg-zinc-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
         "arrow": "./services/ag.svg",
         "link": "./",
         "image": "./services/01.svg"
@@ -42,7 +42,7 @@
         "id": 2,
         "name1": "Automation of Day-to-Day",
         "name2": "Using AI",
-        "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "background": "min-h-[310px] p-8 md:p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
         "arrow": "./services/ag.svg",
         "link": "./",
         "image": "./services/02.svg"
@@ -51,7 +51,7 @@
         "id": 3,
         "name1": "Private AI",
         "name2": "Keep your private data secure by custom self-hosted AI solutions.",
-        "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+        "background": "min-h-[310px] p-8 md:p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
         "arrow": "./services/aw.svg",
         "link": "./",
         "image": "./services/03.svg"
@@ -60,7 +60,7 @@
         "id": 6,
         "name1": "AI Education",
         "name2": "Upskill your team and more safety",
-        "background": "h-[310px] p-12 bg-sky-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+        "background": "min-h-[310px] p-8 md:p-12 bg-sky-100 rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
         "arrow": "./services/aw.svg",
         "link": "./",
         "image": "./services/06.svg"
@@ -71,7 +71,7 @@
       "id": 5,
       "name1": "Foundation Models for Time Series",
       "name2": "Researching and developing new models such as foundation forecasting models.",
-      "background": "h-[310px] p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
+      "background": "min-h-[310px] p-8 md:p-12 bg-lime rounded-[45px] shadow-card border border-black justify-between items-center flex text-black",
       "arrow": "./services/ag.svg",
       "link": "./",
       "image": "./services/05.svg"
@@ -80,7 +80,7 @@
       "id": 6,
       "name1": "Forecasting with AI",
       "name2": "Need forecasts? No problem, we have you covered, from end to end.",
-      "background": "h-[310px] p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
+      "background": "min-h-[310px] p-8 md:p-12 bg-black rounded-[45px] shadow-card border border-black justify-between items-center flex text-white",
       "arrow": "./services/ag.svg",
       "link": "./",
       "image": "./services/04.svg"
