@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Container from '../../components/Container.astro';
 import Topic from '../../components/Topic.astro';
+import CityKlubPrivacyPolicy from '../../components/CityKlubPrivacyPolicy.astro';
 import productsData from '../../components/Data/products.json';
 
 export async function getStaticPaths() {
@@ -42,6 +43,11 @@ const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 							<a class="btn-outline" href="/products">
 								<span class="text-center text-base font-medium leading-7">All Products</span>
 							</a>
+							{product.slug === "cityklub" && (
+								<a class="btn-outline" href="#privacy-policy">
+									<span class="text-center text-base font-medium leading-7">Privacy Policy</span>
+								</a>
+							)}
 						</div>
 					</div>
 				</div>
@@ -117,5 +123,7 @@ const cardColors = ["bg-zinc-100", "bg-lime", "bg-[#FFE3C2]"];
 				</section>
 			</Container>
 		)}
+
+		{product.slug === "cityklub" && <CityKlubPrivacyPolicy />}
 	</main>
 </Layout>
