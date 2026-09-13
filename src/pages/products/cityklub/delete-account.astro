@@ -1,0 +1,83 @@
+---
+import Container from '../../../components/Container.astro';
+import Layout from '../../../layouts/Layout.astro';
+
+const email = 'support@spikinglabs.com';
+const subject = 'CityKlub account deletion request';
+const body = [
+  'Hello Spiking Labs,',
+  '',
+  'Please delete my CityKlub account and associated data.',
+  '',
+  'Registered phone number (including country code): ',
+  'Can I still access this phone number? Yes / No',
+  '',
+  'If I cannot access my registered phone number, here is an explanation: ',
+  '',
+  'Please let me know the next steps to verify account ownership and confirm when deletion is complete.',
+].join('\r\n');
+const requestUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+---
+
+<Layout title="Delete your CityKlub account and data | Spiking Labs" description="Request deletion of your CityKlub account by email. Learn what is deleted, how verification works, and how long safety records are retained.">
+  <main class="py-10 md:py-20">
+    <Container>
+      <article class="mx-auto max-w-3xl space-y-10 text-zinc-900">
+        <header class="space-y-5">
+          <p class="text-sm font-medium uppercase tracking-widest">CityKlub · Spiking Labs</p>
+          <h1 class="text-4xl font-medium leading-tight md:text-6xl">Delete your CityKlub account and data.</h1>
+          <p class="text-lg leading-relaxed">You can request permanent deletion of your CityKlub account and associated data by contacting Spiking Labs. You do not need to install the app or sign in to send a request.</p>
+        </header>
+
+        <section aria-labelledby="request-heading" class="space-y-5 rounded-3xl border border-zinc-900 bg-lime p-6 md:p-8">
+          <h2 id="request-heading" class="text-2xl font-medium">Send your deletion request</h2>
+          <p>Email <a class="break-all font-medium underline underline-offset-4" href={`mailto:${email}`}>{email}</a> with the subject <strong>CityKlub account deletion request</strong>.</p>
+          <a href={requestUrl} class="inline-flex min-h-12 items-center justify-center rounded-2xl border border-zinc-900 bg-zinc-900 px-6 py-4 text-center text-white hover:bg-white hover:text-black">Email a deletion request</a>
+          <p class="text-sm leading-relaxed">This button opens a draft in your email app. Review it and send it to submit your request. Opening the draft does not send a request or delete your account. If no email app opens, copy the address above into your preferred email service.</p>
+        </section>
+
+        <section aria-labelledby="steps-heading" class="space-y-4">
+          <h2 id="steps-heading" class="text-2xl font-medium">What happens next</h2>
+          <ol class="list-decimal space-y-3 pl-6 leading-relaxed">
+            <li><strong>Send your request.</strong> Include the phone number registered to CityKlub, with its country code. If you no longer have access to that number, explain this in your email.</li>
+            <li><strong>Verify account ownership.</strong> Our support team will explain any verification needed before processing deletion. Sending a phone number alone does not prove ownership.</li>
+            <li><strong>Receive confirmation.</strong> We process requests manually and email you when deletion is complete.</li>
+          </ol>
+          <p class="leading-relaxed"><strong>Never send passwords or SMS verification codes by email.</strong></p>
+          <p class="leading-relaxed">We aim to complete your request within <strong>30 days of receiving it</strong>. If account verification causes a delay, we will explain what is needed and keep you informed.</p>
+        </section>
+
+        <section aria-labelledby="data-heading" class="space-y-4">
+          <h2 id="data-heading" class="text-2xl font-medium">What we delete</h2>
+          <p class="leading-relaxed">Once ownership is verified, we delete your account and associated app data, subject to the limited safety retention below:</p>
+          <ul class="list-disc space-y-2 pl-6 leading-relaxed">
+            <li>Your login account and registered phone number.</li>
+            <li>Your profile, photos, introduction, and interests.</li>
+            <li>Your messages, hosted plans, and their associated chats.</li>
+            <li>Your participation records and associated activity data.</li>
+            <li>Your notification settings and device notification tokens.</li>
+          </ul>
+          <p class="rounded-2xl bg-zinc-100 p-5 leading-relaxed"><strong>Deletion is permanent.</strong> Your hosted plans and their chats are removed, and your participation in other people’s plans ends. Deleted account data cannot be restored through the app.</p>
+        </section>
+
+        <section aria-labelledby="retention-heading" class="space-y-4">
+          <h2 id="retention-heading" class="text-2xl font-medium">What we retain and for how long</h2>
+          <p class="leading-relaxed">Existing safety reports and related moderation evidence are retained with restricted access for <strong>90 days after account deletion</strong> to support safety investigations. These retained records are then deleted.</p>
+          <p class="leading-relaxed">This does not mean that every backup copy is erased immediately. Contact <a class="break-all underline underline-offset-4" href={`mailto:${email}`}>{email}</a> for information about backup retention applicable to your request.</p>
+        </section>
+
+        <section aria-labelledby="help-heading" class="space-y-4 border-t border-zinc-300 pt-8">
+          <h2 id="help-heading" class="text-2xl font-medium">Need help?</h2>
+          <p class="leading-relaxed">Contact <a class="break-all underline underline-offset-4" href={`mailto:${email}`}>{email}</a> if you cannot access your registered phone number, have questions about retained data, or want an update on your request.</p>
+        </section>
+      </article>
+    </Container>
+  </main>
+</Layout>
+
+<style>
+  article a:focus-visible {
+    outline: 3px solid #18181b;
+    outline-offset: 5px;
+  }
+</style>
