@@ -27,6 +27,38 @@
     ]
   },
   {
+    "slug": "little-outings",
+    "name": "Little Outings",
+    "tagline": "Days out with kids, nearby",
+    "summary": "A free guide to family outings around you: events like farm festivals and story time at the library, plus kid-friendly places such as playgrounds, pools and caf\u00e9s. In English, German and Chinese, with no account and no ads.",
+    "status": "Live",
+    "heroImage": null,
+    "ctaUrl": "https://outings.allo.land",
+    "ctaLabel": "Open Little Outings",
+    "features": [
+      {
+        "title": "Ideas Nearby",
+        "description": "One list of what's on and where to go near you, with filters for rainy days, free entry and age.",
+        "image": null
+      },
+      {
+        "title": "Parents Fill the Gaps",
+        "description": "Tap what a place has, say \"we went\", or snap a poster to add an event. Every listing gets better as families use it.",
+        "image": null
+      },
+      {
+        "title": "Three Languages",
+        "description": "English, German and Chinese, with the German name kept alongside so you can match signs and posters.",
+        "image": null
+      },
+      {
+        "title": "Private by Default",
+        "description": "Your saved list stays on your phone. No account, no email, no tracking.",
+        "image": null
+      }
+    ]
+  },
+  {
     "slug": "aura-baby",
     "name": "Aura Baby",
     "tagline": "AI-powered guidance for early parenthood",
