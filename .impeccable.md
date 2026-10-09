@@ -4,7 +4,7 @@
 
 ### Users
 Two audiences, roughly equal weight:
-- **Consumers** browsing/using Spiking Labs' apps: CityKlub (spontaneous city plans), AlloLand (expat mentorship), Aura Baby (AI parenting companion), Tiny Foundation (knowledge workspace).
+- **Consumers** browsing/using Spiking Labs' apps: CityKlub (spontaneous city plans), Little Outings (family outings guide), AlloLand (expat mentorship), Aura Baby (AI parenting companion), Tiny Foundation (knowledge workspace).
 - **Businesses** evaluating Spiking Labs for AI consulting, automation, and R&D services (GenAI chat, private/self-hosted AI, forecasting, AI education).
 
 ### Brand Personality
