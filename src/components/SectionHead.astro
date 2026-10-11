@@ -1,0 +1,8 @@
+---
+const { eyebrow, title, lead, class: className = "" } = Astro.props;
+---
+<div class={`max-w-3xl space-y-4 ${className}`} data-reveal>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+  <h2 class="h2">{title}</h2>
+  {lead && <p class="text-lg leading-7 text-muted">{lead}</p>}
+</div>

@@ -1,0 +1,24 @@
+---
+import site from "../data/site.json";
+import Container from "./Container.astro";
+const c = site.cta;
+const href = `mailto:${site.email}?subject=${encodeURIComponent(c.subject)}`;
+---
+<section class="mt-32">
+  <Container>
+    <div class="relative overflow-hidden rounded-card border border-line/10 bg-panel p-8 md:p-16" data-reveal>
+      <div class="grid-bg absolute inset-0 opacity-70"></div>
+      <div class="relative grid gap-10 md:grid-cols-[1.4fr_1fr] md:items-end">
+        <div class="space-y-5">
+          <p class="eyebrow">Get in touch</p>
+          <h2 class="h2 max-w-[18ch]">{c.title}</h2>
+          <p class="max-w-md text-lg leading-7 text-muted">{c.body}</p>
+        </div>
+        <div class="space-y-4 md:justify-self-end md:text-right">
+          <a href={href} class="btn-primary w-full md:w-auto">{c.label} <span aria-hidden="true">→</span></a>
+          <p class="font-mono text-sm text-muted">{site.email}</p>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>

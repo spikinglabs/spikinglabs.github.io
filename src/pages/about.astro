@@ -1,50 +1,51 @@
 ---
-import Container from "../components/Container.astro"
-import Layout from '../layouts/Layout.astro';
-import Team from "../components/Team.astro";
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import CtaBand from "../components/CtaBand.astro";
+import SectionHead from "../components/SectionHead.astro";
+import site from "../data/site.json";
+const a = site.about;
 ---
+<Layout title="About" description="Spiking Labs is a small AI and automation lab based in Cologne.">
+  <Container>
+    <header class="max-w-4xl space-y-6 pb-14 pt-16 md:pt-24">
+      <p class="eyebrow">About us</p>
+      <h1 class="display">{a.title}</h1>
+    </header>
+    <div class="grid gap-10 md:grid-cols-[1fr_1.4fr]">
+      <dl class="space-y-5 self-start border-t border-line/15 pt-5 font-mono text-sm">
+        <div><dt class="eyebrow mb-1">Company</dt><dd>{site.legalName}</dd></div>
+        <div><dt class="eyebrow mb-1">Address</dt><dd>{site.address}</dd></div>
+        <div><dt class="eyebrow mb-1">Contact</dt><dd><a class="underline underline-offset-4" href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+      </dl>
+      <div class="space-y-6 text-xl leading-8 tracking-tight">
+        {a.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
 
-<Layout title="About Spiking Labs">
-	<main class="space-y-20">
-		<Container>
-            <div class="relative flex flex-col-reverse items-center md:flex-row" id="hero">
-                <div class="row items-center py-5 md:pb-20 md:pt-10">
-                    <div class="text-center space-y-10">
-                        <h1 class="text-5xl font-medium leading-none md:text-6xl">We are Experienced and Motivated</h1>
-                        <p class="mt-6 mb-8  text-xl font-normal leading-7 sm:mb-12 text-left">
-                            Our team has a diverse background. We have brought automation, data-driven decision, and machine learning to different industries and companies of different sizes.
-                            We are ready to create value using our knowledge and experiences. Just drop us a message.
-                        </p>
-                        <a class="px-9 py-5 bg-zinc-900 hover:bg-white text-white hover:text-black border rounded-2xl justify-items-center md:justify-items-start gap-2.5 inline-flex" rel="noopener noreferrer" href="mailto:hi@spikinglabs.com">
-                            <span class="text-center text-xl font-normal leading-7">Contact Us</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- <div class="flex-row items-center">
-                <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6">
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/01.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/02.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/03.svg" class="h-9 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/04.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/05.svg" class="h-8 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                    <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-                        <img src="./clients/06.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-                    </div>
-                </div>
-            </div> -->
-        </Container>
-        <!-- <Team/> -->
-	</main>
+    <section class="mt-28">
+      <SectionHead eyebrow="Principles" title="How we work." />
+      <div class="mt-10 grid gap-px overflow-hidden rounded-card border border-line/10 bg-line/10 md:grid-cols-3">
+        {site.principles.map((p, i) => (
+          <div class="space-y-4 bg-canvas p-8 md:p-10" data-reveal>
+            <span class="font-mono text-xs text-muted">R–{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="text-2xl font-medium tracking-tight">{p.title}</h3>
+            <p class="leading-7 text-muted">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    {site.team.length > 0 && (
+      <section class="mt-28">
+        <SectionHead eyebrow="Team" title="The people behind it." />
+        <ul class="mt-10 grid gap-4 md:grid-cols-3">
+          {site.team.map((m: { name: string; role: string; bio: string }) => (
+            <li class="panel p-7" data-reveal><h3 class="text-xl font-medium">{m.name}</h3><p class="eyebrow mt-1">{m.role}</p><p class="mt-4 text-muted">{m.bio}</p></li>
+          ))}
+        </ul>
+      </section>
+    )}
+  </Container>
+  <CtaBand />
 </Layout>

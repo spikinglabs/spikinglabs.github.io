@@ -1,0 +1,23 @@
+---
+// Spiking Labs logo lockup: the pulse-in-a-ring mark + outlined wordmark (no font dependency).
+// Size it with the font-size of the parent (the lockup is 1.6em tall). `mono` paints the dot in currentColor.
+import logo from "../data/logo.json";
+const { class: className = "text-xl", mono = false, mark = false } = Astro.props;
+const dot = mono ? "currentColor" : "rgb(var(--trace))";
+const W = Math.round(logo.lockupWidth);
+---
+{mark ? (
+  <svg viewBox="0 0 64 64" class={`inline-block h-[1.4em] w-auto ${className}`} fill="none" role="img" aria-label="Spiking Labs">
+    <circle cx={logo.ring[0]} cy={logo.ring[1]} r={logo.ring[2]} stroke="currentColor" stroke-width={logo.sw} />
+    <path d={logo.pulse} stroke="currentColor" stroke-width={logo.sw} stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx={logo.dot[0]} cy={logo.dot[1]} r={logo.dot[2]} fill={dot} />
+  </svg>
+) : (
+  <svg viewBox={`0 0 ${W} 64`} class={`inline-block h-[1.6em] w-auto ${className}`} fill="none" role="img" aria-label="Spiking Labs">
+    <circle cx={logo.ring[0]} cy={logo.ring[1]} r={logo.ring[2]} stroke="currentColor" stroke-width={logo.sw} />
+    <path d={logo.pulse} stroke="currentColor" stroke-width={logo.sw} stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx={logo.dot[0]} cy={logo.dot[1]} r={logo.dot[2]} fill={dot} />
+    <path transform={`translate(${logo.mx},${logo.base})`} d={logo.d1} fill="currentColor" />
+    <path transform={`translate(${(logo.mx + logo.w1 + logo.gap).toFixed(1)},${logo.base})`} d={logo.d2} fill="currentColor" fill-opacity=".55" />
+  </svg>
+)}

@@ -1,0 +1,436 @@
+---
+// Living design kit. Not linked from the site and excluded from the sitemap.
+// Tweak the controls on the left, then copy the token output at the bottom.
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import ProductCard from "../components/ProductCard.astro";
+import Neuron from "../components/Neuron.astro";
+import Logo from "../components/Logo.astro";
+import { products } from "../lib/products";
+import logoData from "../data/logo.json";
+
+const P = logoData.pulse;
+const ringMark = (c: string, a: string, sw = 3.6) => `<circle cx="32" cy="32" r="27" fill="none" stroke="${c}" stroke-width="${sw}"/><path d="${P}" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="15" r="3.8" fill="${a}"/>`;
+const pulseMark = (c: string, a: string, sw = 3.6) => `<path d="M3 42H16L25 5L34 55C35.2 59.2 39.6 58.4 41.6 54L48 42H61" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25" cy="4" r="3.6" fill="${a}"/>`;
+const concepts = [
+  { id: "A", name: "Pulse in a ring", note: "Chosen. A neuron's action potential (rest, sharp spike, dip, recovery) inside the cell body. One line weight, one lime dot on the spike.", draw: ringMark },
+  { id: "B", name: "Action potential", note: "The bare trace. Simplest, but loose without a container, so it is weaker as an icon.", draw: pulseMark },
+];
+const palette = { inkOnLight: ["#0A0B10", "#167026"], paperOnDark: ["#ECEEE6", "#B9FF66"] };
+const files = [
+  ["logo-on-light.svg", "Lockup for light backgrounds"],
+  ["logo-on-dark.svg", "Lockup for dark backgrounds"],
+  ["logo.svg", "Lockup, one colour (inherits text colour)"],
+  ["mark-on-light.svg", "Mark, light"],
+  ["mark-on-dark.svg", "Mark, dark"],
+  ["mark.svg", "Mark, one colour"],
+  ["mark-tile.svg", "App icon / favicon tile"],
+];
+
+const live = products.find((p) => p.status === "Live")!;
+const soon = products.find((p) => p.status !== "Live")!;
+const colorTokens = [
+  { name: "canvas", note: "page background", cls: "bg-canvas" },
+  { name: "panel", note: "cards, inputs", cls: "bg-panel" },
+  { name: "ink", note: "text, strong borders", cls: "bg-ink" },
+  { name: "muted", note: "secondary text", cls: "bg-muted" },
+  { name: "accent", note: "fills only", cls: "bg-accent" },
+  { name: "onaccent", note: "text on accent", cls: "bg-onaccent" },
+  { name: "line", note: "borders, at 10–20% alpha", cls: "bg-line" },
+];
+const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128];
+const sections = ["Logo", "Color", "Type", "Controls", "Cards & rows", "Signal", "Spacing", "Motion", "Voice", "Export"];
+---
+<Layout title="Design kit" description="Spiking Labs design kit" noindex>
+  <Container>
+    <header class="max-w-3xl space-y-5 pb-10 pt-14 md:pt-20">
+      <p class="eyebrow">Design kit · v0</p>
+      <h1 class="display">Spiking Labs style basics.</h1>
+      <p class="max-w-xl text-lg leading-7 text-muted">Tune the kit here first. Every sample below uses the same tokens as the site, so what you change is what the website will look like. When it feels right, copy the token output and send it back.</p>
+    </header>
+
+    <div class="grid gap-10 pb-10 lg:grid-cols-[280px_1fr]">
+      <!-- ───────────── Controls ───────────── -->
+      <aside class="lg:sticky lg:top-24 lg:max-h-[calc(100vh-7rem)] lg:self-start lg:overflow-y-auto">
+        <form id="kit-controls" class="panel space-y-6 p-5 text-sm" onsubmit="return false">
+          <fieldset class="space-y-2">
+            <legend class="eyebrow mb-2">Theme</legend>
+            <div class="grid grid-cols-3 gap-1.5" data-seg="theme">
+              <button type="button" data-v="system" class="seg">System</button>
+              <button type="button" data-v="light" class="seg">Light</button>
+              <button type="button" data-v="dark" class="seg">Dark</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="eyebrow mb-2">Accent</legend>
+            <div class="flex flex-wrap gap-2" id="accent-swatches"></div>
+            <label class="mt-2 flex items-center gap-3"><input id="accent-input" type="color" value="#b9ff66" class="h-9 w-12 cursor-pointer rounded border border-line/20 bg-transparent p-0.5" /><span id="accent-hex" class="font-mono text-xs text-muted">#B9FF66</span></label>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="eyebrow mb-2">Surface tone</legend>
+            <div class="grid gap-1.5" data-seg="tone" id="tone-seg"></div>
+          </fieldset>
+
+          <fieldset class="space-y-2">
+            <legend class="eyebrow mb-2">Display font</legend>
+            <select id="font-display" class="w-full rounded-card border border-line/20 bg-canvas px-3 py-2 text-ink"></select>
+            <legend class="eyebrow !mt-4 mb-2">Mono font</legend>
+            <select id="font-mono" class="w-full rounded-card border border-line/20 bg-canvas px-3 py-2 text-ink"></select>
+            <div class="!mt-4 grid grid-cols-3 gap-1.5" data-seg="weight">
+              <button type="button" data-v="400" class="seg">Light</button>
+              <button type="button" data-v="500" class="seg">Medium</button>
+              <button type="button" data-v="600" class="seg">Bold</button>
+            </div>
+          </fieldset>
+
+          <fieldset class="space-y-3">
+            <legend class="eyebrow mb-2">Shape</legend>
+            <label class="block"><span class="flex justify-between text-muted">Card radius <output id="radius-out" class="font-mono text-xs">16px</output></span><input id="radius" type="range" min="0" max="36" value="16" class="mt-1 w-full accent-[rgb(var(--ink))]" /></label>
+            <div class="grid grid-cols-3 gap-1.5" data-seg="ctl">
+              <button type="button" data-v="0px" class="seg">Square</button>
+              <button type="button" data-v="10px" class="seg">Soft</button>
+              <button type="button" data-v="999px" class="seg">Pill</button>
+            </div>
+          </fieldset>
+
+          <button type="button" id="kit-reset" class="btn-ghost w-full !py-2.5">Reset to defaults</button>
+        </form>
+        <nav aria-label="Kit sections" class="mt-6 hidden space-y-1 font-mono text-[11px] uppercase tracking-[0.12em] lg:block">
+          {sections.map((s) => <a class="block text-muted transition hover:text-ink" href={`#${s.toLowerCase().replace(/[^a-z]+/g, "-")}`}>{s}</a>)}
+        </nav>
+      </aside>
+
+      <!-- ───────────── Specimens ───────────── -->
+      <div class="min-w-0 space-y-24">
+        <section id="logo" class="scroll-mt-24 space-y-8">
+          <div><p class="eyebrow">01</p><h2 class="h2 mt-2">Logo</h2></div>
+          <p class="max-w-2xl text-muted">The mark is one cycle of a spiking neuron: the membrane voltage leaks up, crosses threshold, and <span class="text-ink">fires</span>. The dot is the spike. The wordmark is Space Grotesk, converted to outlines so it never depends on a font being installed, with <em>labs</em> set at 55% opacity.</p>
+
+          <div class="grid gap-3 md:grid-cols-2">
+            <div class="panel flex min-h-[200px] items-center justify-center p-8"><Logo class="text-[40px]" /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card bg-accent p-8 text-onaccent"><Logo class="text-[40px]" mono /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card p-8" style="background:#F4F2EC"><img src="/logo/logo-on-light.svg" alt="Spiking Labs logo on light" class="h-16 w-auto" /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card p-8" style="background:#0A0B10"><img src="/logo/logo-on-dark.svg" alt="Spiking Labs logo on dark" class="h-16 w-auto" /></div>
+          </div>
+          <p class="font-mono text-xs text-muted">Top left follows the current theme and accent (the dot uses the trace colour). Top right is the one-colour version for accent backgrounds. Bottom row are the exported SVG files.</p>
+
+          <div class="space-y-3">
+            <p class="eyebrow">Mark concepts</p>
+            <div class="grid gap-4 md:grid-cols-2">
+              {concepts.map((c) => (
+                <div class="panel space-y-4 p-5">
+                  <div class="flex items-center justify-between"><p class="font-mono text-xs">{c.id} · {c.name}</p>{c.id === "A" && <span class="rounded-ctl bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-onaccent">Pick</span>}</div>
+                  <div class="grid grid-cols-2 gap-2">
+                    {[palette.inkOnLight, palette.paperOnDark].map((p, i) => (
+                      <div class="flex items-end justify-center gap-3 rounded-lg p-4" style={`background:${i === 0 ? "#F4F2EC" : "#0A0B10"}`}>
+                        <svg viewBox="0 0 64 64" class="h-16 w-16" fill="none" set:html={c.draw(p[0], p[1])} />
+                        <svg viewBox="0 0 64 64" class="h-8 w-8" fill="none" set:html={c.draw(p[0], p[1])} />
+                        <svg viewBox="0 0 64 64" class="h-4 w-4" fill="none" set:html={c.draw(p[0], p[1])} />
+                      </div>
+                    ))}
+                  </div>
+                  <p class="text-sm leading-6 text-muted">{c.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-[1.2fr_1fr]">
+            <div class="panel space-y-4 p-6">
+              <p class="eyebrow">App icon &amp; favicon</p>
+              <div class="flex items-end gap-5">
+                <img src="/logo/mark-tile.svg" alt="" class="h-24 w-24" /><img src="/logo/mark-tile.svg" alt="" class="h-12 w-12" /><img src="/logo/mark-tile.svg" alt="" class="h-8 w-8" /><img src="/logo/mark-tile.svg" alt="" class="h-4 w-4" />
+              </div>
+              <p class="text-sm text-muted">Ink tile, paper ring and pulse, lime dot. The stroke is slightly thicker than in the lockup so it holds at 16px.</p>
+            </div>
+            <div class="panel space-y-4 p-6">
+              <p class="eyebrow">Mark alone</p>
+              <div class="flex items-end gap-5"><Logo mark class="text-[56px]" /><Logo mark class="text-[32px]" /><Logo mark class="text-[16px]" /></div>
+              <p class="text-sm text-muted">Use the mark where the wordmark will not fit: avatars, social profiles, small headers.</p>
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Use</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li><strong class="text-ink">Clear space:</strong> keep at least a quarter of the mark's height free on every side.</li><li><strong class="text-ink">Minimum size:</strong> mark 16px, lockup 110px wide.</li><li>Use the on-light or on-dark file that matches the background; one-colour on accent or photos.</li><li>The lime dot is always the only accent in the logo.</li></ul></div>
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Do not</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li>Stretch, rotate or add shadows and outlines.</li><li>Recolour the wordmark or the dot to anything but ink/paper and lime (green on light).</li><li>Put the lime dot on a lime or yellow background; use the one-colour logo there.</li><li>Redraw the wordmark in another font.</li></ul></div>
+          </div>
+
+          <div class="panel p-6">
+            <p class="eyebrow mb-3">Files (public/logo)</p>
+            <ul class="grid gap-x-8 gap-y-2 font-mono text-xs sm:grid-cols-2">
+              {files.map((f) => <li class="flex justify-between gap-3 border-b border-line/10 py-1.5"><a class="underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={`/logo/${f[0]}`}>{f[0]}</a><span class="text-right text-muted">{f[1]}</span></li>)}
+            </ul>
+          </div>
+        </section>
+
+        <section id="color" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">02</p><h2 class="h2 mt-2">Color</h2></div>
+          <p class="max-w-2xl text-muted">One lime accent used as a <strong class="text-ink">fill</strong> (buttons, status light, headline underline). Never as text on the paper background. Surfaces swap between light and dark; text, borders and the accent stay consistent.</p>
+          <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
+            {colorTokens.map((c) => (
+              <div class="panel overflow-hidden">
+                <div class={`h-20 ${c.cls} ${c.name === "line" ? "opacity-20" : ""} ${c.name === "canvas" || c.name === "panel" ? "border-b border-line/10" : ""}`}></div>
+                <div class="space-y-0.5 p-3">
+                  <p class="font-mono text-xs">{c.name}</p>
+                  <p class="text-xs text-muted">{c.note}</p>
+                  <p class="font-mono text-[11px] text-muted" data-hex={c.name}></p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div class="grid gap-3 md:grid-cols-3">
+            <div class="rounded-card bg-accent p-5 text-onaccent"><p class="eyebrow !text-onaccent/70">accent + onaccent</p><p class="mt-2 text-xl font-medium">Primary surfaces</p></div>
+            <div class="panel p-5"><p class="eyebrow">ink on panel</p><p class="mt-2 text-xl font-medium">Body text</p><p class="text-muted">Muted for supporting copy.</p></div>
+            <div class="rounded-card bg-ink p-5 text-canvas"><p class="eyebrow !text-canvas/60">canvas on ink</p><p class="mt-2 text-xl font-medium">Inverted block</p></div>
+          </div>
+          <div class="panel p-5">
+            <p class="eyebrow mb-3">Contrast (live)</p>
+            <ul id="contrast" class="grid gap-2 font-mono text-xs sm:grid-cols-2"></ul>
+          </div>
+        </section>
+
+        <section id="type" class="scroll-mt-24 space-y-8">
+          <div><p class="eyebrow">03</p><h2 class="h2 mt-2">Type</h2></div>
+          <div class="space-y-1 border-t border-line/15 pt-6">
+            <p class="eyebrow">display · clamp 2.6–6.25rem · −3.5% tracking</p>
+            <p class="display">Automation that <span class="mark">fires</span> when it matters.</p>
+          </div>
+          <div class="space-y-1 border-t border-line/15 pt-6"><p class="eyebrow">h2 · clamp 1.9–3.25rem</p><p class="h2">Small tools for everyday life.</p></div>
+          <div class="space-y-1 border-t border-line/15 pt-6"><p class="eyebrow">h3 · 2xl–3xl</p><p class="text-3xl font-medium tracking-tight">Private by default</p></div>
+          <div class="space-y-1 border-t border-line/15 pt-6"><p class="eyebrow">lead · lg/xl, muted</p><p class="max-w-xl text-xl leading-8 text-muted">We build small, private AI products for everyday life, and help teams put AI to work without handing over their data.</p></div>
+          <div class="space-y-1 border-t border-line/15 pt-6"><p class="eyebrow">body · base, muted</p><p class="max-w-xl leading-7 text-muted">Focused tools that do one job well and plug into the rest of your stack, instead of one more platform to adopt.</p></div>
+          <div class="grid gap-6 border-t border-line/15 pt-6 sm:grid-cols-2">
+            <div class="space-y-1"><p class="eyebrow">eyebrow · mono 11px</p><p class="eyebrow !text-ink">AI products &amp; automation studio · Cologne</p></div>
+            <div class="space-y-1"><p class="eyebrow">readout · mono</p><p class="font-mono text-sm">V<sub>m</sub> −54.2 mV · θ −50 mV · 1.4 Hz</p></div>
+          </div>
+          <div class="grid gap-6 border-t border-line/15 pt-6 sm:grid-cols-2">
+            <div class="space-y-3"><p class="eyebrow">logo (sizes)</p><Logo class="text-2xl" /><Logo class="text-base" /></div>
+            <div class="space-y-1"><p class="eyebrow">glyphs</p><p class="font-mono text-2xl">N–01 R–02 → ↗ ← θ</p></div>
+          </div>
+        </section>
+
+        <section id="controls" class="scroll-mt-24 space-y-8">
+          <div><p class="eyebrow">04</p><h2 class="h2 mt-2">Controls</h2></div>
+          <div class="flex flex-wrap items-center gap-3">
+            <a href="#controls" class="btn-primary">Primary <span aria-hidden="true">→</span></a>
+            <a href="#controls" class="btn-ghost">Secondary</a>
+            <button type="button" class="btn-primary" disabled style="opacity:.5;cursor:not-allowed">Disabled</button>
+          </div>
+          <div class="flex flex-wrap items-center gap-3">
+            <span class="inline-flex items-center gap-2 rounded-ctl border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted"><span class="led led-live"></span>Live</span>
+            <span class="inline-flex items-center gap-2 rounded-ctl border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted"><span class="led led-soon"></span>Coming soon</span>
+            <span class="rounded-ctl border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">Self-hosted</span>
+            <span class="rounded-ctl bg-line/10 px-3 py-1 text-sm text-ink">Nav item (active)</span>
+          </div>
+          <form class="grid max-w-xl gap-4" onsubmit="return false">
+            <div><label for="k-name" class="eyebrow">Name</label><input id="k-name" class="mt-2 block w-full rounded-card border border-line/15 bg-canvas px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-ink focus:outline-none" placeholder="Your name" /></div>
+            <div><label for="k-msg" class="eyebrow">Message</label><textarea id="k-msg" rows="3" class="mt-2 block w-full rounded-card border border-line/15 bg-canvas px-4 py-3 text-base text-ink placeholder:text-muted/70 focus:border-ink focus:outline-none" placeholder="How can we help?"></textarea></div>
+          </form>
+        </section>
+
+        <section id="cards-rows" class="scroll-mt-24 space-y-8">
+          <div><p class="eyebrow">05</p><h2 class="h2 mt-2">Cards &amp; rows</h2></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <ProductCard product={live} index={0} />
+            <ProductCard product={soon} index={1} />
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="panel p-7"><p class="eyebrow">panel</p><p class="mt-3 text-xl font-medium tracking-tight">A plain surface</p><p class="mt-2 text-muted">Hairline border, no shadow. Hover states change the border, not the elevation.</p></div>
+            <div class="relative overflow-hidden rounded-card border border-line/10 bg-panel p-7"><div class="grid-bg absolute inset-0 opacity-70"></div><div class="relative"><p class="eyebrow">panel + grid</p><p class="mt-3 text-xl font-medium tracking-tight">Instrument-panel backdrop</p><p class="mt-2 text-muted">Used for the hero and call-to-action band.</p></div></div>
+          </div>
+          <ul class="border-t border-line/15">
+            <li><a href="#cards-rows" class="group grid items-baseline gap-2 border-b border-line/15 py-6 transition hover:bg-line/[0.04] md:grid-cols-[3rem_1.2fr_1.6fr_auto] md:gap-8 md:px-2"><span class="font-mono text-xs text-muted">01</span><span class="text-2xl font-medium tracking-tight">GenAI chat services</span><span class="text-muted">Assistants customised to your team, your knowledge and your tone.</span><span class="hidden text-xl transition group-hover:translate-x-1 md:block" aria-hidden="true">→</span></a></li>
+            <li><a href="#cards-rows" class="group grid items-baseline gap-2 border-b border-line/15 py-6 transition hover:bg-line/[0.04] md:grid-cols-[3rem_1.2fr_1.6fr_auto] md:gap-8 md:px-2"><span class="font-mono text-xs text-muted">02</span><span class="text-2xl font-medium tracking-tight">Private AI</span><span class="text-muted">Keep private data secure with custom, self-hosted AI solutions.</span><span class="hidden text-xl transition group-hover:translate-x-1 md:block" aria-hidden="true">→</span></a></li>
+          </ul>
+          <div class="grid gap-px overflow-hidden rounded-card border border-line/10 bg-line/10 md:grid-cols-3">
+            {["Private by default", "Small and composable", "Useful over impressive"].map((t, i) => (
+              <div class="space-y-3 bg-canvas p-7"><span class="font-mono text-xs text-muted">R–0{i + 1}</span><h3 class="text-xl font-medium tracking-tight">{t}</h3><p class="text-muted">One sentence that earns its place.</p></div>
+            ))}
+          </div>
+        </section>
+
+        <section id="signal" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">06</p><h2 class="h2 mt-2">Signal</h2></div>
+          <p class="max-w-2xl text-muted">The one moving thing: a live leaky integrate-and-fire neuron. It reads the accent colour from the kit. Move your pointer over the page to inject current and make it fire faster.</p>
+          <div class="relative h-[340px] overflow-hidden rounded-card border border-line/10 bg-panel"><div class="grid-bg absolute inset-0"></div><Neuron /></div>
+          <div class="panel p-5"><p class="eyebrow mb-2">Spike raster divider</p><svg viewBox="0 0 1000 36" preserveAspectRatio="none" class="block h-8 w-full text-ink/30" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" id="raster"></svg></div>
+        </section>
+
+        <section id="spacing" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">07</p><h2 class="h2 mt-2">Spacing</h2></div>
+          <p class="max-w-2xl text-muted">4px base. Page width <span class="font-mono text-ink">1200px</span> with 20px (mobile) / 32px (desktop) gutters. Sections are separated by 96–128px; inside cards use 28–36px.</p>
+          <ul class="space-y-2">
+            {spacing.map((s) => (
+              <li class="flex items-center gap-4"><span class="w-12 font-mono text-xs text-muted">{s}px</span><span class="h-3 rounded-sm bg-ink/80" style={`width:${s * 2}px`}></span></li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="motion" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">08</p><h2 class="h2 mt-2">Motion</h2></div>
+          <ul class="max-w-2xl list-disc space-y-2 pl-5 text-muted">
+            <li><strong class="text-ink">Reveal:</strong> 14px rise and fade, 0.7s, once per element.</li>
+            <li><strong class="text-ink">Hover:</strong> cards lift 4px and darken their border; arrows slide 4px; the spike glyph redraws.</li>
+            <li><strong class="text-ink">Status light:</strong> live products pulse slowly (2.4s).</li>
+            <li><strong class="text-ink">Reduced motion:</strong> everything above turns off; the neuron draws one static trace.</li>
+          </ul>
+          <div class="grid gap-4 md:grid-cols-3">
+            <div class="panel group flex items-center justify-between p-6 transition hover:-translate-y-1 hover:border-ink/40"><span>Hover me (lift)</span><span class="transition group-hover:translate-x-1" aria-hidden="true">→</span></div>
+            <div class="panel group flex items-center justify-between p-6"><span>Spike glyph</span><svg viewBox="0 0 240 60" class="spike-glyph h-10 w-auto text-ink/30 group-hover:text-ink/70" fill="none" aria-hidden="true"><path d="M0 44h70l10-30 14 46 14-34 8 18h124" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" /></svg></div>
+            <div class="panel flex items-center gap-3 p-6"><span class="led led-live"></span><span>Status pulse</span></div>
+          </div>
+        </section>
+
+        <section id="voice" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">09</p><h2 class="h2 mt-2">Voice</h2></div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Do</p><ul class="list-disc space-y-2 pl-5 text-muted"><li>Say what it does, plainly, in the first sentence.</li><li>Lead with the benefit, then the mechanism.</li><li>Name privacy facts specifically: “stays on your phone”, “no account”.</li><li>Short sentences. Technical terms only where the reader uses them.</li></ul></div>
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Don't</p><ul class="list-disc space-y-2 pl-5 text-muted"><li>“Unlock the full potential of AI.”</li><li>Vague promises with no example.</li><li>Exclamation marks, emoji, hype words.</li><li>Em dashes as a rhythm crutch.</li></ul></div>
+          </div>
+        </section>
+
+        <section id="export" class="scroll-mt-24 space-y-6">
+          <div><p class="eyebrow">10</p><h2 class="h2 mt-2">Export</h2></div>
+          <p class="max-w-2xl text-muted">Your current choices as CSS variables. Paste this into the thread and I will make it the new default.</p>
+          <textarea id="kit-export" readonly rows="16" class="block w-full rounded-card border border-line/15 bg-panel p-4 font-mono text-xs leading-6 text-ink"></textarea>
+          <button type="button" id="kit-copy" class="btn-primary">Copy tokens</button>
+        </section>
+      </div>
+    </div>
+  </Container>
+</Layout>
+
+<style is:global>
+  .seg { border: 1px solid rgb(var(--line) / 0.15); border-radius: var(--radius-ctl, 999px); padding: 0.45rem 0.5rem; font-size: 0.8rem; color: rgb(var(--muted)); transition: all .15s; }
+  .seg:hover { color: rgb(var(--ink)); border-color: rgb(var(--ink)); }
+  .seg[aria-pressed="true"] { background: rgb(var(--ink)); color: rgb(var(--canvas)); border-color: rgb(var(--ink)); }
+  .swatch { height: 28px; width: 28px; border-radius: 999px; border: 2px solid transparent; box-shadow: 0 0 0 1px rgb(var(--line) / 0.25) inset; cursor: pointer; }
+  .swatch[aria-pressed="true"] { border-color: rgb(var(--canvas)); box-shadow: 0 0 0 2px rgb(var(--ink)); }
+</style>
+
+<script is:inline>
+(function () {
+  var root = document.documentElement;
+  var DEFAULTS = { theme: "system", accent: "#b9ff66", tone: 0, display: "Space Grotesk", mono: "JetBrains Mono", weight: "500", radius: 16, ctl: "999px" };
+  var ACCENTS = [["Lime", "#b9ff66"], ["Mint", "#5ef2c0"], ["Sky", "#6ab7ff"], ["Violet", "#b79bff"], ["Amber", "#ffc247"], ["Coral", "#ff8a6b"], ["Ice", "#e8f0ff"]];
+  var TONES = [
+    { name: "Warm paper / Ink", light: ["244 242 236", "255 255 255"], dark: ["10 11 16", "18 20 28"] },
+    { name: "Cool grey / Graphite", light: ["238 240 244", "255 255 255"], dark: ["22 23 27", "31 32 38"] },
+    { name: "Clean white / Midnight", light: ["255 255 255", "245 246 248"], dark: ["7 11 24", "15 21 40"] }
+  ];
+  var DISPLAY = ["Space Grotesk", "Instrument Sans", "Bricolage Grotesque", "Sora", "Manrope", "Fraunces"];
+  var MONO = ["JetBrains Mono", "IBM Plex Mono", "Geist Mono", "Space Mono"];
+  var state = JSON.parse(JSON.stringify(DEFAULTS));
+  try { var saved = JSON.parse(localStorage.getItem("sl-kit") || "null"); if (saved) for (var k in saved) state[k] = saved[k]; } catch (e) {}
+
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  function hexToRgb(h) { h = h.replace("#", ""); return [0, 2, 4].map(function (i) { return parseInt(h.substr(i, 2), 16); }); }
+  function toHex(rgb) { return "#" + rgb.map(function (n) { return ("0" + Math.round(n).toString(16)).slice(-2); }).join("").toUpperCase(); }
+  function lum(rgb) { var c = rgb.map(function (v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; }
+  function contrast(a, b) { var l1 = lum(a), l2 = lum(b); if (l1 < l2) { var t = l1; l1 = l2; l2 = t; } return (l1 + 0.05) / (l2 + 0.05); }
+  function rgbToHsl(r, g, b) { r /= 255; g /= 255; b /= 255; var mx = Math.max(r, g, b), mn = Math.min(r, g, b), h = 0, s = 0, l = (mx + mn) / 2; if (mx !== mn) { var d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } return [h, s, l]; }
+  function hslToRgb(h, s, l) { function f(p, q, t) { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1 / 6) return p + (q - p) * 6 * t; if (t < 1 / 2) return q; if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6; return p; } if (!s) return [l * 255, l * 255, l * 255]; var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; return [f(p, q, h + 1 / 3) * 255, f(p, q, h) * 255, f(p, q, h - 1 / 3) * 255]; }
+  var join = function (rgb) { return rgb.map(function (n) { return Math.round(n); }).join(" "); };
+
+  function effective() { return root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); }
+
+  function vars(theme) {
+    var a = hexToRgb(state.accent);
+    var onaccent = lum(a) > 0.35 ? [10, 11, 16] : [255, 255, 255];
+    var trace = a;
+    if (theme === "light") { var hsl = rgbToHsl(a[0], a[1], a[2]); trace = hslToRgb(hsl[0], Math.min(1, hsl[1]), Math.min(hsl[2], 0.3)); }
+    var tone = TONES[state.tone][theme];
+    return {
+      "--canvas": tone[0], "--panel": tone[1],
+      "--accent": join(a), "--onaccent": join(onaccent), "--trace": join(trace),
+      "--radius-card": state.radius + "px", "--radius-ctl": state.ctl,
+      "--font-display": '"' + state.display + '"', "--font-mono": '"' + state.mono + '"',
+      "--display-weight": state.weight
+    };
+  }
+
+  var loaded = {};
+  function loadFont(name, weights) {
+    if (loaded[name] || name === "Space Grotesk" || name === "JetBrains Mono") return;
+    loaded[name] = 1;
+    var l = document.createElement("link"); l.rel = "stylesheet";
+    l.href = "https://fonts.googleapis.com/css2?family=" + name.replace(/ /g, "+") + ":wght@" + weights + "&display=swap";
+    document.head.appendChild(l);
+  }
+
+  function apply() {
+    loadFont(state.display, "300..700"); loadFont(state.mono, "400;500");
+    var v = vars(effective());
+    for (var k in v) root.style.setProperty(k, v[k]);
+    $("#accent-hex").textContent = state.accent.toUpperCase();
+    $("#accent-input").value = state.accent;
+    $("#radius").value = state.radius; $("#radius-out").textContent = state.radius + "px";
+    $$("[data-seg]").forEach(function (g) {
+      var key = g.dataset.seg; var cur = key === "tone" ? String(state.tone) : key === "weight" ? state.weight : key === "ctl" ? state.ctl : state.theme;
+      $$("button", g).forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.v === cur)); });
+    });
+    $$("#accent-swatches .swatch").forEach(function (b) { b.setAttribute("aria-pressed", String(b.dataset.v.toLowerCase() === state.accent.toLowerCase())); });
+    $("#font-display").value = state.display; $("#font-mono").value = state.mono;
+    try { localStorage.setItem("sl-kit", JSON.stringify(state)); } catch (e) {}
+    requestAnimationFrame(report);
+  }
+
+  function report() {
+    var cs = getComputedStyle(root);
+    var get = function (n) { return cs.getPropertyValue("--" + n).trim(); };
+    $$("[data-hex]").forEach(function (el) { var n = el.dataset.hex; var p = get(n).split(/\s+/).map(Number); el.textContent = n === "line" ? "ink @ 10–20%" : toHex(p); });
+    var rgb = function (n) { return get(n).split(/\s+/).map(Number); };
+    var rows = [["ink on canvas", rgb("ink"), rgb("canvas"), 4.5], ["muted on canvas", rgb("muted"), rgb("canvas"), 4.5], ["muted on panel", rgb("muted"), rgb("panel"), 4.5], ["onaccent on accent", rgb("onaccent"), rgb("accent"), 4.5], ["trace on canvas (graphic)", rgb("trace"), rgb("canvas"), 3], ["accent on canvas (fill vs page)", rgb("accent"), rgb("canvas"), 1.5]];
+    $("#contrast").innerHTML = rows.map(function (r) { var c = contrast(r[1], r[2]); var ok = c >= r[3]; return '<li class="flex items-center justify-between gap-3 rounded-lg border border-line/10 px-3 py-2"><span>' + r[0] + '</span><span class="' + (ok ? "text-ink" : "text-muted") + '">' + c.toFixed(1) + ":1 " + (ok ? "✓" : "✗ &lt;" + r[3]) + "</span></li>"; }).join("");
+    $("#kit-export").value = exportCss();
+  }
+
+  function block(sel, v) { return sel + " {\n" + Object.keys(v).map(function (k) { return "  " + k + ": " + v[k] + ";"; }).join("\n") + "\n}"; }
+  function exportCss() {
+    var L = vars("light"), D = vars("dark");
+    var shared = {}; ["--accent", "--onaccent", "--radius-card", "--radius-ctl", "--font-display", "--font-mono", "--display-weight"].forEach(function (k) { shared[k] = L[k]; });
+    return "/* Spiking Labs kit tokens */\n" +
+      block(":root", Object.assign({ "--canvas": L["--canvas"], "--panel": L["--panel"], "--trace": L["--trace"] }, shared)) + "\n\n" +
+      "/* dark */\n" + block(':root[data-theme="dark"]', { "--canvas": D["--canvas"], "--panel": D["--panel"], "--trace": D["--trace"] }) + "\n\n" +
+      "/* choices */\n/* accent " + state.accent + " · tone " + TONES[state.tone].name + " · display " + state.display + " " + state.weight + " · mono " + state.mono + " · card radius " + state.radius + "px · controls " + state.ctl + " */";
+  }
+
+  // build controls
+  var sw = $("#accent-swatches");
+  ACCENTS.forEach(function (a) { var b = document.createElement("button"); b.type = "button"; b.className = "swatch"; b.title = a[0]; b.dataset.v = a[1]; b.style.background = a[1]; b.setAttribute("aria-label", a[0]); b.onclick = function () { state.accent = a[1]; apply(); }; sw.appendChild(b); });
+  var tseg = $("#tone-seg");
+  TONES.forEach(function (t, i) { var b = document.createElement("button"); b.type = "button"; b.className = "seg text-left"; b.dataset.v = String(i); b.textContent = t.name; tseg.appendChild(b); });
+  DISPLAY.forEach(function (f) { var o = document.createElement("option"); o.value = o.textContent = f; $("#font-display").appendChild(o); });
+  MONO.forEach(function (f) { var o = document.createElement("option"); o.value = o.textContent = f; $("#font-mono").appendChild(o); });
+
+  $("#accent-input").addEventListener("input", function (e) { state.accent = e.target.value; apply(); });
+  $("#radius").addEventListener("input", function (e) { state.radius = +e.target.value; apply(); });
+  $("#font-display").addEventListener("change", function (e) { state.display = e.target.value; apply(); });
+  $("#font-mono").addEventListener("change", function (e) { state.mono = e.target.value; apply(); });
+  $$("[data-seg]").forEach(function (g) {
+    g.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b) return;
+      var key = g.dataset.seg, v = b.dataset.v;
+      if (key === "theme") { state.theme = v; if (v === "system") { delete root.dataset.theme; try { localStorage.removeItem("sl-theme"); } catch (x) {} } else { root.dataset.theme = v; try { localStorage.setItem("sl-theme", v); } catch (x) {} } window.dispatchEvent(new Event("themechange")); }
+      else if (key === "tone") state.tone = +v; else if (key === "weight") state.weight = v; else if (key === "ctl") state.ctl = v;
+      apply();
+    });
+  });
+  $("#kit-reset").addEventListener("click", function () { state = JSON.parse(JSON.stringify(DEFAULTS)); delete root.dataset.theme; try { localStorage.removeItem("sl-theme"); localStorage.removeItem("sl-kit"); } catch (e) {} window.dispatchEvent(new Event("themechange")); apply(); });
+  $("#kit-copy").addEventListener("click", function () { var t = $("#kit-export"); t.select(); try { navigator.clipboard.writeText(t.value); } catch (e) { document.execCommand("copy"); } $("#kit-copy").textContent = "Copied"; setTimeout(function () { $("#kit-copy").textContent = "Copy tokens"; }, 1500); });
+  window.addEventListener("themechange", function () { if (!root.dataset.theme) state.theme = "system"; else state.theme = root.dataset.theme; apply(); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", apply);
+
+  // raster demo
+  var s = 11, rnd = function () { return (s = (s * 9301 + 49297) % 233280) / 233280; }, out = "";
+  for (var i = 0; i < 96; i++) { var r = rnd(), burst = rnd() > 0.82, h = burst ? 10 + r * 22 : 2 + r * 6, x = (i + 0.5) * (1000 / 96); out += '<line x1="' + x + '" x2="' + x + '" y1="36" y2="' + (36 - h) + '"/>'; }
+  $("#raster").innerHTML = out;
+
+  if (root.dataset.theme) state.theme = root.dataset.theme;
+  apply();
+})();
+</script>

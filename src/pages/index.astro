@@ -1,20 +1,84 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import Services from "../components/Services.astro"
-import Team from '../components/Team.astro';
-import Testimonial from '../components/Testimonial.astro';
-import Contact from '../components/Contact.astro';
-import Case from '../components/Case.astro';
----
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import Hero from "../components/Hero.astro";
+import SectionHead from "../components/SectionHead.astro";
+import ProductCard from "../components/ProductCard.astro";
+import CtaBand from "../components/CtaBand.astro";
+import SpikeRule from "../components/SpikeRule.astro";
+import site from "../data/site.json";
+import services from "../data/services.json";
+import { products } from "../lib/products";
 
-<Layout title="Spiking Labs">
-	<main class="space-y-20">
-		<Hero/>
-		<Services/>
-		<!-- <Case/> -->
-		<!-- <Team/> -->
-		<!-- <Testimonial/> -->
-		<!-- <Contact/> -->
-	</main>
+const facts = site.facts.map((f) => (f.value === "$products" ? { ...f, value: `${products.length} products` } : f));
+const groups = [...new Set(services.map((s) => s.group))];
+---
+<Layout title="Spiking Labs · Automation that fires when it matters">
+  <Hero />
+
+  <Container>
+    <dl class="grid grid-cols-2 gap-px overflow-hidden border-b border-line/10 md:grid-cols-4">
+      {facts.map((f) => (
+        <div class="space-y-1.5 py-6 pr-4" data-reveal>
+          <dt class="eyebrow">{f.label}</dt>
+          <dd class="text-lg font-medium tracking-tight">{f.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </Container>
+
+  <section id="products" class="mt-28 scroll-mt-24">
+    <Container>
+      <div class="flex flex-wrap items-end justify-between gap-6">
+        <SectionHead eyebrow="01 / Products" title="Small tools for everyday life." lead="Each product is a focused neuron: one job, done well, and private by default." />
+        <a href="/products" class="btn-ghost" data-reveal>All products →</a>
+      </div>
+      <div class="mt-12 grid gap-4 md:grid-cols-2">
+        {products.map((p, i) => <ProductCard product={p} index={i} featured={i === 0} />)}
+      </div>
+    </Container>
+  </section>
+
+  <section id="services" class="mt-32 scroll-mt-24">
+    <Container>
+      <SectionHead eyebrow="02 / Work with us" title="AI that works for your team, on your terms." lead="From private assistants to forecasting research. We design, build and hand over." />
+      <div class="mt-12 space-y-14">
+        {groups.map((g) => (
+          <div>
+            <p class="eyebrow mb-4" data-reveal>{g}</p>
+            <ul class="border-t border-line/15">
+              {services.filter((s) => s.group === g).map((s, i) => (
+                <li data-reveal>
+                  <a href={`/services#${s.slug}`} class="group grid items-baseline gap-2 border-b border-line/15 py-6 transition hover:bg-line/[0.04] md:grid-cols-[3rem_1.2fr_1.6fr_auto] md:gap-8 md:px-2">
+                    <span class="font-mono text-xs text-muted">{String(i + 1).padStart(2, "0")}</span>
+                    <span class="text-2xl font-medium tracking-tight">{s.name}</span>
+                    <span class="text-muted">{s.blurb}</span>
+                    <span class="hidden text-xl transition group-hover:translate-x-1 md:block" aria-hidden="true">→</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <section class="mt-32">
+    <Container>
+      <SectionHead eyebrow="03 / How we build" title="Three rules we do not break." />
+      <div class="mt-12 grid gap-px overflow-hidden rounded-card border border-line/10 bg-line/10 md:grid-cols-3">
+        {site.principles.map((p, i) => (
+          <div class="space-y-4 bg-canvas p-8 md:p-10" data-reveal>
+            <span class="font-mono text-xs text-muted">R–{String(i + 1).padStart(2, "0")}</span>
+            <h3 class="text-2xl font-medium tracking-tight">{p.title}</h3>
+            <p class="leading-7 text-muted">{p.body}</p>
+          </div>
+        ))}
+      </div>
+    </Container>
+  </section>
+
+  <div class="mt-24"><SpikeRule seed={3} class="text-ink/25" /></div>
+  <CtaBand />
 </Layout>

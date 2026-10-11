@@ -1,0 +1,40 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import CtaBand from "../components/CtaBand.astro";
+import site from "../data/site.json";
+import services from "../data/services.json";
+const groups = [...new Set(services.map((s) => s.group))];
+---
+<Layout title="Services" description="Private AI, GenAI assistants, automation, AI education and forecasting research from Spiking Labs.">
+  <Container>
+    <header class="max-w-3xl space-y-6 pb-14 pt-16 md:pt-24">
+      <p class="eyebrow">Services</p>
+      <h1 class="display">Put AI to work, privately.</h1>
+      <p class="max-w-xl text-lg leading-7 text-muted">Consulting, engineering and research for teams that want real results from AI without giving up control of their data.</p>
+    </header>
+
+    {groups.map((g) => (
+      <section class="mt-14">
+        <p class="eyebrow mb-4">{g}</p>
+        <div class="border-t border-line/15">
+          {services.filter((s) => s.group === g).map((s) => (
+            <article id={s.slug} class="grid scroll-mt-24 gap-5 border-b border-line/15 py-10 md:grid-cols-[1.1fr_1.6fr] md:gap-12" data-reveal>
+              <div class="space-y-4">
+                <h2 class="text-3xl font-medium tracking-tight">{s.name}</h2>
+                <ul class="flex flex-wrap gap-2">
+                  {s.tags.map((t) => <li class="rounded-ctl border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.1em] text-muted">{t}</li>)}
+                </ul>
+              </div>
+              <div class="space-y-5">
+                <p class="text-lg leading-7 text-muted">{s.blurb}</p>
+                <a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={`mailto:${site.email}?subject=${encodeURIComponent(`Enquiry: ${s.name}`)}`}>Talk to us about this <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    ))}
+  </Container>
+  <CtaBand />
+</Layout>

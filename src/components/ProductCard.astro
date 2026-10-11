@@ -1,0 +1,28 @@
+---
+import { isLive, pad, type Product } from "../lib/products";
+interface Props { product: Product; index: number; featured?: boolean }
+const { product, index, featured = false } = Astro.props;
+const live = isLive(product);
+---
+<a href={`/products/${product.slug}`}
+   class={`group relative flex min-h-[280px] flex-col justify-between overflow-hidden rounded-card border border-line/10 bg-panel p-7 transition duration-300 hover:-translate-y-1 hover:border-ink/40 md:p-9 ${featured ? "md:col-span-2 md:min-h-[340px]" : ""}`}
+   data-reveal>
+  <div class="flex items-start justify-between">
+    <span class="font-mono text-xs tracking-[0.14em] text-muted">N–{pad(index + 1)}</span>
+    <span class="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+      <span class={`led ${live ? "led-live" : "led-soon"}`}></span>{product.status}
+    </span>
+  </div>
+
+  <svg viewBox="0 0 240 60" class="spike-glyph pointer-events-none absolute right-6 top-14 hidden h-14 w-auto text-ink/20 transition group-hover:text-ink/60 md:block" fill="none" aria-hidden="true">
+    <path d="M0 44h70l10-30 14 46 14-34 8 18h124" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+
+  <div class="mt-16 space-y-3">
+    <h3 class={`font-medium tracking-tight ${featured ? "text-4xl md:text-5xl" : "text-3xl"}`}>{product.name}</h3>
+    <p class="max-w-md text-base leading-6 text-muted">{product.tagline}</p>
+    <span class="inline-flex items-center gap-2 pt-2 text-sm font-medium">
+      {live ? "Open product" : "Learn more"} <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span>
+    </span>
+  </div>
+</a>

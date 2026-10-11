@@ -1,0 +1,114 @@
+---
+// A live leaky integrate-and-fire neuron. Move the pointer to inject current.
+---
+<div data-neuron class="pointer-events-none absolute inset-x-0 bottom-0 h-[300px] md:h-[340px]" aria-hidden="true">
+  <canvas class="h-full w-full"></canvas>
+  <dl class="pointer-events-none absolute bottom-4 left-5 right-5 mx-auto flex max-w-site flex-wrap gap-x-8 gap-y-1 font-mono text-[11px] uppercase tracking-[0.12em] text-muted md:px-8">
+    <div class="flex gap-2"><dt>V<sub>m</sub></dt><dd data-v class="min-w-[11ch] whitespace-nowrap text-ink">−70.0 mV</dd></div>
+    <div class="flex gap-2"><dt>θ</dt><dd class="text-ink">−50 mV</dd></div>
+    <div class="flex gap-2"><dt>rate</dt><dd data-rate class="text-ink">0.0 Hz</dd></div>
+    <div class="flex items-center gap-2"><dt>spike</dt><dd><span data-led class="led led-soon transition"></span></dd></div>
+  </dl>
+</div>
+
+<script is:inline>
+(function () {
+  var host = document.querySelector("[data-neuron]");
+  if (!host) return;
+  var canvas = host.querySelector("canvas");
+  var ctx = canvas.getContext("2d");
+  var vEl = host.querySelector("[data-v]"), rateEl = host.querySelector("[data-rate]"), led = host.querySelector("[data-led]");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var STEP = 3, tau = 38, th = 1, refr = 9, REST = -0.25;
+  var W = 0, H = 0, max = 0, dpr = 1, color = "22,112,38";
+  var V = 0, ref = 0, noise = 0, t = 0, boost = 0, samples = [], spikes = [], lastFire = 0;
+
+  function readColor() {
+    var c = getComputedStyle(document.documentElement).getPropertyValue("--trace").trim();
+    if (c) color = c.split(/\s+/).join(",");
+  }
+  function size() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var r = canvas.getBoundingClientRect();
+    W = r.width; H = r.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    max = Math.ceil(W / STEP) + 2;
+    while (samples.length > max) samples.shift();
+  }
+  function step() {
+    t++;
+    noise += -noise * 0.05 + (Math.random() - 0.5) * 0.12;
+    var I = 1.32 + 0.22 * Math.sin(t / 140) + noise + boost;
+    boost *= 0.96;
+    var spike = false;
+    if (ref > 0) { ref--; V = REST; }
+    else {
+      V += (-V + I) / tau;
+      if (V >= th) { spike = true; V = REST; ref = refr; spikes.push(t); lastFire = performance.now(); }
+    }
+    samples.push({ v: spike ? 1.9 : V, s: spike });
+    if (samples.length > max) samples.shift();
+  }
+  var yOf = function (v) { return H * 0.74 - v * H * 0.3; };
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    // threshold line
+    ctx.setLineDash([3, 6]); ctx.lineWidth = 1;
+    ctx.strokeStyle = "rgba(" + color + ",0.35)";
+    ctx.beginPath(); ctx.moveTo(0, yOf(th)); ctx.lineTo(W, yOf(th)); ctx.stroke(); ctx.setLineDash([]);
+    if (!samples.length) return;
+    var x0 = W - (samples.length - 1) * STEP;
+    var g = ctx.createLinearGradient(0, 0, W, 0);
+    g.addColorStop(0, "rgba(" + color + ",0)"); g.addColorStop(0.55, "rgba(" + color + ",0.9)"); g.addColorStop(1, "rgba(" + color + ",1)");
+    ctx.strokeStyle = g; ctx.lineWidth = 1.8; ctx.lineJoin = "round";
+    ctx.beginPath();
+    samples.forEach(function (s, i) { var x = x0 + i * STEP, y = yOf(s.v); i ? ctx.lineTo(x, y) : ctx.moveTo(x, y); });
+    ctx.stroke();
+    var last = samples[samples.length - 1], hx = W, hy = yOf(last.v);
+    ctx.fillStyle = "rgb(" + color + ")";
+    ctx.beginPath(); ctx.arc(hx - 2, hy, 3.2, 0, 6.283); ctx.fill();
+    ctx.fillStyle = "rgba(" + color + ",0.18)";
+    ctx.beginPath(); ctx.arc(hx - 2, hy, 8 + 3 * Math.sin(t / 8), 0, 6.283); ctx.fill();
+  }
+  function hud() {
+    var mv = -70 + 20 * (samples.length ? Math.min(samples[samples.length - 1].v, 1.9) : 0);
+    vEl.textContent = (mv < 0 ? "−" : "+") + Math.abs(mv).toFixed(1) + " mV";
+    var cutoff = t - 300; while (spikes.length && spikes[0] < cutoff) spikes.shift();
+    rateEl.textContent = (spikes.length / 5).toFixed(1) + " Hz";
+    var on = performance.now() - lastFire < 160;
+    led.className = "led transition " + (on ? "led-live" : "led-soon");
+  }
+
+  readColor(); size();
+  window.addEventListener("resize", size);
+  window.addEventListener("themechange", readColor);
+  matchMedia("(prefers-color-scheme: dark)").addEventListener("change", function () { setTimeout(readColor, 0); });
+
+  if (reduce) {
+    for (var i = 0; i < max + 200; i++) step();
+    draw(); hud(); return;
+  }
+
+  var running = false, frame = 0;
+  function loop() {
+    if (!running) return;
+    step(); draw();
+    if (++frame % 6 === 0) hud();
+    if (frame % 90 === 0) readColor();
+    requestAnimationFrame(loop);
+  }
+  function setRunning(on) { if (on && !running) { running = true; requestAnimationFrame(loop); } else if (!on) running = false; }
+  for (var k = 0; k < max; k++) step();
+  new IntersectionObserver(function (e) { setRunning(e[0].isIntersecting && !document.hidden); }).observe(host);
+  document.addEventListener("visibilitychange", function () { setRunning(!document.hidden); });
+
+  var lx = null, ly = null;
+  window.addEventListener("pointermove", function (e) {
+    if (lx !== null) boost = Math.min(boost + Math.hypot(e.clientX - lx, e.clientY - ly) * 0.004, 1.6);
+    lx = e.clientX; ly = e.clientY;
+  }, { passive: true });
+})();
+</script>
