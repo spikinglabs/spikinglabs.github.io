@@ -6,7 +6,7 @@
 
 ## Logo
 
-One cycle of a spiking neuron (membrane voltage leaks up, crosses threshold, fires) with the lime dot on the apex, plus the Space Grotesk wordmark converted to outlines (`spiking` in ink, `labs` at 55% opacity). Files are in `public/logo/` (lockups, stacked, mark, app-icon tile, PNG icons); `favicon.svg` is the tile. In templates use `<Logo />` (`mark` prop for the mark alone, `mono` for one colour). The geometry lives in `src/data/logo.json`. Concepts B (firing dot) and C (soma ring) are shown in `/kit` for comparison. Minimum size: mark 16px, lockup 96px wide; clear space equal to the dot height.
+A neuron's action potential (rest, sharp spike, dip, recovery) drawn as one line inside a ring (the cell body), with the lime dot on the spike where the neuron fires, plus the Space Grotesk wordmark converted to outlines (`spiking` in ink, `labs` at 55% opacity). One line weight throughout. Files are in `public/logo/` (lockups, mark, app-icon tile, PNG icons); `favicon.svg` is the tile. In templates use `<Logo />` (`mark` prop for the mark alone, `mono` for one colour). The geometry lives in `src/data/logo.json`. The bare action-potential trace without the ring is shown in `/kit` for comparison. Minimum size: mark 16px, lockup 110px wide; clear space a quarter of the mark's height.
 
 ## Tokens (`src/styles/global.css`, mapped in `tailwind.config.mjs`)
 

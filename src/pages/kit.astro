@@ -9,22 +9,18 @@ import Logo from "../components/Logo.astro";
 import { products } from "../lib/products";
 import logoData from "../data/logo.json";
 
-const T = logoData.trace;
-const spikeMark = (c: string, a: string, sw = 5) => `<path d="${T}" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="8" r="6" fill="${a}"/>`;
-const idotMark = (c: string, a: string) => `<path d="M32 28V54" stroke="${c}" stroke-width="9" stroke-linecap="round"/><circle cx="32" cy="12" r="7.5" fill="${a}"/>`;
-const ringMark = (c: string, a: string) => `<circle cx="32" cy="32" r="28" fill="none" stroke="${c}" stroke-width="3.5"/><g transform="translate(32 33) scale(.62) translate(-32 -32)">${spikeMark(c, a, 5.5)}</g>`;
+const P = logoData.pulse;
+const ringMark = (c: string, a: string, sw = 3.6) => `<circle cx="32" cy="32" r="27" fill="none" stroke="${c}" stroke-width="${sw}"/><path d="${P}" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="15" r="3.8" fill="${a}"/>`;
+const pulseMark = (c: string, a: string, sw = 3.6) => `<path d="M3 42H16L25 5L34 55C35.2 59.2 39.6 58.4 41.6 54L48 42H61" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="25" cy="4" r="3.6" fill="${a}"/>`;
 const concepts = [
-  { id: "A", name: "Spike", note: "Recommended. One cycle of the neuron trace with the firing dot on the apex. It is the same shape as the hero animation, so the logo and the site say the same thing.", draw: spikeMark },
-  { id: "B", name: "Firing dot", note: "An “i” whose dot is the lime spike event. Very simple and works as a tiny glyph, but says less about the trace.", draw: idotMark },
-  { id: "C", name: "Soma", note: "The trace inside a ring (the cell body). Reads as a neuron at once, but the ring is busy at 16px.", draw: ringMark },
+  { id: "A", name: "Pulse in a ring", note: "Chosen. A neuron's action potential (rest, sharp spike, dip, recovery) inside the cell body. One line weight, one lime dot on the spike.", draw: ringMark },
+  { id: "B", name: "Action potential", note: "The bare trace. Simplest, but loose without a container, so it is weaker as an icon.", draw: pulseMark },
 ];
 const palette = { inkOnLight: ["#0A0B10", "#167026"], paperOnDark: ["#ECEEE6", "#B9FF66"] };
 const files = [
   ["logo-on-light.svg", "Lockup for light backgrounds"],
   ["logo-on-dark.svg", "Lockup for dark backgrounds"],
   ["logo.svg", "Lockup, one colour (inherits text colour)"],
-  ["logo-stacked-on-light.svg", "Stacked, light"],
-  ["logo-stacked-on-dark.svg", "Stacked, dark"],
   ["mark-on-light.svg", "Mark, light"],
   ["mark-on-dark.svg", "Mark, dark"],
   ["mark.svg", "Mark, one colour"],
@@ -122,7 +118,7 @@ const sections = ["Logo", "Color", "Type", "Controls", "Cards & rows", "Signal",
 
           <div class="space-y-3">
             <p class="eyebrow">Mark concepts</p>
-            <div class="grid gap-4 md:grid-cols-3">
+            <div class="grid gap-4 md:grid-cols-2">
               {concepts.map((c) => (
                 <div class="panel space-y-4 p-5">
                   <div class="flex items-center justify-between"><p class="font-mono text-xs">{c.id} · {c.name}</p>{c.id === "A" && <span class="rounded-ctl bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-onaccent">Pick</span>}</div>
@@ -147,16 +143,17 @@ const sections = ["Logo", "Color", "Type", "Controls", "Cards & rows", "Signal",
               <div class="flex items-end gap-5">
                 <img src="/logo/mark-tile.svg" alt="" class="h-24 w-24" /><img src="/logo/mark-tile.svg" alt="" class="h-12 w-12" /><img src="/logo/mark-tile.svg" alt="" class="h-8 w-8" /><img src="/logo/mark-tile.svg" alt="" class="h-4 w-4" />
               </div>
-              <p class="text-sm text-muted">Ink tile, paper trace, lime dot. The stroke is thicker than in the lockup so it holds at 16px.</p>
+              <p class="text-sm text-muted">Ink tile, paper ring and pulse, lime dot. The stroke is slightly thicker than in the lockup so it holds at 16px.</p>
             </div>
             <div class="panel space-y-4 p-6">
-              <p class="eyebrow">Stacked</p>
-              <div class="flex gap-4"><img src="/logo/logo-stacked-on-light.svg" alt="" class="h-24 w-auto rounded-lg p-3" style="background:#F4F2EC" /><img src="/logo/logo-stacked-on-dark.svg" alt="" class="h-24 w-auto rounded-lg p-3" style="background:#0A0B10" /></div>
+              <p class="eyebrow">Mark alone</p>
+              <div class="flex items-end gap-5"><Logo mark class="text-[56px]" /><Logo mark class="text-[32px]" /><Logo mark class="text-[16px]" /></div>
+              <p class="text-sm text-muted">Use the mark where the wordmark will not fit: avatars, social profiles, small headers.</p>
             </div>
           </div>
 
           <div class="grid gap-4 md:grid-cols-2">
-            <div class="panel space-y-3 p-6"><p class="eyebrow">Use</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li><strong class="text-ink">Clear space:</strong> keep at least the height of the dot (about 1/5 of the mark) free on every side.</li><li><strong class="text-ink">Minimum size:</strong> mark 16px, lockup 96px wide.</li><li>Use the on-light or on-dark file that matches the background; one-colour on accent or photos.</li><li>The lime dot is always the only accent in the logo.</li></ul></div>
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Use</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li><strong class="text-ink">Clear space:</strong> keep at least a quarter of the mark's height free on every side.</li><li><strong class="text-ink">Minimum size:</strong> mark 16px, lockup 110px wide.</li><li>Use the on-light or on-dark file that matches the background; one-colour on accent or photos.</li><li>The lime dot is always the only accent in the logo.</li></ul></div>
             <div class="panel space-y-3 p-6"><p class="eyebrow">Do not</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li>Stretch, rotate or add shadows and outlines.</li><li>Recolour the wordmark or the dot to anything but ink/paper and lime (green on light).</li><li>Put the lime dot on a lime or yellow background; use the one-colour logo there.</li><li>Redraw the wordmark in another font.</li></ul></div>
           </div>
 
