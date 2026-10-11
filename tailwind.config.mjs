@@ -33,8 +33,12 @@ export default {
 				onaccent: "rgb(var(--onaccent) / <alpha-value>)",
 			},
 			fontFamily: {
-				display: ['"Space Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
-				mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
+				display: ["var(--font-display)", '"Space Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+				mono: ["var(--font-mono)", '"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
+			},
+			borderRadius: {
+				card: "var(--radius-card)",
+				ctl: "var(--radius-ctl)",
 			},
 			maxWidth: { site: "1200px" },
 		},

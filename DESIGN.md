@@ -2,6 +2,8 @@
 
 **Concept: the neuron.** Spiking Labs is named after spiking neurons, so the site behaves like one instrument panel: quiet baseline, sharp signal. The hero runs a live leaky integrate-and-fire neuron (`components/Neuron.astro`); moving the pointer injects current and makes it fire faster. Everything else stays calm so that one moving thing carries the page.
 
+**Live kit:** run the site and open `/kit` (not linked, not indexed). Change accent, surface tone, fonts, weight, card radius and control shape, see every specimen update, then copy the token export.
+
 ## Tokens (`src/styles/global.css`, mapped in `tailwind.config.mjs`)
 
 | Token | Light | Dark | Use |
@@ -13,6 +15,10 @@
 | `line` | ink | white | always used with alpha: `border-line/10` |
 | `accent` | lime `#B9FF66` | same | **fills only** (buttons, LED, headline underline). Never body text on paper |
 | `onaccent` | ink | ink | text on accent |
+| `radius-card` | 16px | | cards, panels, inputs (`rounded-card`) |
+| `radius-ctl` | 999px | | buttons, chips, pills (`rounded-ctl`) |
+| `font-display` / `font-mono` | Space Grotesk / JetBrains Mono | | `font-display`, `font-mono` |
+| `display-weight` | 500 | | headings |
 
 Theme follows the OS and can be overridden with the toggle in the nav (stored in `localStorage` as `sl-theme`).
 

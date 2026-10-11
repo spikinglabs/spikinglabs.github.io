@@ -14,6 +14,11 @@
   --accent: 185 255 102;   /* brand lime, used as a fill, never as text on paper */
   --onaccent: 10 11 16;
   --trace: 22 112 38;      /* neuron trace colour */
+  --radius-card: 16px;     /* cards, panels */
+  --radius-ctl: 999px;     /* buttons, chips, pills */
+  --font-display: "Space Grotesk";
+  --font-mono: "JetBrains Mono";
+  --display-weight: 500;
   color-scheme: light;
 }
 @media (prefers-color-scheme: dark) {
@@ -56,13 +61,13 @@
     font-size: clamp(2.6rem, 7.2vw, 6.25rem);
     line-height: 0.96;
     letter-spacing: -0.035em;
-    font-weight: 500;
+    font-weight: var(--display-weight);
   }
   .h2 {
     font-size: clamp(1.9rem, 4vw, 3.25rem);
     line-height: 1.04;
     letter-spacing: -0.03em;
-    font-weight: 500;
+    font-weight: var(--display-weight);
   }
   .mark {
     background: linear-gradient(transparent 84%, rgb(var(--accent)) 84% 96%, transparent 96%);
@@ -71,7 +76,7 @@
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium transition duration-200 whitespace-nowrap;
+    @apply inline-flex items-center justify-center gap-2 rounded-ctl px-6 py-3.5 text-[15px] font-medium transition duration-200 whitespace-nowrap;
   }
   .btn-primary {
     @apply btn bg-accent text-onaccent;
@@ -83,7 +88,7 @@
   }
 
   .panel {
-    @apply rounded-2xl border border-line/10 bg-panel;
+    @apply rounded-card border border-line/10 bg-panel;
   }
 
   /* Status LED used on product cards and pages */

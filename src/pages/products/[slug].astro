@@ -23,7 +23,7 @@ const waitlist = `mailto:${site.email}?subject=${encodeURIComponent(`Notify me: 
         <a href="/products" class="eyebrow transition hover:text-ink">← All products</a>
         <div class="mt-10 flex items-center gap-4">
           <span class="font-mono text-xs tracking-[0.14em] text-muted">N–{pad(index + 1)}</span>
-          <span class="inline-flex items-center gap-2 rounded-full border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+          <span class="inline-flex items-center gap-2 rounded-ctl border border-line/15 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
             <span class={`led ${live ? "led-live" : "led-soon"}`}></span>{product.status}
           </span>
         </div>
@@ -57,7 +57,7 @@ const waitlist = `mailto:${site.email}?subject=${encodeURIComponent(`Notify me: 
     </section>
 
     {!live && (
-      <section class="mt-16 rounded-2xl border border-line/10 bg-panel p-8 md:p-12" data-reveal>
+      <section class="mt-16 rounded-card border border-line/10 bg-panel p-8 md:p-12" data-reveal>
         <div class="flex flex-wrap items-center justify-between gap-6">
           <div class="space-y-2">
             <h2 class="text-2xl font-medium tracking-tight">{product.name} is in development.</h2>

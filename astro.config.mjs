@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [tailwind(), sitemap()],
+  integrations: [tailwind(), sitemap({ filter: (page) => !page.includes('/kit') })],
   site: 'https://spikinglabs.com',
   redirects: {
     // Leftover template pages; keep old links from 404ing.
