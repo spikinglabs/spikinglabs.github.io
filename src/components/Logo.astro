@@ -1,9 +1,21 @@
 ---
-const { class: className = "h-6" } = Astro.props;
+// Spiking Labs logo lockup: the firing-neuron mark + outlined wordmark (no font dependency).
+// Size it with the font-size of the parent (the lockup is 1.6em tall). `mono` paints the dot in currentColor.
+import logo from "../data/logo.json";
+const { class: className = "text-xl", mono = false, mark = false } = Astro.props;
+const dot = mono ? "currentColor" : "rgb(var(--trace))";
+const W = Math.round(logo.lockupWidth);
 ---
-<span class={`inline-flex items-center gap-2.5 font-display font-medium tracking-tight ${className}`}>
-  <svg viewBox="0 0 32 20" class="h-[0.9em] w-auto" fill="none" aria-hidden="true">
-    <path d="M1 14h8l3-11 4 15 3-9 2 5h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+{mark ? (
+  <svg viewBox="0 0 64 64" class={`inline-block h-[1.4em] w-auto ${className}`} fill="none" role="img" aria-label="Spiking Labs">
+    <path d={logo.trace} stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="31" cy="8" r="6" fill={dot} />
   </svg>
-  <span class="text-[1.05em] leading-none">spiking<span class="text-muted">labs</span></span>
-</span>
+) : (
+  <svg viewBox={`0 0 ${W} 64`} class={`inline-block h-[1.6em] w-auto ${className}`} fill="none" role="img" aria-label="Spiking Labs">
+    <path d={logo.trace} stroke="currentColor" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+    <circle cx="31" cy="8" r="6" fill={dot} />
+    <path transform={`translate(${logo.mx},${logo.base})`} d={logo.d1} fill="currentColor" />
+    <path transform={`translate(${(logo.mx + logo.w1 + logo.gap).toFixed(1)},${logo.base})`} d={logo.d2} fill="currentColor" fill-opacity=".55" />
+  </svg>
+)}

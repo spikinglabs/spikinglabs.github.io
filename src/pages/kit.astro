@@ -7,6 +7,29 @@ import ProductCard from "../components/ProductCard.astro";
 import Neuron from "../components/Neuron.astro";
 import Logo from "../components/Logo.astro";
 import { products } from "../lib/products";
+import logoData from "../data/logo.json";
+
+const T = logoData.trace;
+const spikeMark = (c: string, a: string, sw = 5) => `<path d="${T}" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round"/><circle cx="31" cy="8" r="6" fill="${a}"/>`;
+const idotMark = (c: string, a: string) => `<path d="M32 28V54" stroke="${c}" stroke-width="9" stroke-linecap="round"/><circle cx="32" cy="12" r="7.5" fill="${a}"/>`;
+const ringMark = (c: string, a: string) => `<circle cx="32" cy="32" r="28" fill="none" stroke="${c}" stroke-width="3.5"/><g transform="translate(32 33) scale(.62) translate(-32 -32)">${spikeMark(c, a, 5.5)}</g>`;
+const concepts = [
+  { id: "A", name: "Spike", note: "Recommended. One cycle of the neuron trace with the firing dot on the apex. It is the same shape as the hero animation, so the logo and the site say the same thing.", draw: spikeMark },
+  { id: "B", name: "Firing dot", note: "An “i” whose dot is the lime spike event. Very simple and works as a tiny glyph, but says less about the trace.", draw: idotMark },
+  { id: "C", name: "Soma", note: "The trace inside a ring (the cell body). Reads as a neuron at once, but the ring is busy at 16px.", draw: ringMark },
+];
+const palette = { inkOnLight: ["#0A0B10", "#167026"], paperOnDark: ["#ECEEE6", "#B9FF66"] };
+const files = [
+  ["logo-on-light.svg", "Lockup for light backgrounds"],
+  ["logo-on-dark.svg", "Lockup for dark backgrounds"],
+  ["logo.svg", "Lockup, one colour (inherits text colour)"],
+  ["logo-stacked-on-light.svg", "Stacked, light"],
+  ["logo-stacked-on-dark.svg", "Stacked, dark"],
+  ["mark-on-light.svg", "Mark, light"],
+  ["mark-on-dark.svg", "Mark, dark"],
+  ["mark.svg", "Mark, one colour"],
+  ["mark-tile.svg", "App icon / favicon tile"],
+];
 
 const live = products.find((p) => p.status === "Live")!;
 const soon = products.find((p) => p.status !== "Live")!;
@@ -20,7 +43,7 @@ const colorTokens = [
   { name: "line", note: "borders, at 10–20% alpha", cls: "bg-line" },
 ];
 const spacing = [4, 8, 12, 16, 24, 32, 48, 64, 96, 128];
-const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacing", "Motion", "Voice", "Export"];
+const sections = ["Logo", "Color", "Type", "Controls", "Cards & rows", "Signal", "Spacing", "Motion", "Voice", "Export"];
 ---
 <Layout title="Design kit" description="Spiking Labs design kit" noindex>
   <Container>
@@ -85,8 +108,68 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
 
       <!-- ───────────── Specimens ───────────── -->
       <div class="min-w-0 space-y-24">
+        <section id="logo" class="scroll-mt-24 space-y-8">
+          <div><p class="eyebrow">01</p><h2 class="h2 mt-2">Logo</h2></div>
+          <p class="max-w-2xl text-muted">The mark is one cycle of a spiking neuron: the membrane voltage leaks up, crosses threshold, and <span class="text-ink">fires</span>. The dot is the spike. The wordmark is Space Grotesk, converted to outlines so it never depends on a font being installed, with <em>labs</em> set at 55% opacity.</p>
+
+          <div class="grid gap-3 md:grid-cols-2">
+            <div class="panel flex min-h-[200px] items-center justify-center p-8"><Logo class="text-[40px]" /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card bg-accent p-8 text-onaccent"><Logo class="text-[40px]" mono /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card p-8" style="background:#F4F2EC"><img src="/logo/logo-on-light.svg" alt="Spiking Labs logo on light" class="h-16 w-auto" /></div>
+            <div class="flex min-h-[200px] items-center justify-center rounded-card p-8" style="background:#0A0B10"><img src="/logo/logo-on-dark.svg" alt="Spiking Labs logo on dark" class="h-16 w-auto" /></div>
+          </div>
+          <p class="font-mono text-xs text-muted">Top left follows the current theme and accent (the dot uses the trace colour). Top right is the one-colour version for accent backgrounds. Bottom row are the exported SVG files.</p>
+
+          <div class="space-y-3">
+            <p class="eyebrow">Mark concepts</p>
+            <div class="grid gap-4 md:grid-cols-3">
+              {concepts.map((c) => (
+                <div class="panel space-y-4 p-5">
+                  <div class="flex items-center justify-between"><p class="font-mono text-xs">{c.id} · {c.name}</p>{c.id === "A" && <span class="rounded-ctl bg-accent px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.12em] text-onaccent">Pick</span>}</div>
+                  <div class="grid grid-cols-2 gap-2">
+                    {[palette.inkOnLight, palette.paperOnDark].map((p, i) => (
+                      <div class="flex items-end justify-center gap-3 rounded-lg p-4" style={`background:${i === 0 ? "#F4F2EC" : "#0A0B10"}`}>
+                        <svg viewBox="0 0 64 64" class="h-16 w-16" fill="none" set:html={c.draw(p[0], p[1])} />
+                        <svg viewBox="0 0 64 64" class="h-8 w-8" fill="none" set:html={c.draw(p[0], p[1])} />
+                        <svg viewBox="0 0 64 64" class="h-4 w-4" fill="none" set:html={c.draw(p[0], p[1])} />
+                      </div>
+                    ))}
+                  </div>
+                  <p class="text-sm leading-6 text-muted">{c.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-[1.2fr_1fr]">
+            <div class="panel space-y-4 p-6">
+              <p class="eyebrow">App icon &amp; favicon</p>
+              <div class="flex items-end gap-5">
+                <img src="/logo/mark-tile.svg" alt="" class="h-24 w-24" /><img src="/logo/mark-tile.svg" alt="" class="h-12 w-12" /><img src="/logo/mark-tile.svg" alt="" class="h-8 w-8" /><img src="/logo/mark-tile.svg" alt="" class="h-4 w-4" />
+              </div>
+              <p class="text-sm text-muted">Ink tile, paper trace, lime dot. The stroke is thicker than in the lockup so it holds at 16px.</p>
+            </div>
+            <div class="panel space-y-4 p-6">
+              <p class="eyebrow">Stacked</p>
+              <div class="flex gap-4"><img src="/logo/logo-stacked-on-light.svg" alt="" class="h-24 w-auto rounded-lg p-3" style="background:#F4F2EC" /><img src="/logo/logo-stacked-on-dark.svg" alt="" class="h-24 w-auto rounded-lg p-3" style="background:#0A0B10" /></div>
+            </div>
+          </div>
+
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Use</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li><strong class="text-ink">Clear space:</strong> keep at least the height of the dot (about 1/5 of the mark) free on every side.</li><li><strong class="text-ink">Minimum size:</strong> mark 16px, lockup 96px wide.</li><li>Use the on-light or on-dark file that matches the background; one-colour on accent or photos.</li><li>The lime dot is always the only accent in the logo.</li></ul></div>
+            <div class="panel space-y-3 p-6"><p class="eyebrow">Do not</p><ul class="list-disc space-y-2 pl-5 text-sm text-muted"><li>Stretch, rotate or add shadows and outlines.</li><li>Recolour the wordmark or the dot to anything but ink/paper and lime (green on light).</li><li>Put the lime dot on a lime or yellow background; use the one-colour logo there.</li><li>Redraw the wordmark in another font.</li></ul></div>
+          </div>
+
+          <div class="panel p-6">
+            <p class="eyebrow mb-3">Files (public/logo)</p>
+            <ul class="grid gap-x-8 gap-y-2 font-mono text-xs sm:grid-cols-2">
+              {files.map((f) => <li class="flex justify-between gap-3 border-b border-line/10 py-1.5"><a class="underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={`/logo/${f[0]}`}>{f[0]}</a><span class="text-right text-muted">{f[1]}</span></li>)}
+            </ul>
+          </div>
+        </section>
+
         <section id="color" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">01</p><h2 class="h2 mt-2">Color</h2></div>
+          <div><p class="eyebrow">02</p><h2 class="h2 mt-2">Color</h2></div>
           <p class="max-w-2xl text-muted">One lime accent used as a <strong class="text-ink">fill</strong> (buttons, status light, headline underline). Never as text on the paper background. Surfaces swap between light and dark; text, borders and the accent stay consistent.</p>
           <div class="grid grid-cols-2 gap-3 md:grid-cols-4">
             {colorTokens.map((c) => (
@@ -112,7 +195,7 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="type" class="scroll-mt-24 space-y-8">
-          <div><p class="eyebrow">02</p><h2 class="h2 mt-2">Type</h2></div>
+          <div><p class="eyebrow">03</p><h2 class="h2 mt-2">Type</h2></div>
           <div class="space-y-1 border-t border-line/15 pt-6">
             <p class="eyebrow">display · clamp 2.6–6.25rem · −3.5% tracking</p>
             <p class="display">Automation that <span class="mark">fires</span> when it matters.</p>
@@ -126,13 +209,13 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
             <div class="space-y-1"><p class="eyebrow">readout · mono</p><p class="font-mono text-sm">V<sub>m</sub> −54.2 mV · θ −50 mV · 1.4 Hz</p></div>
           </div>
           <div class="grid gap-6 border-t border-line/15 pt-6 sm:grid-cols-2">
-            <div class="space-y-3"><p class="eyebrow">logo</p><Logo class="text-3xl" /><Logo class="text-lg" /></div>
+            <div class="space-y-3"><p class="eyebrow">logo (sizes)</p><Logo class="text-2xl" /><Logo class="text-base" /></div>
             <div class="space-y-1"><p class="eyebrow">glyphs</p><p class="font-mono text-2xl">N–01 R–02 → ↗ ← θ</p></div>
           </div>
         </section>
 
         <section id="controls" class="scroll-mt-24 space-y-8">
-          <div><p class="eyebrow">03</p><h2 class="h2 mt-2">Controls</h2></div>
+          <div><p class="eyebrow">04</p><h2 class="h2 mt-2">Controls</h2></div>
           <div class="flex flex-wrap items-center gap-3">
             <a href="#controls" class="btn-primary">Primary <span aria-hidden="true">→</span></a>
             <a href="#controls" class="btn-ghost">Secondary</a>
@@ -151,7 +234,7 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="cards-rows" class="scroll-mt-24 space-y-8">
-          <div><p class="eyebrow">04</p><h2 class="h2 mt-2">Cards &amp; rows</h2></div>
+          <div><p class="eyebrow">05</p><h2 class="h2 mt-2">Cards &amp; rows</h2></div>
           <div class="grid gap-4 md:grid-cols-2">
             <ProductCard product={live} index={0} />
             <ProductCard product={soon} index={1} />
@@ -172,14 +255,14 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="signal" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">05</p><h2 class="h2 mt-2">Signal</h2></div>
+          <div><p class="eyebrow">06</p><h2 class="h2 mt-2">Signal</h2></div>
           <p class="max-w-2xl text-muted">The one moving thing: a live leaky integrate-and-fire neuron. It reads the accent colour from the kit. Move your pointer over the page to inject current and make it fire faster.</p>
           <div class="relative h-[340px] overflow-hidden rounded-card border border-line/10 bg-panel"><div class="grid-bg absolute inset-0"></div><Neuron /></div>
           <div class="panel p-5"><p class="eyebrow mb-2">Spike raster divider</p><svg viewBox="0 0 1000 36" preserveAspectRatio="none" class="block h-8 w-full text-ink/30" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true" id="raster"></svg></div>
         </section>
 
         <section id="spacing" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">06</p><h2 class="h2 mt-2">Spacing</h2></div>
+          <div><p class="eyebrow">07</p><h2 class="h2 mt-2">Spacing</h2></div>
           <p class="max-w-2xl text-muted">4px base. Page width <span class="font-mono text-ink">1200px</span> with 20px (mobile) / 32px (desktop) gutters. Sections are separated by 96–128px; inside cards use 28–36px.</p>
           <ul class="space-y-2">
             {spacing.map((s) => (
@@ -189,7 +272,7 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="motion" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">07</p><h2 class="h2 mt-2">Motion</h2></div>
+          <div><p class="eyebrow">08</p><h2 class="h2 mt-2">Motion</h2></div>
           <ul class="max-w-2xl list-disc space-y-2 pl-5 text-muted">
             <li><strong class="text-ink">Reveal:</strong> 14px rise and fade, 0.7s, once per element.</li>
             <li><strong class="text-ink">Hover:</strong> cards lift 4px and darken their border; arrows slide 4px; the spike glyph redraws.</li>
@@ -204,7 +287,7 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="voice" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">08</p><h2 class="h2 mt-2">Voice</h2></div>
+          <div><p class="eyebrow">09</p><h2 class="h2 mt-2">Voice</h2></div>
           <div class="grid gap-4 md:grid-cols-2">
             <div class="panel space-y-3 p-6"><p class="eyebrow">Do</p><ul class="list-disc space-y-2 pl-5 text-muted"><li>Say what it does, plainly, in the first sentence.</li><li>Lead with the benefit, then the mechanism.</li><li>Name privacy facts specifically: “stays on your phone”, “no account”.</li><li>Short sentences. Technical terms only where the reader uses them.</li></ul></div>
             <div class="panel space-y-3 p-6"><p class="eyebrow">Don't</p><ul class="list-disc space-y-2 pl-5 text-muted"><li>“Unlock the full potential of AI.”</li><li>Vague promises with no example.</li><li>Exclamation marks, emoji, hype words.</li><li>Em dashes as a rhythm crutch.</li></ul></div>
@@ -212,7 +295,7 @@ const sections = ["Color", "Type", "Controls", "Cards & rows", "Signal", "Spacin
         </section>
 
         <section id="export" class="scroll-mt-24 space-y-6">
-          <div><p class="eyebrow">09</p><h2 class="h2 mt-2">Export</h2></div>
+          <div><p class="eyebrow">10</p><h2 class="h2 mt-2">Export</h2></div>
           <p class="max-w-2xl text-muted">Your current choices as CSS variables. Paste this into the thread and I will make it the new default.</p>
           <textarea id="kit-export" readonly rows="16" class="block w-full rounded-card border border-line/15 bg-panel p-4 font-mono text-xs leading-6 text-ink"></textarea>
           <button type="button" id="kit-copy" class="btn-primary">Copy tokens</button>
