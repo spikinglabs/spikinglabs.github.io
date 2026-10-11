@@ -1,66 +1,42 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ["./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}"],
-	safelist: [
-		'bg-sky-50',
-		'bg-sky-100',
-		'bg-sky-200',
-		'bg-sky-300',
-		'bg-sky-400',
-		'bg-orange-200',
-		'bg-lime',
-		'bg-black',
-		'bg-zinc-100',
-		'text-black',
-		'text-white',
-	],
+	content: ["./src/**/*.{astro,html,js,ts,md,mdx}"],
 	theme: {
-	  screens: {
-		sm: "480px",
-		md: "768px",
-		lg: "976px",
-		xl: "1440px",
-	  },
-	  colors: {
-		black: "#000000",
-		white: "#FFFFFF",
-		gray: "#0D0C22",
-		stone: "#231F20",
-		lime: "#B9FF66",
-		blue: "#87CEEB",
-		orange: {
-		  50: "#FFF7ED",
-		  100: "#FFEDD5",
-		  200: "#FED7AA",
-		  300: "#FDBA74",
-		  400: "#FB923C",
+		screens: {
+			sm: "480px",
+			md: "768px",
+			lg: "976px",
+			xl: "1280px",
 		},
-		sky: {
-		  50: "#E0F6FF",
-		  100: "#B3E9FF",
-		  200: "#87CEEB",
-		  300: "#5AB3E8",
-		  400: "#4A9FD8",
+		// Legacy palette: only used by the CityKlub legal pages (src/pages/products/cityklub/*).
+		colors: {
+			black: "#000000",
+			white: "#FFFFFF",
+			transparent: "transparent",
+			current: "currentColor",
+			lime: "#B9FF66",
+			zinc: {
+				100: "#F3F3F3",
+				300: "#D9D9D9",
+				900: "#191A23",
+			},
 		},
-		zinc: {
-		  100: "#F3F3F3",
-		  200: "#F0F0F0",
-		  300: "#D9D9D9",
-		  400: "#D8D8D8",
-		  500: "#898989",
-		  600: "#B0B0B0",
-		  700: "#787878",
-		  800: "#292A32",
-		  900: "#191A23",
+		extend: {
+			colors: {
+				// Design tokens. Values live in src/styles/global.css so light/dark can swap them.
+				canvas: "rgb(var(--canvas) / <alpha-value>)",
+				panel: "rgb(var(--panel) / <alpha-value>)",
+				ink: "rgb(var(--ink) / <alpha-value>)",
+				muted: "rgb(var(--muted) / <alpha-value>)",
+				line: "rgb(var(--line) / <alpha-value>)",
+				accent: "rgb(var(--accent) / <alpha-value>)",
+				onaccent: "rgb(var(--onaccent) / <alpha-value>)",
+			},
+			fontFamily: {
+				display: ['"Space Grotesk"', "ui-sans-serif", "system-ui", "sans-serif"],
+				mono: ['"JetBrains Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
+			},
+			maxWidth: { site: "1200px" },
 		},
-	  },
-	  boxShadow:{
-        'card':'0px 5px 0px 0px #191A23'
-      },
-	  extend: {
-		fontFamily: {
-			SpaceGrotesk: ["Space Grotesk", "sans-serif"],
-		},
-	  },
 	},
-  };
+};

@@ -1,0 +1,14 @@
+---
+// Decorative "spike raster": a row of vertical ticks with deterministic pseudo-random heights.
+const { seed = 1, count = 96, class: className = "" } = Astro.props;
+let s = seed * 9301 + 49297;
+const rnd = () => ((s = (s * 9301 + 49297) % 233280) / 233280);
+const ticks = Array.from({ length: count }, (_, i) => {
+  const r = rnd();
+  const burst = rnd() > 0.82;
+  return { x: (i + 0.5) * (1000 / count), h: burst ? 10 + r * 22 : 2 + r * 6 };
+});
+---
+<svg viewBox="0 0 1000 36" preserveAspectRatio="none" class={`block h-6 w-full ${className}`} aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.2">
+  {ticks.map((t) => <line x1={t.x} x2={t.x} y1={36} y2={36 - t.h} />)}
+</svg>

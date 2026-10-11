@@ -1,0 +1,125 @@
+[
+  {
+    "slug": "cityklub",
+    "name": "CityKlub",
+    "tagline": "Spontaneous plans with real people, in your city",
+    "summary": "A map-first mobile app for spontaneous, free activities in Cologne. Discover what's happening today and tomorrow, form small groups around curated city events, and chat once you're approved to join.",
+    "status": "Coming Soon",
+    "ctaUrl": null,
+    "ctaLabel": null,
+    "features": [
+      {
+        "title": "Today & Tomorrow",
+        "description": "Discovery focused on what's happening right now and next — no endless scrolling through old events."
+      },
+      {
+        "title": "Small Group Plans",
+        "description": "Create a plan or request to join one, and form small groups around curated city events."
+      },
+      {
+        "title": "Approve, Then Chat",
+        "description": "Approximate locations are public; exact meeting points stay protected until your request is approved."
+      }
+    ]
+  },
+  {
+    "slug": "little-outings",
+    "name": "Little Outings",
+    "tagline": "Days out with kids, nearby",
+    "summary": "A free guide to family outings around you: events like farm festivals and story time at the library, plus kid-friendly places such as playgrounds, pools and cafés. In English, German and Chinese, with no account and no ads.",
+    "status": "Live",
+    "ctaUrl": "https://outings.allo.land",
+    "ctaLabel": "Open Little Outings",
+    "features": [
+      {
+        "title": "Ideas Nearby",
+        "description": "One list of what's on and where to go near you, with filters for rainy days, free entry and age."
+      },
+      {
+        "title": "Parents Fill the Gaps",
+        "description": "Tap what a place has, say \"we went\", or snap a poster to add an event. Every listing gets better as families use it."
+      },
+      {
+        "title": "Three Languages",
+        "description": "English, German and Chinese, with the German name kept alongside so you can match signs and posters."
+      },
+      {
+        "title": "Private by Default",
+        "description": "Your saved list stays on your phone. No account, no email, no tracking."
+      }
+    ]
+  },
+  {
+    "slug": "aura-baby",
+    "name": "Aura Baby",
+    "tagline": "AI-powered guidance for early parenthood",
+    "summary": "A one-stop parenting app infused with AI, designed to guide, support, and simplify every stage of early parenthood.",
+    "status": "Coming Soon",
+    "ctaUrl": "https://aura.spikinglabs.com",
+    "ctaLabel": "Use Aura Baby",
+    "features": [
+      {
+        "title": "AI Deep Research",
+        "description": "Trusted resources on baby, parenting, and more."
+      },
+      {
+        "title": "Integrated Tracking",
+        "description": "Integrated tracking and understanding tools."
+      },
+      {
+        "title": "Discuss & Discover",
+        "description": "Discuss and find insights about your baby."
+      }
+    ]
+  },
+  {
+    "slug": "tiny-foundation",
+    "name": "Tiny Foundation",
+    "tagline": "Curated knowledge, flawless precision",
+    "summary": "A tiny knowledge workspace for managing small, composable units of knowledge. Ground AI in strict, version-controlled context to prevent hallucinations, with native Model Context Protocol (MCP) integration.",
+    "status": "Live",
+    "ctaUrl": "https://tiny-foundation.spikinglabs.com/",
+    "ctaLabel": "Start Building Free",
+    "features": [
+      {
+        "title": "Precise Results",
+        "description": "Extract highly accurate semantic graphs from your text, grounding AI in absolute, version-controlled context."
+      },
+      {
+        "title": "Native MCP",
+        "description": "Expose your governed knowledge directly to AI agents securely through built-in Model Context Protocol integration."
+      },
+      {
+        "title": "Small Knowledge",
+        "description": "Break down complex information into tiny, composable units of markdown."
+      },
+      {
+        "title": "Governance",
+        "description": "Every document change is tracked and versioned, so you can review before publishing."
+      }
+    ]
+  },
+  {
+    "slug": "alloland",
+    "name": "AlloLand",
+    "tagline": "Your expat journey, guided by those who've been there",
+    "summary": "AlloLand connects expats in Europe with mentors who've lived your exact situation — covering housing, visas, careers, banking, and local life — so you get real answers, not generic advice.",
+    "status": "Coming Soon",
+    "ctaUrl": null,
+    "ctaLabel": null,
+    "features": [
+      {
+        "title": "Find a Mentor",
+        "description": "Browse mentors by country, topic, and experience level for insight from expats who've navigated the same challenges."
+      },
+      {
+        "title": "Real Conversations",
+        "description": "Book 1-on-1 sessions on your schedule and get answers to the specific questions that Google can't answer."
+      },
+      {
+        "title": "Become a Mentor",
+        "description": "Turn your hard-won expat experience into something valuable and help newcomers navigate what you once figured out alone."
+      }
+    ]
+  }
+]

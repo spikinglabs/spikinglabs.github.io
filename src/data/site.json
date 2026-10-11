@@ -1,0 +1,57 @@
+{
+  "name": "Spiking Labs",
+  "legalName": "SL Spiking Labs UG (haftungsbeschränkt)",
+  "address": "Subbelrather Straße 15 a, 50823 Köln, Germany",
+  "description": "Spiking Labs builds small, private AI products for everyday life and helps teams put AI to work without giving up their data.",
+  "email": "hi@spikinglabs.com",
+  "supportEmail": "support@spikinglabs.com",
+  "nav": [
+    { "label": "Products", "href": "/products" },
+    { "label": "Services", "href": "/services" },
+    { "label": "About", "href": "/about" },
+    { "label": "Support", "href": "/support" }
+  ],
+  "hero": {
+    "eyebrow": "AI products & automation studio · Cologne",
+    "before": "Automation that ",
+    "emphasis": "fires",
+    "after": " when it matters.",
+    "lead": "We build small, private AI products for everyday life, and help teams put AI to work without handing over their data.",
+    "primary": { "label": "See our products", "href": "/products" },
+    "secondary": { "label": "Work with us", "href": "/services" }
+  },
+  "facts": [
+    { "label": "Based in", "value": "Cologne, DE" },
+    { "label": "Products", "value": "$products" },
+    { "label": "Default stance", "value": "Private & self-hostable" },
+    { "label": "Speaks", "value": "EN · DE · 中文" }
+  ],
+  "principles": [
+    {
+      "title": "Private by default",
+      "body": "Your data stays yours. We prefer on-device storage, self-hosted models and no tracking, and we say so in plain words."
+    },
+    {
+      "title": "Small and composable",
+      "body": "Focused tools that do one job well and plug into the rest of your stack, instead of one more platform to adopt."
+    },
+    {
+      "title": "Useful over impressive",
+      "body": "We automate the boring, repetitive parts of life and work. If it does not save someone time, we do not ship it."
+    }
+  ],
+  "cta": {
+    "title": "Tell us what you would like to automate.",
+    "body": "Describe your team and the task in a few lines. We will get back to you with next steps.",
+    "label": "Write to us",
+    "subject": "Let's talk about AI for my business"
+  },
+  "about": {
+    "title": "A small lab with a bias for shipping.",
+    "paragraphs": [
+      "Our team has a diverse background. We have brought automation, data-driven decision making and machine learning to different industries and to companies of different sizes.",
+      "We are ready to create value using our knowledge and experience. Just drop us a message."
+    ]
+  },
+  "team": []
+}

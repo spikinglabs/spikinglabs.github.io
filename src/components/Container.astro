@@ -1,3 +1,4 @@
-<div class="max-w-screen-xl mx-auto px-6 md:px-14 xl:px-14">
-    <slot />
-</div>
+---
+const { class: className = '' } = Astro.props;
+---
+<div class={`mx-auto w-full max-w-site px-5 md:px-8 ${className}`}><slot /></div>

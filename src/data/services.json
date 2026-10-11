@@ -1,0 +1,44 @@
+[
+  {
+    "slug": "genai-chat",
+    "group": "AI Solutions",
+    "name": "GenAI chat services",
+    "blurb": "Assistants customised to your team, your knowledge and your tone.",
+    "tags": ["RAG", "Assistants", "Integrations"]
+  },
+  {
+    "slug": "automation",
+    "group": "AI Solutions",
+    "name": "Automation of the day-to-day",
+    "blurb": "Find the repetitive work in your workflows and let AI take it off your hands.",
+    "tags": ["Workflows", "Agents", "Ops"]
+  },
+  {
+    "slug": "private-ai",
+    "group": "AI Solutions",
+    "name": "Private AI",
+    "blurb": "Keep private data secure with custom, self-hosted AI solutions.",
+    "tags": ["Self-hosted", "Open models", "Compliance"]
+  },
+  {
+    "slug": "ai-education",
+    "group": "AI Solutions",
+    "name": "AI education",
+    "blurb": "Upskill your team so they can use AI effectively and safely.",
+    "tags": ["Workshops", "Safety", "Teams"]
+  },
+  {
+    "slug": "time-series-foundation-models",
+    "group": "Research & Development",
+    "name": "Foundation models for time series",
+    "blurb": "Researching and developing new models, such as foundation forecasting models.",
+    "tags": ["Research", "Forecasting", "Foundation models"]
+  },
+  {
+    "slug": "forecasting",
+    "group": "Research & Development",
+    "name": "Forecasting with AI",
+    "blurb": "Need forecasts? We cover you from end to end, from data to production.",
+    "tags": ["Forecasting", "MLOps", "End to end"]
+  }
+]

@@ -1,42 +1,23 @@
 ---
-import Container from "./Container.astro"
+import site from "../data/site.json";
+import Container from "./Container.astro";
+import Neuron from "./Neuron.astro";
+const h = site.hero;
 ---
-<Container>
-<div class="relative flex flex-col-reverse items-center md:flex-row" id="hero">
-    <div class="row items-center py-5 md:w-6/12 md:pb-20 md:pt-10">
-        <div class="text-left space-y-3">
-            <h1 class="text-5xl font-medium leading-none md:text-6xl">Automations & Actions <br> for our daily life</h1>
-            <p class="mt-6 mb-8  text-xl font-normal leading-7 sm:mb-12">We are born to enjoy life, not to suffer through boring and repetitive tasks. Spiking Labs integrates automation into everyone's daily routine to make our days more enjoyable.</p>
-            <a class="px-9 py-5 bg-zinc-900 hover:bg-white text-white hover:text-black border rounded-2xl justify-items-center md:justify-items-start gap-2.5 inline-flex" rel="noopener noreferrer" href="mailto:hi@spikinglabs.com">
-                <span class="text-center text-xl font-normal leading-7">Contact Us</span>
-            </a>
-        </div>
+<section class="relative isolate overflow-hidden border-b border-line/10">
+  <div class="grid-bg absolute inset-0 -z-10"></div>
+  <Container>
+    <div class="relative z-10 pb-72 pt-16 md:pb-80 md:pt-28">
+      <p class="eyebrow mb-8 flex items-center gap-3" data-reveal><span class="led led-live"></span>{h.eyebrow}</p>
+      <h1 class="display max-w-[14ch] md:max-w-[16ch]" data-reveal>
+        {h.before}<span class="mark">{h.emphasis}</span>{h.after}
+      </h1>
+      <p class="mt-8 max-w-xl text-lg leading-7 text-muted md:text-xl md:leading-8" data-reveal>{h.lead}</p>
+      <div class="mt-10 flex flex-wrap gap-3" data-reveal>
+        <a href={h.primary.href} class="btn-primary">{h.primary.label} <span aria-hidden="true">→</span></a>
+        <a href={h.secondary.href} class="btn-ghost">{h.secondary.label}</a>
+      </div>
     </div>
-    <div class="flex items-center py-5 md:w-6/12 md:pb-20 md:pt-10">
-        <img src="/Hero.svg" width="100%" alt="Hero"/>
-    </div>
-</div>
-
-<!-- <div class="flex-row items-center">
-    <div class="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6">
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/01.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/02.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-        <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/03.svg" class="h-9 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/04.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-        <div class="p-4 flex grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/05.svg" class="h-8 w-auto m-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-        <div class="p-4 grayscale transition duration-200 hover:grayscale-0">
-            <img src="./clients/06.svg" class="h-12 w-auto mx-auto" loading="lazy" alt="client logo" width="" height="" />
-        </div>
-    </div>
-</div> -->
-</Container>
+  </Container>
+  <Neuron />
+</section>

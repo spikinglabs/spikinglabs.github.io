@@ -1,28 +1,45 @@
 ---
-import Container from "./Container.astro"
+import site from "../data/site.json";
+import Container from "./Container.astro";
+import Logo from "./Logo.astro";
+import SpikeRule from "./SpikeRule.astro";
+import products from "../data/products.json";
 ---
-<footer class="bg-lime bg-fixed bg-bottom">
-    <Container>
-        <div class="py-6 flex flex-col items-center gap-4 md:flex-row md:justify-between">
-            <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img class="w-auto h-[1.5em]" src="/Logo.svg" alt="Spiking Labs">
-            </a>
-            <ul class="flex flex-wrap justify-center items-center gap-x-6 text-sm font-medium">
-                <li><a href="/products/cityklub/delete-account" class="inline-block rounded py-3 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">CityKlub account deletion</a></li>
-                <li><a href="/support" class="inline-block py-3 hover:underline focus-visible:underline">Support</a></li>
-            </ul>
-            <div class="text-sm text-black/80 text-center md:text-right">
-                Made with <a href="https://astro.build/" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline focus-visible:no-underline">Astro</a>
-                and <a href="https://github.com/manulthanura/Positivus" target="_blank" rel="noopener noreferrer" class="underline hover:no-underline focus-visible:no-underline">Positivus</a>
-            </div>
-        </div>
-        <div class="pb-6 pt-4 border-t border-black/10 text-center text-sm text-black/70">
-            Copyright © <span id="currentYearCopyright"></span> SL Spiking Labs UG (haftungsbeschränkt). All rights reserved.
-        </div>
-    </Container>
+<footer class="mt-32 border-t border-line/10">
+  <SpikeRule seed={7} class="text-ink/30" />
+  <Container>
+    <div class="grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
+      <div class="space-y-5">
+        <Logo class="text-2xl" />
+        <p class="max-w-xs text-sm leading-6 text-muted">Small, private AI products and automation, made in Cologne.</p>
+        <a href={`mailto:${site.email}`} class="inline-block font-mono text-sm underline decoration-line/30 underline-offset-4 hover:decoration-ink">{site.email}</a>
+      </div>
+      <div>
+        <p class="eyebrow mb-4">Products</p>
+        <ul class="space-y-2.5 text-sm">
+          {products.map((p) => <li><a class="text-muted transition hover:text-ink" href={`/products/${p.slug}`}>{p.name}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow mb-4">Company</p>
+        <ul class="space-y-2.5 text-sm">
+          {site.nav.map((l) => <li><a class="text-muted transition hover:text-ink" href={l.href}>{l.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="eyebrow mb-4">Legal</p>
+        <ul class="space-y-2.5 text-sm">
+          <li><a class="text-muted transition hover:text-ink" href="/products/cityklub/privacy-policy">CityKlub privacy policy</a></li>
+          <li><a class="text-muted transition hover:text-ink" href="/products/cityklub/delete-account">CityKlub account deletion</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="flex flex-col gap-2 border-t border-line/10 py-6 font-mono text-[11px] uppercase tracking-[0.12em] text-muted md:flex-row md:justify-between">
+      <span>© <span id="year">2026</span> {site.legalName}</span>
+      <span>{site.address}</span>
+    </div>
+  </Container>
 </footer>
-
 <script is:inline>
-    const yearEl = document.getElementById("currentYearCopyright");
-    if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+  var y = document.getElementById("year"); if (y) y.textContent = String(new Date().getFullYear());
 </script>

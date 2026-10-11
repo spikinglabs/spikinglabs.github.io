@@ -1,0 +1,9 @@
+---
+const { class: className = "h-6" } = Astro.props;
+---
+<span class={`inline-flex items-center gap-2.5 font-display font-medium tracking-tight ${className}`}>
+  <svg viewBox="0 0 32 20" class="h-[0.9em] w-auto" fill="none" aria-hidden="true">
+    <path d="M1 14h8l3-11 4 15 3-9 2 5h10" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+  <span class="text-[1.05em] leading-none">spiking<span class="text-muted">labs</span></span>
+</span>

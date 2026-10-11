@@ -2,88 +2,129 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ------------------------------------------------------------------ */
+/* Tokens. Colours are space-separated RGB so Tailwind can add alpha.  */
+/* ------------------------------------------------------------------ */
+:root {
+  --canvas: 244 242 236;   /* warm paper */
+  --panel: 255 255 255;
+  --ink: 10 11 16;
+  --muted: 92 95 106;
+  --line: 10 11 16;        /* used with /10–/20 alpha */
+  --accent: 185 255 102;   /* brand lime, used as a fill, never as text on paper */
+  --onaccent: 10 11 16;
+  --trace: 22 112 38;      /* neuron trace colour */
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --canvas: 10 11 16;
+    --panel: 18 20 28;
+    --ink: 236 238 230;
+    --muted: 142 146 160;
+    --line: 255 255 255;
+    --trace: 185 255 102;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --canvas: 10 11 16;
+  --panel: 18 20 28;
+  --ink: 236 238 230;
+  --muted: 142 146 160;
+  --line: 255 255 255;
+  --trace: 185 255 102;
+  color-scheme: dark;
+}
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    @apply bg-canvas text-ink font-display antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
-  .font-outline {
-    -webkit-text-stroke: 2.5px black;
-    background-color: transparent;
-  }
-  .font-outline-sm {
-    -webkit-text-stroke: 1.2px black;
-    background-color: transparent;
-  }
+  ::selection { background: rgb(var(--accent)); color: rgb(var(--onaccent)); }
+  :focus-visible { outline: 2px solid rgb(var(--ink)); outline-offset: 3px; border-radius: 4px; }
+  h1, h2, h3 { @apply tracking-tight; }
 }
 
 @layer components {
-  .page-bg {
-    background-color: #ffffff;
-    background-image:
-      radial-gradient(900px circle at 0% 0%, rgba(185, 255, 102, 0.28), transparent 45%),
-      radial-gradient(700px circle at 100% 10%, rgba(0, 0, 0, 0.08), transparent 40%),
-      radial-gradient(600px circle at 50% 100%, rgba(185, 255, 102, 0.16), transparent 45%);
+  .eyebrow {
+    @apply font-mono text-[11px] uppercase tracking-[0.16em] text-muted;
+  }
+  .display {
+    font-size: clamp(2.6rem, 7.2vw, 6.25rem);
+    line-height: 0.96;
+    letter-spacing: -0.035em;
+    font-weight: 500;
+  }
+  .h2 {
+    font-size: clamp(1.9rem, 4vw, 3.25rem);
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+  }
+  .mark {
+    background: linear-gradient(transparent 84%, rgb(var(--accent)) 84% 96%, transparent 96%);
+    color: inherit;
+    padding: 0 0.06em;
   }
 
-  .nav-glass {
-    background: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-medium transition duration-200 whitespace-nowrap;
   }
-
   .btn-primary {
-    @apply inline-flex items-center justify-center px-9 py-5 rounded-2xl border border-zinc-900 bg-zinc-900 text-white transition duration-200 hover:bg-white hover:text-black;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+    @apply btn bg-accent text-onaccent;
+    box-shadow: 0 0 0 1px rgb(var(--onaccent) / 0.15) inset;
+  }
+  .btn-primary:hover { box-shadow: 0 0 0 1px rgb(var(--onaccent) / 0.15) inset, 0 10px 40px -8px rgb(var(--accent) / 0.6); transform: translateY(-1px); }
+  .btn-ghost {
+    @apply btn border border-line/20 text-ink hover:border-ink;
   }
 
-  .btn-outline {
-    @apply inline-flex items-center justify-center px-8 py-4 rounded-2xl border border-zinc-900 text-black bg-white transition duration-200 hover:bg-black hover:text-white;
+  .panel {
+    @apply rounded-2xl border border-line/10 bg-panel;
   }
 
-  .card-base {
-    @apply relative min-h-[310px] p-10 md:p-12 rounded-[34px] border border-black/10 shadow-card flex justify-between items-center transition duration-300;
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  /* Status LED used on product cards and pages */
+  .led {
+    @apply inline-block h-2 w-2 rounded-full;
+  }
+  .led-live { background: rgb(var(--accent)); box-shadow: 0 0 0 3px rgb(var(--accent) / 0.25); animation: pulse 2.4s ease-in-out infinite; }
+  .led-soon { box-shadow: inset 0 0 0 1.5px rgb(var(--muted)); }
+
+  /* faint instrument-panel grid */
+  .grid-bg {
+    background-image:
+      linear-gradient(rgb(var(--line) / 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--line) / 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 70% at 50% 30%, #000 30%, transparent 75%);
   }
 
-  .card-base:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 28px 60px rgba(0, 0, 0, 0.14);
-  }
-
-  .card-light {
-    @apply bg-zinc-100 text-black;
-  }
-
-  .card-lime {
-    @apply bg-lime text-black;
-  }
-
-  .card-dark {
-    @apply bg-black text-white;
-  }
-
-  .section-surface {
-    @apply bg-zinc-100 rounded-[36px] border border-black/10;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  }
+  /* Legal pages keep a light "paper" surface in both themes */
+  .paper { background: #fff; color: #191a23; border-radius: 1.25rem; padding: 1.5rem; }
+  @media (min-width: 768px) { .paper { padding: 3rem; } }
+  .section-surface { @apply bg-zinc-100 rounded-3xl border border-black/10; }
 }
 
-/* custom scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 3px rgb(var(--accent) / 0.25); } 50% { box-shadow: 0 0 0 6px rgb(var(--accent) / 0.08); } }
+@keyframes spike-draw { from { stroke-dasharray: 300; stroke-dashoffset: 300; } to { stroke-dasharray: 300; stroke-dashoffset: 0; } }
+
+/* Product card: the spike glyph draws itself on hover */
+.group:hover .spike-glyph path, .group:focus-visible .spike-glyph path { animation: spike-draw 0.7s ease-out; }
+
+/* Scroll reveal: only hides content when JS is running */
+.js [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js [data-reveal].in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .js [data-reveal] { opacity: 1; transform: none; transition: none; }
+  .led-live, .group:hover .spike-glyph path { animation: none; }
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #000000;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #555;
-}
-
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: rgb(var(--canvas)); }
+::-webkit-scrollbar-thumb { background: rgb(var(--line) / 0.25); border-radius: 8px; }

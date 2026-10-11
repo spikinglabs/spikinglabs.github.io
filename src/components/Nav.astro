@@ -1,0 +1,65 @@
+---
+import site from "../data/site.json";
+import Container from "./Container.astro";
+import Logo from "./Logo.astro";
+const path = Astro.url.pathname.replace(/\/$/, "");
+const isActive = (href: string) => path === href || path.startsWith(href + "/");
+---
+<header class="sticky top-0 z-50 border-b border-line/10 bg-canvas/80 backdrop-blur-xl">
+  <Container>
+    <div class="flex h-16 items-center justify-between gap-6">
+      <a href="/" aria-label="Spiking Labs, home" class="text-ink"><Logo class="text-xl" /></a>
+
+      <nav aria-label="Main" class="hidden items-center gap-1 md:flex">
+        {site.nav.map((l) => (
+          <a href={l.href} aria-current={isActive(l.href) ? "page" : undefined}
+             class={`rounded-full px-4 py-2 text-sm transition hover:text-ink ${isActive(l.href) ? "text-ink bg-line/10" : "text-muted"}`}>{l.label}</a>
+        ))}
+      </nav>
+
+      <div class="flex items-center gap-2">
+        <button type="button" data-theme-toggle aria-label="Toggle light and dark theme"
+                class="grid h-10 w-10 place-items-center rounded-full border border-line/15 text-ink transition hover:border-ink">
+          <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.2" /><path d="M12 2v2.2M12 19.8V22M2 12h2.2M19.8 12H22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6" />
+          </svg>
+        </button>
+        <a href={`mailto:${site.email}`} class="btn-primary hidden !py-2.5 md:inline-flex">Contact</a>
+        <button type="button" id="menu-toggle" aria-expanded="false" aria-controls="mobile-menu" aria-label="Open menu"
+                class="grid h-10 w-10 place-items-center rounded-full border border-line/15 md:hidden">
+          <svg viewBox="0 0 24 24" class="h-[18px] w-[18px]" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16" /></svg>
+        </button>
+      </div>
+    </div>
+  </Container>
+  <div id="mobile-menu" class="hidden border-t border-line/10 md:hidden">
+    <Container>
+      <nav aria-label="Mobile" class="flex flex-col py-3">
+        {site.nav.map((l) => (
+          <a href={l.href} class="border-b border-line/10 py-4 text-2xl font-medium tracking-tight">{l.label}</a>
+        ))}
+        <a href={`mailto:${site.email}`} class="btn-primary mt-5 mb-3">Contact us</a>
+      </nav>
+    </Container>
+  </div>
+</header>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById("menu-toggle");
+    var menu = document.getElementById("mobile-menu");
+    if (btn && menu) btn.addEventListener("click", function () {
+      var open = menu.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", String(open));
+    });
+    var tbtn = document.querySelector("[data-theme-toggle]");
+    if (tbtn) tbtn.addEventListener("click", function () {
+      var root = document.documentElement;
+      var dark = root.dataset.theme ? root.dataset.theme === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+      var next = dark ? "light" : "dark";
+      root.dataset.theme = next;
+      try { localStorage.setItem("sl-theme", next); } catch (e) {}
+      window.dispatchEvent(new Event("themechange"));
+    });
+  })();
+</script>
