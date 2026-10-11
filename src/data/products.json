@@ -104,9 +104,9 @@
     "name": "AlloLand",
     "tagline": "Your expat journey, guided by those who've been there",
     "summary": "AlloLand connects expats in Europe with mentors who've lived your exact situation — covering housing, visas, careers, banking, and local life — so you get real answers, not generic advice.",
-    "status": "Coming Soon",
-    "ctaUrl": null,
-    "ctaLabel": null,
+    "status": "Live",
+    "ctaUrl": "https://allo.land",
+    "ctaLabel": "Open AlloLand",
     "features": [
       {
         "title": "Find a Mentor",
