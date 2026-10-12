@@ -2,7 +2,7 @@
   "name": "Spiking Labs",
   "legalName": "SL Spiking Labs UG (haftungsbeschränkt)",
   "address": "Subbelrather Straße 15 a, 50823 Köln, Germany",
-  "description": "Spiking Labs builds small, private AI products for everyday life and helps teams put AI to work without giving up their data.",
+  "description": "Spiking Labs builds private AI products for everyday life, made for people, and helps teams put AI to work without giving up their data.",
   "email": "hi@spikinglabs.com",
   "supportEmail": "support@spikinglabs.com",
   "nav": [
@@ -12,11 +12,11 @@
     { "label": "Support", "href": "/support" }
   ],
   "hero": {
-    "eyebrow": "AI products & automation studio · Cologne",
-    "before": "Automation that ",
-    "emphasis": "fires",
-    "after": " when it matters.",
-    "lead": "We build small, private AI products for everyday life, and help teams put AI to work without handing over their data.",
+    "eyebrow": "AI products & services · Cologne",
+    "before": "",
+    "emphasis": "Sparks",
+    "after": " of intelligence for everyday life, made for people.",
+    "lead": "We build private AI products for everyday life, and help teams put AI to work without handing over their data.",
     "primary": { "label": "See our products", "href": "/products" },
     "secondary": { "label": "Work with us", "href": "/services" }
   },
