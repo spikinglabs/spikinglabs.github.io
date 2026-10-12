@@ -13,7 +13,7 @@ import { products } from "../lib/products";
 const facts = site.facts.map((f) => (f.value === "$products" ? { ...f, value: `${products.length} products` } : f));
 const groups = [...new Set(services.map((s) => s.group))];
 ---
-<Layout title="Spiking Labs · Automation that fires when it matters">
+<Layout title="Spiking Labs · Sparks of intelligence for everyday life">
   <Hero />
 
   <Container>
