@@ -2,7 +2,7 @@
   "name": "Spiking Labs",
   "legalName": "SL Spiking Labs UG (haftungsbeschränkt)",
   "address": "Subbelrather Straße 15 a, 50823 Köln, Germany",
-  "description": "Spiking Labs builds private AI products for everyday life, made for people, and helps teams put AI to work without giving up their data.",
+  "description": "Spiking Labs builds products for the details that matter in everyday life, made for people, and helps teams put private AI to work without giving up their data.",
   "email": "hi@spikinglabs.com",
   "supportEmail": "support@spikinglabs.com",
   "nav": [
@@ -16,24 +16,24 @@
     "before": "",
     "emphasis": "Sparks",
     "after": " of intelligence for everyday life, made for people.",
-    "lead": "We build private AI products for the tiny things in daily life, and help teams put AI to work without handing over their data.",
+    "lead": "We build products for the details that matter in daily life, and help teams put private AI to work without handing over their data.",
     "primary": { "label": "See our products", "href": "/products" },
     "secondary": { "label": "Work with us", "href": "/services" }
   },
   "facts": [
     { "label": "Based in", "value": "Cologne, DE" },
     { "label": "Products", "value": "$products" },
-    { "label": "Default stance", "value": "Private & self-hostable" },
+    { "label": "Default stance", "value": "Private where it matters" },
     { "label": "Speaks", "value": "EN · DE · 中文 · العربية" }
   ],
   "principles": [
     {
-      "title": "Private by default",
-      "body": "Your data stays yours. We prefer on-device storage, self-hosted models and no tracking, and we say so in plain words."
+      "title": "Private where it matters",
+      "body": "Wherever your data is involved, it stays yours. We prefer on-device storage, self-hosted models and no tracking, and we say so in plain words."
     },
     {
       "title": "Close to real life",
-      "body": "We care about the tiny details of ordinary days, and build for the moments that bring people closer together."
+      "body": "We care about the details that give ordinary days their weight, and build for the moments that bring people closer together."
     },
     {
       "title": "Looked after for the long run",
