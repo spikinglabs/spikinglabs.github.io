@@ -2,7 +2,7 @@
   "name": "Spiking Labs",
   "legalName": "SL Spiking Labs UG (haftungsbeschränkt)",
   "address": "Subbelrather Straße 15 a, 50823 Köln, Germany",
-  "description": "Spiking Labs builds private AI products for everyday life, made for people, and helps teams put AI to work without giving up their data.",
+  "description": "Spiking Labs builds products for the details that matter in everyday life, made for people, and helps teams put private AI to work without giving up their data.",
   "email": "hi@spikinglabs.com",
   "supportEmail": "support@spikinglabs.com",
   "nav": [
@@ -16,28 +16,28 @@
     "before": "",
     "emphasis": "Sparks",
     "after": " of intelligence for everyday life, made for people.",
-    "lead": "We build private AI products for everyday life, and help teams put AI to work without handing over their data.",
+    "lead": "We build products for the details that matter in daily life, and help teams put private AI to work without handing over their data.",
     "primary": { "label": "See our products", "href": "/products" },
     "secondary": { "label": "Work with us", "href": "/services" }
   },
   "facts": [
     { "label": "Based in", "value": "Cologne, DE" },
     { "label": "Products", "value": "$products" },
-    { "label": "Default stance", "value": "Private & self-hostable" },
+    { "label": "Default stance", "value": "Private where it matters" },
     { "label": "Speaks", "value": "EN · DE · 中文 · العربية" }
   ],
   "principles": [
     {
-      "title": "Private by default",
-      "body": "Your data stays yours. We prefer on-device storage, self-hosted models and no tracking, and we say so in plain words."
+      "title": "Private where it matters",
+      "body": "Wherever your data is involved, it stays yours. We prefer on-device storage, self-hosted models and no tracking, and we say so in plain words."
     },
     {
-      "title": "Small and composable",
-      "body": "Focused tools that do one job well and plug into the rest of your stack, instead of one more platform to adopt."
+      "title": "Close to real life",
+      "body": "We care about the details that give ordinary days their weight, and build for the moments that bring people closer together."
     },
     {
-      "title": "Useful over impressive",
-      "body": "We automate the boring, repetitive parts of life and work. If it does not save someone time, we do not ship it."
+      "title": "Looked after for the long run",
+      "body": "We maintain, curate and sustain every tool we build. If we cannot look after it properly, we do not ship it."
     }
   ],
   "cta": {
@@ -47,7 +47,7 @@
     "subject": "Let's talk about AI for my business"
   },
   "about": {
-    "title": "A small lab with a bias for shipping.",
+    "title": "A lab that looks after what it builds.",
     "paragraphs": [
       "Our team has a diverse background. We have brought automation, data-driven decision making and machine learning to different industries and to companies of different sizes.",
       "We are ready to create value using our knowledge and experience. Just drop us a message."

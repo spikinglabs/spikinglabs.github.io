@@ -5,12 +5,12 @@ import ProductCard from "../components/ProductCard.astro";
 import CtaBand from "../components/CtaBand.astro";
 import { products } from "../lib/products";
 ---
-<Layout title="Products" description="Small, private AI products from Spiking Labs: CityKlub, Little Outings, Tiny Foundation, AlloLand and Aura Baby.">
+<Layout title="Products" description="Products for the details that matter in daily life from Spiking Labs: CityKlub, Little Outings, Tiny Foundation, AlloLand and Aura Baby.">
   <Container>
     <header class="max-w-3xl space-y-6 pb-14 pt-16 md:pt-24">
       <p class="eyebrow">Products</p>
       <h1 class="display">AI-first products that feel human.</h1>
-      <p class="max-w-xl text-lg leading-7 text-muted">We build focused tools that simplify everyday life, powered by responsible AI and thoughtful design.</p>
+      <p class="max-w-xl text-lg leading-7 text-muted">We build tools for the details that matter in daily life. We maintain, curate and sustain every one of them.</p>
     </header>
     <div class="grid gap-4 md:grid-cols-2">
       {products.map((p, i) => <ProductCard product={p} index={i} featured={i === 0} />)}
