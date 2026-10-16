@@ -11,6 +11,7 @@ import { products } from "../lib/products";
       <p class="eyebrow">Products</p>
       <h1 class="display">AI-first products that feel human.</h1>
       <p class="max-w-xl text-lg leading-7 text-muted">We build tools for the details that matter in daily life. We maintain, curate and sustain every one of them.</p>
+      <a href="/lab" class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink">Earlier-stage tools live in the Lab <span aria-hidden="true">→</span></a>
     </header>
     <div class="grid gap-4 md:grid-cols-2">
       {products.map((p, i) => <ProductCard product={p} index={i} featured={i === 0} />)}

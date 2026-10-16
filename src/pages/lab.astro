@@ -1,0 +1,149 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import SectionHead from "../components/SectionHead.astro";
+import SpikeRule from "../components/SpikeRule.astro";
+import site from "../data/site.json";
+import lab from "../data/lab.json";
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const running = lab.experiments.filter((e) => e.status === "Running").length;
+const readout = [
+  { label: "Experiments running", value: pad(running) },
+  { label: "Open source", value: `${pad(lab.experiments.filter((e) => e.links.source).length)} / ${pad(lab.experiments.length)}` },
+  { label: "Accounts required", value: "0" },
+];
+const proposal = `mailto:${site.email}?subject=${encodeURIComponent("An idea for the Lab")}`;
+---
+<Layout title="Lab" description="Spiking Labs Lab: open experiments we build in public and run with real people, starting with Rondel, end-to-end encrypted retrospectives and meetings without accounts.">
+  <section class="relative overflow-hidden border-b border-line/10">
+    <div class="grid-bg absolute inset-0 -z-10"></div>
+    <Container>
+      <div class="grid gap-12 pb-20 pt-16 md:grid-cols-[1.5fr_1fr] md:items-end md:pb-24 md:pt-24">
+        <div class="space-y-6">
+          <p class="eyebrow">{lab.intro.eyebrow}</p>
+          <h1 class="display max-w-[14ch]">{lab.intro.title}</h1>
+          <p class="max-w-xl text-lg leading-7 text-muted">{lab.intro.lead}</p>
+        </div>
+        <div class="panel font-mono text-sm" aria-label="Lab status">
+          <div class="flex items-center justify-between border-b border-line/10 px-5 py-3 text-[11px] uppercase tracking-[0.14em] text-muted">
+            <span>Bench readout</span>
+            <span class="inline-flex items-center gap-2"><span class="led led-live"></span>Live</span>
+          </div>
+          <dl class="divide-y divide-line/10">
+            {readout.map((r) => (
+              <div class="flex items-baseline justify-between gap-4 px-5 py-3.5">
+                <dt class="text-muted">{r.label}</dt>
+                <dd class="text-lg tabular-nums">{r.value}</dd>
+              </div>
+            ))}
+          </dl>
+          <SpikeRule seed={3} count={48} class="text-ink/25" />
+        </div>
+      </div>
+    </Container>
+  </section>
+
+  <Container>
+    <section id="bench" class="mt-24 scroll-mt-24">
+      <SectionHead eyebrow="01 / On the bench" title="What we are testing now." />
+
+      <div class="mt-10 space-y-4">
+        {lab.experiments.map((e) => (
+          <article class="panel overflow-hidden" data-reveal>
+            <header class="flex flex-wrap items-center justify-between gap-3 border-b border-line/10 px-6 py-3.5 font-mono text-[11px] uppercase tracking-[0.14em] text-muted md:px-9">
+              <span class="flex flex-wrap gap-x-5 gap-y-1">
+                <span class="text-ink">{e.id}</span>
+                <span>{e.kind}</span>
+                <span>Since {e.since}</span>
+              </span>
+              <span class="inline-flex items-center gap-2"><span class="led led-live"></span>{e.status}</span>
+            </header>
+
+            <div class="grid gap-10 p-6 md:grid-cols-[1.5fr_1fr] md:gap-14 md:p-9">
+              <div class="space-y-6">
+                <h3 class="text-4xl font-medium tracking-tight md:text-5xl">{e.name}</h3>
+                <div class="border-l-2 border-accent pl-5">
+                  <p class="eyebrow mb-2">Question</p>
+                  <p class="text-xl leading-8 tracking-tight md:text-2xl md:leading-9">{e.question}</p>
+                </div>
+                <p class="max-w-2xl text-lg leading-7 text-muted">{e.summary}</p>
+                <div class="flex flex-wrap gap-3 pt-2">
+                  <a class="btn-primary" href={e.links.try} target="_blank" rel="noopener noreferrer">Try {e.name} <span aria-hidden="true">↗</span></a>
+                  <a class="btn-ghost" href={e.links.source} target="_blank" rel="noopener noreferrer">Read the source</a>
+                </div>
+                <a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={e.links.feedback} target="_blank" rel="noopener noreferrer">Report a finding <span aria-hidden="true">→</span></a>
+              </div>
+
+              <div>
+                <p class="eyebrow mb-3">Setup</p>
+                <dl class="border-t border-line/15 text-sm">
+                  {e.setup.map((s) => (
+                    <div class="grid grid-cols-[8.5rem_1fr] gap-4 border-b border-line/15 py-3">
+                      <dt class="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">{s.label}</dt>
+                      <dd>{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </div>
+            </div>
+
+            <footer class="border-t border-line/10 px-6 py-5 md:px-9">
+              <p class="sr-only">Stage {e.stage} of {lab.protocol.length}: {lab.protocol[e.stage - 1].title}</p>
+              <ol class="grid grid-cols-2 gap-x-3 gap-y-4 md:grid-cols-4" aria-hidden="true">
+                {lab.protocol.map((p, i) => {
+                  const n = i + 1;
+                  const bar = n < e.stage ? "bg-ink/70" : n === e.stage ? "bg-accent" : "bg-line/15";
+                  return (
+                    <li class="space-y-2">
+                      <span class={`block h-1 rounded-full ${bar}`}></span>
+                      <span class={`block font-mono text-[11px] uppercase tracking-[0.12em] ${n <= e.stage ? "text-ink" : "text-muted"}`}>
+                        {pad(n)} {p.title}{n === e.stage && " · now"}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ol>
+            </footer>
+          </article>
+        ))}
+
+        <a href={proposal} class="group flex flex-col justify-between gap-6 rounded-card border border-dashed border-line/25 p-6 transition hover:border-ink/50 md:flex-row md:items-center md:p-9" data-reveal>
+          <div class="space-y-2">
+            <span class="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">EXP–{String(lab.experiments.length + 1).padStart(3, "0")} · Bench free</span>
+            <p class="text-2xl font-medium tracking-tight">Have a question worth testing?</p>
+            <p class="max-w-xl text-muted">Tell us about a problem your team keeps running into. The good ones become the next experiment.</p>
+          </div>
+          <span class="inline-flex items-center gap-2 text-sm font-medium">Propose an experiment <span class="transition group-hover:translate-x-1" aria-hidden="true">→</span></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="mt-28">
+      <SectionHead eyebrow="02 / Protocol" title="How an experiment runs." lead="Every tool in the Lab goes through the same four stages. The bar on each experiment shows where it is." />
+      <ol class="mt-10 grid gap-px overflow-hidden rounded-card border border-line/10 bg-line/10 md:grid-cols-4">
+        {lab.protocol.map((p, i) => (
+          <li class="space-y-4 bg-canvas p-8" data-reveal>
+            <span class="font-mono text-xs text-muted">P–{pad(i + 1)}</span>
+            <h3 class="text-2xl font-medium tracking-tight">{p.title}</h3>
+            <p class="leading-7 text-muted">{p.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="mt-28">
+      <SectionHead eyebrow="03 / Lab rules" title="What to expect from a lab tool." />
+      <div class="mt-10 border-t border-line/15">
+        {lab.rules.map((r, i) => (
+          <div class="grid gap-3 border-b border-line/15 py-8 md:grid-cols-[4rem_1fr_1.6fr] md:gap-10" data-reveal>
+            <span class="font-mono text-xs text-muted">L–{pad(i + 1)}</span>
+            <h3 class="text-2xl font-medium tracking-tight">{r.title}</h3>
+            <p class="text-lg leading-7 text-muted">{r.body}</p>
+          </div>
+        ))}
+      </div>
+      <p class="mt-10 max-w-2xl text-muted" data-reveal>Tools that graduate move to <a class="text-ink underline decoration-line/30 underline-offset-4 hover:decoration-ink" href="/products">Products</a>, where we look after them for the long run.</p>
+    </section>
+  </Container>
+</Layout>

@@ -7,6 +7,7 @@
   "supportEmail": "support@spikinglabs.com",
   "nav": [
     { "label": "Products", "href": "/products" },
+    { "label": "Lab", "href": "/lab" },
     { "label": "Services", "href": "/services" },
     { "label": "About", "href": "/about" },
     { "label": "Support", "href": "/support" }
