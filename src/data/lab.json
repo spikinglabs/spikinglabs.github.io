@@ -1,0 +1,43 @@
+{
+  "intro": {
+    "eyebrow": "Spiking Labs Lab",
+    "title": "Experiments, run in the open.",
+    "lead": "The Lab is where new tools start. Each one begins with a question, is built in the open and is run with real people. Then it either graduates into a product or is written up and retired."
+  },
+  "protocol": [
+    { "title": "Question", "body": "Every experiment starts with one thing we want to find out, written down before any code." },
+    { "title": "Build in the open", "body": "The source is public from the first release, under an open licence anyone can read and reuse." },
+    { "title": "Run with people", "body": "A working version runs on our lab servers. Anyone can use it, and every finding is welcome." },
+    { "title": "Graduate or retire", "body": "If it earns its place, it becomes a product we look after. If not, we say what we learned and wind it down with notice." }
+  ],
+  "rules": [
+    { "title": "Expect change", "body": "Lab tools move fast. Features can change from one week to the next, and we note what changed in each release." },
+    { "title": "Private by design", "body": "No accounts unless an experiment truly needs them, no tracking, and as little data on our servers as the tool allows." },
+    { "title": "Findings in public", "body": "Bugs, ideas and objections go to the experiment's public issue tracker, so everyone can see what was reported and what we did about it." }
+  ],
+  "experiments": [
+    {
+      "id": "EXP–001",
+      "name": "Rondel",
+      "kind": "Retrospectives and meetings",
+      "status": "Running",
+      "stage": 3,
+      "since": "October 2026",
+      "question": "Can a team run its retros and everyday meetings without accounts, with nothing readable on the server?",
+      "summary": "Write, group, vote, discuss and agree actions in a retro, or run a meeting with an agenda, timer, shared notes, decisions and action items. Prepare before it starts, and repeat it weekly or monthly from one link. Everything people write is encrypted in the browser with a key that lives only in the meeting link.",
+      "setup": [
+        { "label": "Accounts", "value": "None. Share a link" },
+        { "label": "Encryption", "value": "End to end, in the browser" },
+        { "label": "Server sees", "value": "Room ids, sizes, timing" },
+        { "label": "Retention", "value": "90 days on the lab server" },
+        { "label": "Licence", "value": "Apache-2.0" },
+        { "label": "Self-hosting", "value": "Cloudflare, Node, Docker or static files" }
+      ],
+      "links": {
+        "try": "https://rondel.lab.spikinglabs.com",
+        "source": "https://github.com/spikinglabs/rondel",
+        "feedback": "https://github.com/spikinglabs/rondel/issues/new"
+      }
+    }
+  ]
+}
