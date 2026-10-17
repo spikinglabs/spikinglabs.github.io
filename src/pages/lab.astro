@@ -72,7 +72,15 @@ const proposal = `mailto:${site.email}?subject=${encodeURIComponent("An idea for
                   <a class="btn-primary" href={e.links.try} target="_blank" rel="noopener noreferrer">Try {e.name} <span aria-hidden="true">↗</span></a>
                   <a class="btn-ghost" href={e.links.source} target="_blank" rel="noopener noreferrer">Read the source</a>
                 </div>
-                <a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={e.links.feedback} target="_blank" rel="noopener noreferrer">Report a finding <span aria-hidden="true">→</span></a>
+                <div class="flex flex-wrap gap-x-6 gap-y-2">
+                  {[
+                    { label: "Report a finding", href: e.links.feedback },
+                    { label: "Run your own copy", href: e.links.selfHost },
+                    { label: "Contribute", href: e.links.contribute },
+                  ].filter((l) => l.href).map((l) => (
+                    <a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={l.href} target="_blank" rel="noopener noreferrer">{l.label} <span aria-hidden="true">→</span></a>
+                  ))}
+                </div>
               </div>
 
               <div>
