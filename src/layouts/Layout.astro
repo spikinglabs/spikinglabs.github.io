@@ -9,21 +9,26 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  /** Extra schema.org items for this page, e.g. the software an experiment offers. */
+  structuredData?: Record<string, unknown>[];
 }
-const { title = site.name, description = site.description, image = "/cover.png", noindex = false } = Astro.props;
+const { title = site.name, description = site.description, image = "/cover.png", noindex = false, structuredData = [] } = Astro.props;
 
 const fullTitle = title.includes(site.name) ? title : `${title} · ${site.name}`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
-const jsonLd = {
-  "@context": "https://schema.org",
+const organization = {
   "@type": "Organization",
+  "@id": new URL("/#organization", Astro.site).toString(),
   name: site.name,
   legalName: site.legalName,
   url: Astro.site?.toString(),
   email: site.email,
+  logo: new URL("/logo/mark-tile-512.png", Astro.site).toString(),
+  sameAs: ["https://github.com/spikinglabs"],
   address: { "@type": "PostalAddress", streetAddress: "Subbelrather Straße 15 a", postalCode: "50823", addressLocality: "Köln", addressCountry: "DE" },
 };
+const jsonLd = { "@context": "https://schema.org", "@graph": [organization, ...structuredData] };
 ---
 
 <!doctype html>

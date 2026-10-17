@@ -13,9 +13,22 @@ const readout = [
   { label: "Open source", value: `${pad(lab.experiments.filter((e) => e.links.source).length)} / ${pad(lab.experiments.length)}` },
   { label: "Accounts required", value: "0" },
 ];
+// Each experiment as software for search engines and AI assistants (schema.org).
+const software = lab.experiments.map((e) => ({
+  "@type": "SoftwareApplication",
+  name: e.name,
+  description: `${e.kind}. ${e.summary}`,
+  url: e.links.try,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web browser",
+  offers: { "@type": "Offer", price: "0", priceCurrency: "EUR" },
+  ...(e.links.source && { sameAs: [e.links.source] }),
+  ...(e.setup.find((s) => s.label === "Licence") && { license: `https://spdx.org/licenses/${e.setup.find((s) => s.label === "Licence")!.value}.html` }),
+  publisher: { "@id": new URL("/#organization", Astro.site).toString() },
+}));
 const proposal = `mailto:${site.email}?subject=${encodeURIComponent("An idea for the Lab")}`;
 ---
-<Layout title="Lab" description="Spiking Labs Lab: open experiments we build in public and run with real people, starting with Rondel, end-to-end encrypted retrospectives and meetings without accounts.">
+<Layout title="Lab" structuredData={software} description="Spiking Labs Lab: open experiments we build in public and run with real people, starting with Rondel, end-to-end encrypted retrospectives and meetings without accounts.">
   <section class="relative overflow-hidden border-b border-line/10">
     <div class="grid-bg absolute inset-0 -z-10"></div>
     <Container>
