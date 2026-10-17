@@ -36,7 +36,9 @@
       "links": {
         "try": "https://rondel.lab.spikinglabs.com",
         "source": "https://github.com/spikinglabs/rondel",
-        "feedback": "https://github.com/spikinglabs/rondel/issues/new"
+        "feedback": "https://github.com/spikinglabs/rondel/issues/new/choose",
+        "selfHost": "https://github.com/spikinglabs/rondel/blob/main/DEPLOY.md",
+        "contribute": "https://github.com/spikinglabs/rondel/blob/main/CONTRIBUTING.md"
       }
     }
   ]
