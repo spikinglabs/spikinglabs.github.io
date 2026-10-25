@@ -50,6 +50,33 @@
     ]
   },
   {
+    "slug": "symbolon",
+    "name": "Symbolon",
+    "tagline": "Spec packs your AI agent builds software from",
+    "summary": "A shop of spec packs for software. Each pack describes what a tool should do, with worked examples and checks, so an AI coding agent such as Claude Code can build it for you in the language and stack you choose. Packs are public and free to download.",
+    "status": "Live",
+    "ctaUrl": "https://symbola.sh",
+    "ctaLabel": "Browse spec packs",
+    "features": [
+      {
+        "title": "Build From a Pack",
+        "description": "Download a pack and hand it to your coding agent. It builds the tool from the spec instead of guessing from a prompt."
+      },
+      {
+        "title": "Your Stack, Your Code",
+        "description": "The pack describes behaviour, not an implementation, so you can rebuild the same tool in Python, Go or whatever you use."
+      },
+      {
+        "title": "Checks Included",
+        "description": "Every pack ships worked examples and checks, so you and your agent can see when the build does what the spec says."
+      },
+      {
+        "title": "Publish Your Own",
+        "description": "Turn a tool you maintain into a pack and list it with a link to your profile and support page."
+      }
+    ]
+  },
+  {
     "slug": "aura-baby",
     "name": "Aura Baby",
     "tagline": "AI-powered guidance for early parenthood",
