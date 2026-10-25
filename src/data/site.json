@@ -24,7 +24,7 @@
   "facts": [
     { "label": "Based in", "value": "Cologne, DE" },
     { "label": "Products", "value": "$products" },
-    { "label": "Default stance", "value": "Private where it matters" },
+    { "label": "Our promise", "value": "We look after what we build" },
     { "label": "Speaks", "value": "EN · DE · 中文 · العربية" }
   ],
   "principles": [
