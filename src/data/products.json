@@ -52,7 +52,7 @@
   {
     "slug": "symbola",
     "name": "Symbola",
-    "tagline": "Spec packs for coding agents",
+    "tagline": "Hand your agent a spec pack. Skip the back-and-forth on the basics.",
     "summary": "Ready-made spec packs for coding agents. Each pack writes down every decision a product needs, with a test for each one, so your agent can build it without the back-and-forth on the basics, and run the tests until they pass. The code stays in your repo, and the first packs are free.",
     "status": "Live",
     "ctaUrl": "https://symbola.sh",
