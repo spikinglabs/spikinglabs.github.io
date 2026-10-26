@@ -50,25 +50,25 @@
     ]
   },
   {
-    "slug": "symbolon",
-    "name": "Symbolon",
-    "tagline": "Spec packs your AI agent builds software from",
-    "summary": "A shop of spec packs for software. Each pack describes what a tool should do, with worked examples and checks, so an AI coding agent such as Claude Code can build it for you in the language and stack you choose. Packs are public and free to download.",
+    "slug": "symbola",
+    "name": "Symbola",
+    "tagline": "Spec packs for coding agents",
+    "summary": "Ready-made spec packs for coding agents. Each pack writes down every decision a product needs, with a test for each one, so your agent can build it without the back-and-forth on the basics, and run the tests until they pass. The code stays in your repo, and the first packs are free.",
     "status": "Live",
     "ctaUrl": "https://symbola.sh",
     "ctaLabel": "Browse spec packs",
     "features": [
       {
-        "title": "Build From a Pack",
-        "description": "Download a pack and hand it to your coding agent. It builds the tool from the spec instead of guessing from a prompt."
+        "title": "Hand Your Agent a Pack",
+        "description": "Pick a pack with its brief, decisions and tests, give it to a coding agent such as Claude Code, and choose a language."
       },
       {
-        "title": "Your Stack, Your Code",
-        "description": "The pack describes behaviour, not an implementation, so you can rebuild the same tool in Python, Go or whatever you use."
+        "title": "A Decision and a Test for Each",
+        "description": "Every behaviour has a written answer and a test, so you can see when the build does what the spec says."
       },
       {
-        "title": "Checks Included",
-        "description": "Every pack ships worked examples and checks, so you and your agent can see when the build does what the spec says."
+        "title": "Your Code, No Lock-in",
+        "description": "The agent builds plain code in your repo, with no runtime. Change it, or rebuild it in Python, Go or TypeScript."
       },
       {
         "title": "Publish Your Own",
