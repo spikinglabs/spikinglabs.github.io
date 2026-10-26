@@ -52,23 +52,23 @@
   {
     "slug": "symbola",
     "name": "Symbola",
-    "tagline": "Spec packs your coding agent can build from",
-    "summary": "Ready-made spec packs your coding agent can build from, in any language. Every decision is written down and tested, so your agent builds it right and you own the code. Pick a pack, hand it to Claude Code or any coding agent, and the pack's tests say when it's done.",
+    "tagline": "Software, shipped unbuilt.",
+    "summary": "Your agent is the new compiler. Decisions are the new source code. A pack holds every decision a product needs, each with a test. Your coding agent builds the product in your language, in your own repo, without stopping to ask how anything should work. Then you change it however you like.",
     "status": "Live",
     "ctaUrl": "https://symbola.sh",
     "ctaLabel": "Browse spec packs",
     "features": [
       {
-        "title": "Skip the Groundwork",
-        "description": "The everyday features most products need, worked out case by case, so your agent does not stop to ask on the basics."
+        "title": "Every Decision, Written Down",
+        "description": "A pack holds every decision a product needs, so nothing is left for your agent to guess."
       },
       {
-        "title": "Nothing Left to Guess",
-        "description": "Each behaviour has a written answer and a test that checks it, so your agent knows what is still wrong and fixes it."
+        "title": "A Test for Each",
+        "description": "Each decision comes with a test, so you and your agent can see when the build does what the pack says."
       },
       {
-        "title": "Yours to Keep and Change",
-        "description": "The result is plain code in your own repo, with no runtime and no lock-in."
+        "title": "Your Language, Your Repo",
+        "description": "Your coding agent builds the product in the language you choose, in your own repo, and you change it however you like."
       },
       {
         "title": "Publish Your Own",
