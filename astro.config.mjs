@@ -10,5 +10,7 @@ export default defineConfig({
     // Leftover template pages; keep old links from 404ing.
     '/pricing': '/',
     '/blog': '/',
+    // Symbolon was renamed Symbola; keep the old product address working.
+    '/products/symbolon': '/products/symbola',
   },
 });

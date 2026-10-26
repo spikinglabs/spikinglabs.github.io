@@ -50,29 +50,29 @@
     ]
   },
   {
-    "slug": "symbolon",
-    "name": "Symbolon",
-    "tagline": "Spec packs your AI agent builds software from",
-    "summary": "A shop of spec packs for software. Each pack describes what a tool should do, with worked examples and checks, so an AI coding agent such as Claude Code can build it for you in the language and stack you choose. Packs are public and free to download.",
+    "slug": "symbola",
+    "name": "Symbola",
+    "tagline": "Software, shipped unbuilt.",
+    "summary": "Your agent is the new compiler. Decisions are the new source code. A pack holds every decision a product needs, each with a test. Your coding agent builds the product in your language, in your own repo, without stopping to ask how anything should work. Then you change it however you like.",
     "status": "Live",
     "ctaUrl": "https://symbola.sh",
     "ctaLabel": "Browse spec packs",
     "features": [
       {
-        "title": "Build From a Pack",
-        "description": "Download a pack and hand it to your coding agent. It builds the tool from the spec instead of guessing from a prompt."
+        "title": "Every Decision, Written Down",
+        "description": "A pack holds every decision a product needs, so nothing is left for your agent to guess."
       },
       {
-        "title": "Your Stack, Your Code",
-        "description": "The pack describes behaviour, not an implementation, so you can rebuild the same tool in Python, Go or whatever you use."
+        "title": "A Test for Each",
+        "description": "Each decision comes with a test, so you and your agent can see when the build does what the pack says."
       },
       {
-        "title": "Checks Included",
-        "description": "Every pack ships worked examples and checks, so you and your agent can see when the build does what the spec says."
+        "title": "Your Language, Your Repo",
+        "description": "Your coding agent builds the product in the language you choose, in your own repo, and you change it however you like."
       },
       {
         "title": "Publish Your Own",
-        "description": "Turn a tool you maintain into a pack and list it with a link to your profile and support page."
+        "description": "Know how a product should work? Package it once, and every coding agent can build it."
       }
     ]
   },
