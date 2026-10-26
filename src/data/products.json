@@ -52,27 +52,27 @@
   {
     "slug": "symbola",
     "name": "Symbola",
-    "tagline": "Hand your agent a spec pack. Skip the back-and-forth on the basics.",
-    "summary": "Ready-made spec packs for coding agents. Each pack writes down every decision a product needs, with a test for each one, so your agent can build it without the back-and-forth on the basics, and run the tests until they pass. The code stays in your repo, and the first packs are free.",
+    "tagline": "Spec packs your coding agent can build from",
+    "summary": "Ready-made spec packs your coding agent can build from, in any language. Every decision is written down and tested, so your agent builds it right and you own the code. Pick a pack, hand it to Claude Code or any coding agent, and the pack's tests say when it's done.",
     "status": "Live",
     "ctaUrl": "https://symbola.sh",
     "ctaLabel": "Browse spec packs",
     "features": [
       {
-        "title": "Hand Your Agent a Pack",
-        "description": "Pick a pack with its brief, decisions and tests, give it to a coding agent such as Claude Code, and choose a language."
+        "title": "Skip the Groundwork",
+        "description": "The everyday features most products need, worked out case by case, so your agent does not stop to ask on the basics."
       },
       {
-        "title": "A Decision and a Test for Each",
-        "description": "Every behaviour has a written answer and a test, so you can see when the build does what the spec says."
+        "title": "Nothing Left to Guess",
+        "description": "Each behaviour has a written answer and a test that checks it, so your agent knows what is still wrong and fixes it."
       },
       {
-        "title": "Your Code, No Lock-in",
-        "description": "The agent builds plain code in your repo, with no runtime. Change it, or rebuild it in Python, Go or TypeScript."
+        "title": "Yours to Keep and Change",
+        "description": "The result is plain code in your own repo, with no runtime and no lock-in."
       },
       {
         "title": "Publish Your Own",
-        "description": "Turn a tool you maintain into a pack and list it with a link to your profile and support page."
+        "description": "Know how a product should work? Package it once, and every coding agent can build it."
       }
     ]
   },
