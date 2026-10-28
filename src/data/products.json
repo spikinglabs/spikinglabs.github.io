@@ -23,17 +23,17 @@
     ]
   },
   {
-    "slug": "little-outings",
-    "name": "Little Outings",
+    "slug": "allo-outings",
+    "name": "Allo Outings",
     "tagline": "Days out with kids, nearby",
-    "summary": "A free guide to family outings around you: events like farm festivals and story time at the library, plus kid-friendly places such as playgrounds, pools and cafés. In English, German and Chinese, with no account and no ads.",
+    "summary": "A free guide to family outings around you: events like farm festivals and story time at the library, plus kid-friendly places such as playgrounds, pools and cafés. In English, German and Chinese (Chinese name 小鹿出游), with no account and no ads. Formerly Little Outings.",
     "status": "Live",
     "ctaUrl": "https://outings.allo.land",
-    "ctaLabel": "Open Little Outings",
+    "ctaLabel": "Open Allo Outings",
     "features": [
       {
         "title": "Ideas Nearby",
-        "description": "One list of what's on and where to go near you, with filters for rainy days, free entry and age."
+        "description": "One list of what's on and where to go near you, with filters for rainy days and free entry."
       },
       {
         "title": "Parents Fill the Gaps",
