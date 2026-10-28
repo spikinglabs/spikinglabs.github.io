@@ -1,0 +1,83 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Container from "../../components/Container.astro";
+import CtaBand from "../../components/CtaBand.astro";
+import SectionHead from "../../components/SectionHead.astro";
+import site from "../../data/site.json";
+import r from "../../data/renovation.json";
+const url = new URL(`/services/${r.slug}`, Astro.site).toString();
+const org = new URL("/#organization", Astro.site).toString();
+const structuredData = [
+  {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: r.name,
+    serviceType: "Website renovation for search engines and AI assistants",
+    description: r.description,
+    url,
+    provider: { "@id": org },
+    areaServed: "Worldwide",
+    audience: { "@type": "BusinessAudience", audienceType: r.audience },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "What is included",
+      itemListElement: r.deliverables.map((d) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: d } })),
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: r.faq.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+  },
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Services", item: new URL("/services", Astro.site).toString() },
+      { "@type": "ListItem", position: 2, name: r.short, item: url },
+    ],
+  },
+];
+const mailto = `mailto:${site.email}?subject=${encodeURIComponent(`Enquiry: ${r.name}`)}`;
+---
+<Layout title={r.short} description={r.description} structuredData={structuredData}>
+  <Container>
+    <header class="max-w-3xl space-y-6 pb-14 pt-16 md:pt-24">
+      <a href="/services" class="eyebrow">← Services</a>
+      <h1 class="display">{r.name}.</h1>
+      <p class="max-w-xl text-lg leading-7 text-muted">{r.lead}</p>
+      <a href={mailto} class="btn-primary">Ask about your site <span aria-hidden="true">→</span></a>
+    </header>
+
+    <section class="mt-14">
+      <SectionHead eyebrow="How it works" title="Three steps, from audit to handover." />
+      <ol class="mt-8 grid gap-6 md:grid-cols-3">
+        {r.steps.map((s, i) => (
+          <li class="panel space-y-3 p-8" data-reveal>
+            <p class="eyebrow">{`0${i + 1}`}</p>
+            <h3 class="text-2xl font-medium tracking-tight">{s.title}</h3>
+            <p class="leading-7 text-muted">{s.body}</p>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    <section class="mt-24 grid gap-10 md:grid-cols-[1fr_1.4fr]">
+      <SectionHead eyebrow="What you get" title="What is included." lead={`Made for: ${r.audience}`} />
+      <ul class="border-t border-line/15" data-reveal>
+        {r.deliverables.map((d) => <li class="border-b border-line/15 py-4 leading-7 text-muted">{d}</li>)}
+      </ul>
+    </section>
+
+    <section class="mt-24">
+      <SectionHead eyebrow="Questions" title="Good to know." />
+      <dl class="mt-8 border-t border-line/15">
+        {r.faq.map((f) => (
+          <div class="grid gap-3 border-b border-line/15 py-8 md:grid-cols-[1fr_1.4fr] md:gap-12" data-reveal>
+            <dt class="text-xl font-medium tracking-tight">{f.q}</dt>
+            <dd class="leading-7 text-muted">{f.a}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  </Container>
+  <CtaBand />
+</Layout>
