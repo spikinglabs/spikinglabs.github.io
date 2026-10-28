@@ -12,5 +12,7 @@ export default defineConfig({
     '/blog': '/',
     // Symbolon was renamed Symbola; keep the old product address working.
     '/products/symbolon': '/products/symbola',
+    // Little Outings was renamed Allo Outings (小鹿出游) in October 2026.
+    '/products/little-outings': '/products/allo-outings',
   },
 });
