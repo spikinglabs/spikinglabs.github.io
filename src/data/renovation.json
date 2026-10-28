@@ -1,0 +1,39 @@
+{
+  "slug": "website-renovation",
+  "name": "Renovate your company website for the AI era",
+  "short": "Website renovation for the AI era",
+  "description": "A website renovation for the AI era: pages that search engines and AI assistants can read, quote and recommend. Audit, renovation and handover from Spiking Labs in Cologne.",
+  "lead": "More people now ask an AI assistant before they open a search result. We renovate your company website so that people and AI assistants can both find it, read it and get your facts right.",
+  "steps": [
+    { "title": "Audit", "body": "We read your site the way a search engine and an AI assistant do, and list what is missing, unclear or wrong, in plain language." },
+    { "title": "Renovate", "body": "We restructure and rewrite the pages that matter around the questions your customers actually ask, and add the technical parts that machines need." },
+    { "title": "Hand over", "body": "You get a site you can edit yourself, with a short guide for keeping it accurate and up to date." }
+  ],
+  "deliverables": [
+    "Answer-first pages for your services, products and key questions",
+    "Structured data (schema.org) so search engines and assistants know who you are and what you offer",
+    "An llms.txt file and plain-text versions of key pages for AI assistants",
+    "Fast, accessible pages that work well on phones",
+    "A sitemap and crawler settings that let the right bots in",
+    "A written report of what we found and what we changed"
+  ],
+  "audience": "Companies with a website that is a few years old, or that was built before people started asking AI assistants: B2B firms, agencies, local businesses and professional services.",
+  "faq": [
+    {
+      "q": "What does an AI-ready website mean?",
+      "a": "It means the facts about your company are written down clearly on pages that machines can read, so search engines and AI assistants can find them, quote them correctly and point people to you."
+    },
+    {
+      "q": "Can you guarantee that AI assistants will recommend us?",
+      "a": "No, and nobody honestly can. We make your site easy to find, read and quote, and we check how assistants describe you before and after."
+    },
+    {
+      "q": "Do we need a completely new website?",
+      "a": "Not always. After the audit we tell you whether renovating the current site or rebuilding it is the better choice."
+    },
+    {
+      "q": "How much does it cost?",
+      "a": "After a short conversation and the audit we quote a fixed price. Write to us and we will tell you what to expect."
+    }
+  ]
+}

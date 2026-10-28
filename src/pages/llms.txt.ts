@@ -2,6 +2,7 @@
 import type { APIRoute } from "astro";
 import site from "../data/site.json";
 import lab from "../data/lab.json";
+import renovation from "../data/renovation.json";
 import { products, isLive } from "../lib/products";
 
 export const GET: APIRoute = ({ site: base }) => {
@@ -32,6 +33,7 @@ export const GET: APIRoute = ({ site: base }) => {
     "## More",
     "",
     `- [Services](${url("/services/")}): how we help teams put private AI to work`,
+    `- [${renovation.name}](${url(`/services/${renovation.slug}/`)}): ${renovation.description} Plain-text version: ${url(`/services/${renovation.slug}.md`)}`,
     `- [About](${url("/about/")})`,
     `- [Support](${url("/support/")})`,
     "",

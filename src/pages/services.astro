@@ -6,7 +6,7 @@ import site from "../data/site.json";
 import services from "../data/services.json";
 const groups = [...new Set(services.map((s) => s.group))];
 ---
-<Layout title="Services" description="Private AI, GenAI assistants, automation, AI education and forecasting research from Spiking Labs.">
+<Layout title="Services" description="Private AI, GenAI assistants, automation, AI education, forecasting research and website renovation for the AI era from Spiking Labs.">
   <Container>
     <header class="max-w-3xl space-y-6 pb-14 pt-16 md:pt-24">
       <p class="eyebrow">Services</p>
@@ -28,6 +28,7 @@ const groups = [...new Set(services.map((s) => s.group))];
               </div>
               <div class="space-y-5">
                 <p class="text-lg leading-7 text-muted">{s.blurb}</p>
+                {s.href && <p><a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={s.href}>See what is included <span aria-hidden="true">→</span></a></p>}
                 <a class="inline-flex items-center gap-2 text-sm font-medium underline decoration-line/30 underline-offset-4 hover:decoration-ink" href={`mailto:${site.email}?subject=${encodeURIComponent(`Enquiry: ${s.name}`)}`}>Talk to us about this <span aria-hidden="true">→</span></a>
               </div>
             </article>
