@@ -40,6 +40,31 @@
         "selfHost": "https://github.com/spikinglabs/rondel/blob/main/DEPLOY.md",
         "contribute": "https://github.com/spikinglabs/rondel/blob/main/CONTRIBUTING.md"
       }
+    },
+    {
+      "id": "EXP–002",
+      "name": "Kunla",
+      "kind": "Record of work for people and AI agents",
+      "status": "Running",
+      "stage": 3,
+      "since": "November 2026",
+      "question": "Can a team's AI agents keep the record of their own work, so people only see the decisions that need them?",
+      "summary": "Every person and every AI connection is a team member. Agents claim tasks, log progress and submit work themselves over MCP, from Claude Code, claude.ai, Codex or any other agent. People get one short inbox of reviews, questions and proposals, and a correction can become a rule sent to every agent with its next task.",
+      "setup": [
+        { "label": "Agents", "value": "Any MCP agent, Claude first" },
+        { "label": "Accounts", "value": "Personal tokens, OAuth for claude.ai" },
+        { "label": "Server stores", "value": "Tasks, history, reviews, rules" },
+        { "label": "Hosting cost", "value": "Fits Cloudflare's free plan" },
+        { "label": "Licence", "value": "Apache-2.0" },
+        { "label": "Self-hosting", "value": "Your own Cloudflare account" }
+      ],
+      "links": {
+        "try": "https://kunla.lab.spikinglabs.com",
+        "source": "https://github.com/spikinglabs/kunla",
+        "feedback": "https://github.com/spikinglabs/kunla/issues/new",
+        "selfHost": "https://github.com/spikinglabs/kunla#deploy-to-your-cloudflare-account",
+        "contribute": "https://github.com/spikinglabs/kunla/blob/main/AGENTS.md"
+      }
     }
   ]
 }
