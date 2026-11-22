@@ -23,7 +23,7 @@ export const GET: APIRoute = ({ site: base }) => {
     `- [Lab](${url("/lab/")}): ${lab.intro.lead}`,
     ...lab.experiments.map((e) =>
       [
-        `- [${e.name}](${e.links.try}) (${e.id}, ${e.kind.toLowerCase()}, ${e.status.toLowerCase()}): ${e.summary}`,
+        `- [${e.name}](${e.links.try}) (${e.id}, ${e.kind.charAt(0).toLowerCase() + e.kind.slice(1)}, ${e.status.toLowerCase()}): ${e.summary}`,
         ...e.setup.map((s) => `  - ${s.label}: ${s.value}`),
         ...(e.links.source ? [`  - Source: ${e.links.source}`] : []),
         ...(e.links.selfHost ? [`  - Run your own copy: ${e.links.selfHost}`] : []),
