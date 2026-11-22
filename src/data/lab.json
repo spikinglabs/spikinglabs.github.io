@@ -65,6 +65,31 @@
         "selfHost": "https://github.com/spikinglabs/kunla#deploy-to-your-cloudflare-account",
         "contribute": "https://github.com/spikinglabs/kunla/blob/main/AGENTS.md"
       }
+    },
+    {
+      "id": "EXP–003",
+      "name": "Wengua 问卦",
+      "kind": "The I Ching for AI assistants",
+      "status": "Running",
+      "stage": 3,
+      "since": "November 2026",
+      "question": "Can an AI give an honest I Ching reading if code does the casting and the model only reads sourced texts?",
+      "summary": "Ask Claude, ChatGPT or any assistant that speaks MCP for a reading. Wengua casts with three coins or yarrow stalks at the classical odds from a secure random source, picks the texts to read by Zhu Xi's rules, and returns the original Chinese in traditional and simplified script, collated with a Song edition. The model then interprets, and never has to invent a hexagram or misquote a line.",
+      "setup": [
+        { "label": "Works in", "value": "Any MCP client or Agent Skills app" },
+        { "label": "Accounts", "value": "None, and no API key" },
+        { "label": "Server stores", "value": "Nothing. No questions, no readings" },
+        { "label": "Runs locally", "value": "uvx wengua or npx -y wengua" },
+        { "label": "Licence", "value": "MIT" },
+        { "label": "Dataset", "value": "CC BY-SA 4.0, public-domain sources" }
+      ],
+      "links": {
+        "try": "https://wengua.allo.land/setup/",
+        "source": "https://github.com/spikinglabs/wengua",
+        "feedback": "https://github.com/spikinglabs/wengua/issues/new",
+        "selfHost": "https://wengua.allo.land/ecosystem/mcp/",
+        "contribute": "https://wengua.allo.land/contributing/"
+      }
     }
   ]
 }
